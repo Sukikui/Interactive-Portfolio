@@ -6,14 +6,15 @@ import {
   Sun,
   Download,
   Mail,
-  Github,
-  Linkedin,
   GraduationCap,
   Briefcase,
   FolderGit2,
   FileText,
+  Star,
+  GitFork,
   ArrowUpRight,
 } from "lucide-react";
+import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import heroBg from "@/assets/hero-bg.jpg";
 import profile from "@/assets/profile.jpg";
 import { useTheme } from "@/lib/theme";
@@ -21,16 +22,16 @@ import { useTheme } from "@/lib/theme";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alex Martin — Research Engineer Portfolio" },
+      { title: "Alex Martin — AI Research Engineer" },
       {
         name: "description",
         content:
-          "Academic portfolio of Alex Martin, recently graduated engineer. Research interests, education, experience, projects and CV.",
+          "Academic portfolio of Alex Martin, AI research engineer. Research interests, education, experience, open-source projects and CV.",
       },
-      { property: "og:title", content: "Alex Martin — Research Engineer Portfolio" },
+      { property: "og:title", content: "Alex Martin — AI Research Engineer" },
       {
         property: "og:description",
-        content: "Research interests, education, projects and CV of Alex Martin.",
+        content: "Research interests, projects and CV of Alex Martin, AI research engineer.",
       },
     ],
   }),
@@ -38,11 +39,11 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
-  { id: "education", label: "Education", Icon: GraduationCap },
-  { id: "experience", label: "Experience", Icon: Briefcase },
-  { id: "projects", label: "Projects", Icon: FolderGit2 },
-  { id: "cv", label: "CV", Icon: FileText },
-  { id: "contact", label: "Contact", Icon: Mail },
+  { id: "education", label: "Education" },
+  { id: "experience", label: "Experience" },
+  { id: "projects", label: "Projects" },
+  { id: "cv", label: "CV" },
+  { id: "contact", label: "Contact" },
 ];
 
 function Portfolio() {
@@ -66,18 +67,20 @@ function Portfolio() {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "backdrop-blur-xl bg-background/70 border-b border-border/60 shadow-sm"
+            ? "backdrop-blur-xl bg-background/70 border-b border-border/60"
             : "bg-transparent border-b border-transparent"
         }`}
       >
         <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={`font-display text-lg tracking-tight transition-colors ${
+            className={`font-display font-semibold text-lg tracking-tight transition-colors ${
               scrolled ? "text-foreground" : "text-white"
             }`}
           >
-            A<span className="text-gold">.</span>M
+            <span className="font-mono-tight text-brand-soft">{"</"}</span>
+            AM
+            <span className="font-mono-tight text-brand-soft">{">"}</span>
           </button>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -88,7 +91,7 @@ function Portfolio() {
                 className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                   scrolled
                     ? "text-muted-foreground hover:text-foreground hover:bg-accent"
-                    : "text-white/80 hover:text-white hover:bg-white/10"
+                    : "text-white/75 hover:text-white hover:bg-white/10"
                 }`}
               >
                 {n.label}
@@ -111,47 +114,70 @@ function Portfolio() {
       </header>
 
       {/* Hero */}
-      <section className="relative h-screen w-full overflow-hidden">
+      <section className="relative h-screen w-full overflow-hidden bg-[#05071a]">
         <img
           src={heroBg}
           alt=""
           width={1920}
           height={1280}
-          className="absolute inset-0 h-full w-full object-cover"
+          className="absolute inset-0 h-full w-full object-cover opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/55 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#05071a]/70 via-[#05071a]/60 to-[#05071a]/90" />
+        <div className="absolute inset-0 grid-bg opacity-[0.08]" />
 
         <div className="relative h-full mx-auto max-w-6xl px-6 flex items-center">
-          <div className="grid md:grid-cols-2 gap-10 md:gap-16 items-center w-full">
+          <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-center w-full">
             {/* Left — profile */}
             <div className="flex justify-center md:justify-start animate-fade-up">
               <div className="relative">
-                <div className="absolute -inset-2 rounded-full bg-gradient-to-tr from-gold/40 to-transparent blur-xl" />
-                <img
-                  src={profile}
-                  alt="Alex Martin portrait"
-                  width={320}
-                  height={320}
-                  className="relative size-56 md:size-72 rounded-full object-cover ring-1 ring-white/20 shadow-2xl"
-                />
+                <div className="absolute -inset-3 rounded-full bg-gradient-to-tr from-brand/50 via-cyan/30 to-transparent blur-2xl" />
+                <div className="relative p-[2px] rounded-full bg-gradient-to-tr from-brand via-cyan to-brand-soft">
+                  <img
+                    src={profile}
+                    alt="Alex Martin portrait"
+                    width={320}
+                    height={320}
+                    className="size-56 md:size-72 rounded-full object-cover ring-2 ring-[#05071a]"
+                  />
+                </div>
               </div>
             </div>
 
             {/* Right — text */}
             <div className="text-white animate-fade-up [animation-delay:120ms]">
-              <p className="text-gold text-sm font-medium tracking-[0.2em] uppercase mb-4">
-                Research Engineer
+              <p className="font-mono-tight text-cyan text-xs tracking-[0.3em] uppercase mb-5">
+                <span className="text-white/40">~/</span>ai-research-engineer
               </p>
-              <h1 className="font-display text-5xl md:text-7xl font-medium leading-[0.95] tracking-tight">
-                Alex<br />Martin
+              <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[0.95] tracking-tight">
+                Alex Martin
               </h1>
-              <div className="mt-6 h-px w-16 bg-gold" />
-              <p className="mt-6 max-w-md text-lg md:text-xl text-white/80 font-light leading-relaxed">
-                Recently graduated engineer exploring the intersection of
-                <span className="italic text-white"> machine learning</span>,
-                <span className="italic text-white"> applied mathematics</span> and
-                <span className="italic text-white"> human-centered systems</span>.
+              <div className="mt-6 h-px w-20 bg-gradient-to-r from-brand to-cyan" />
+
+              <p className="mt-7 max-w-xl text-xl md:text-2xl font-light leading-snug text-white/85">
+                I <span className="font-mono-tight text-cyan text-lg md:text-xl">{"{ build }"}</span>{" "}
+                <span className="font-display font-medium italic text-brand-soft">intelligent systems</span>
+                <br />
+                at the crossing of{" "}
+                <span className="font-display font-semibold text-white underline decoration-cyan decoration-2 underline-offset-[6px]">
+                  deep learning
+                </span>
+                ,{" "}
+                <span className="font-display font-semibold text-gradient-brand">applied math</span>
+                <br />
+                and{" "}
+                <span className="relative inline-block font-display font-medium">
+                  <span className="relative z-10 text-white">human-centered design</span>
+                  <span className="absolute inset-x-0 bottom-0 h-2 bg-brand/40 -z-0" />
+                </span>
+                <span className="text-cyan animate-pulse">.</span>
               </p>
+
+              <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-mono-tight text-white/60">
+                <span className="px-2 py-1 rounded border border-white/15">PyTorch</span>
+                <span className="px-2 py-1 rounded border border-white/15">JAX</span>
+                <span className="px-2 py-1 rounded border border-white/15">Transformers</span>
+                <span className="px-2 py-1 rounded border border-white/15">Optimization</span>
+              </div>
             </div>
           </div>
         </div>
@@ -159,7 +185,7 @@ function Portfolio() {
         {/* Scroll hint */}
         <button
           onClick={() => scrollTo("education")}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/70 hover:text-white flex flex-col items-center gap-2 text-xs uppercase tracking-[0.25em]"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/65 hover:text-white flex flex-col items-center gap-2 text-[10px] font-mono-tight uppercase tracking-[0.3em]"
         >
           <span>Scroll</span>
           <ChevronDown className="size-5 animate-scroll-hint" />
@@ -168,7 +194,7 @@ function Portfolio() {
 
       {/* Sections */}
       <main className="relative">
-        <Section id="education" label="01 — Education" title="Education">
+        <Section id="education" index="01" Icon={GraduationCap} title="Education">
           <div className="space-y-8">
             {EDUCATION.map((e) => (
               <TimelineItem
@@ -182,7 +208,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="experience" label="02 — Experience" title="Experience">
+        <Section id="experience" index="02" Icon={Briefcase} title="Experience">
           <div className="space-y-8">
             {EXPERIENCE.map((e) => (
               <TimelineItem
@@ -196,68 +222,74 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="projects" label="03 — Selected Work" title="Projects">
-          <div className="grid md:grid-cols-2 gap-6">
+        <Section id="projects" index="03" Icon={FolderGit2} title="Open-Source Projects">
+          <div className="grid md:grid-cols-2 gap-5">
             {PROJECTS.map((p) => (
-              <article
-                key={p.title}
-                className="group p-6 rounded-xl border border-border bg-card hover:border-gold/50 hover:shadow-lg transition-all"
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <h3 className="font-display text-xl text-card-foreground">{p.title}</h3>
-                  <ArrowUpRight className="size-5 text-muted-foreground group-hover:text-gold transition-colors" />
-                </div>
-                <p className="mt-3 text-sm text-muted-foreground leading-relaxed">{p.description}</p>
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {p.tags.map((t) => (
-                    <span key={t} className="text-xs px-2 py-1 rounded-full bg-accent text-accent-foreground">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </article>
+              <RepoCard key={p.name} repo={p} />
             ))}
           </div>
-        </Section>
-
-        <Section id="cv" label="04 — Curriculum Vitae" title="CV">
-          <div className="rounded-2xl border border-border bg-card p-8 md:p-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-            <div>
-              <h3 className="font-display text-2xl text-card-foreground">Full Curriculum Vitae</h3>
-              <p className="mt-2 text-muted-foreground max-w-lg">
-                Complete academic record, publications, talks, and technical proficiencies in a single PDF document.
-              </p>
-              <p className="mt-2 text-xs text-muted-foreground">Last updated June 2026 · PDF, ~180 KB</p>
-            </div>
+          <div className="mt-8 text-center">
             <a
-              href="/cv.pdf"
-              download
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-foreground text-background font-medium hover:opacity-90 transition-opacity"
+              href="https://github.com/alexmartin"
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-cyan transition-colors"
             >
-              <Download className="size-4" />
-              Download CV
+              <FaGithub className="size-4" />
+              See all repositories on GitHub
+              <ArrowUpRight className="size-4" />
             </a>
           </div>
         </Section>
 
-        <Section id="contact" label="05 — Get in Touch" title="Contact">
-          <div className="grid md:grid-cols-2 gap-10 items-start">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Open to PhD opportunities, research collaborations and engineering positions.
-              Feel free to reach out — I usually reply within a couple of days.
-            </p>
-            <div className="space-y-3">
-              <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
-              <ContactLink href="https://github.com" Icon={Github} label="github.com/alexmartin" />
-              <ContactLink href="https://linkedin.com" Icon={Linkedin} label="linkedin.com/in/alexmartin" />
+        <Section id="cv" index="04" Icon={FileText} title="Curriculum Vitae">
+          <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 md:p-10">
+            <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
+            <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+              <div>
+                <h3 className="font-display text-2xl font-semibold text-card-foreground">
+                  Full Curriculum Vitae
+                </h3>
+                <p className="mt-2 text-muted-foreground max-w-lg">
+                  Complete academic record, publications, talks and technical proficiencies
+                  in a single PDF.
+                </p>
+                <p className="mt-3 font-mono-tight text-xs text-muted-foreground">
+                  v.2026.06 · PDF · ~180 KB
+                </p>
+              </div>
+              <a
+                href="/cv.pdf"
+                download
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-md bg-brand text-white font-medium hover:opacity-90 transition-opacity shadow-lg shadow-brand/25"
+              >
+                <Download className="size-4" />
+                Download CV
+              </a>
             </div>
           </div>
         </Section>
 
-        <footer className="border-t border-border py-10">
-          <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-muted-foreground">
-            <p>© {new Date().getFullYear()} Alex Martin. All rights reserved.</p>
-            <p className="font-display italic">Built with care.</p>
+        <Section id="contact" index="05" Icon={Mail} title="Get in Touch">
+          <div className="grid md:grid-cols-2 gap-10 items-start">
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              Open to{" "}
+              <span className="text-brand font-medium">PhD opportunities</span>,
+              research collaborations and engineering positions. I usually reply within a couple of days.
+            </p>
+            <div className="space-y-3">
+              <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
+              <ContactLink href="https://github.com/alexmartin" Icon={FaGithub} label="github.com/alexmartin" />
+              <ContactLink href="https://linkedin.com/in/alexmartin" Icon={FaLinkedin} label="linkedin.com/in/alexmartin" />
+              <ContactLink href="https://x.com/alexmartin" Icon={FaXTwitter} label="@alexmartin" />
+            </div>
+          </div>
+        </Section>
+
+        <footer className="border-t border-border py-8">
+          <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-mono-tight text-muted-foreground">
+            <p>© {new Date().getFullYear()} Alex Martin · All rights reserved</p>
+            <p>Built with TanStack Start · Designed in the open</p>
           </div>
         </footer>
       </main>
@@ -267,23 +299,25 @@ function Portfolio() {
 
 function Section({
   id,
-  label,
+  index,
+  Icon,
   title,
   children,
 }: {
   id: string;
-  label: string;
+  index: string;
+  Icon: typeof Mail;
   title: string;
   children: React.ReactNode;
 }) {
   return (
     <section id={id} className="scroll-mt-20 py-24 md:py-32 border-b border-border">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 flex items-end justify-between gap-6">
-          <div>
-            <p className="text-xs uppercase tracking-[0.25em] text-gold font-medium mb-3">{label}</p>
-            <h2 className="section-heading text-foreground">{title}</h2>
-          </div>
+        <div className="mb-12 flex items-center gap-4">
+          <span className="font-mono-tight text-xs text-brand">{index}</span>
+          <div className="h-px flex-1 max-w-12 bg-border" />
+          <Icon className="size-4 text-brand" />
+          <h2 className="section-heading text-foreground">{title}</h2>
         </div>
         {children}
       </div>
@@ -304,13 +338,71 @@ function TimelineItem({
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-8 border-b border-border/60 last:border-0">
-      <div className="text-sm text-muted-foreground font-medium pt-1">{period}</div>
+      <div className="font-mono-tight text-xs text-muted-foreground pt-1.5 tracking-wider">
+        {period}
+      </div>
       <div>
-        <h3 className="font-display text-xl text-foreground">{title}</h3>
-        <p className="text-sm text-gold mt-1">{subtitle}</p>
+        <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
+        <p className="text-sm text-brand mt-1 font-medium">{subtitle}</p>
         <p className="mt-3 text-muted-foreground leading-relaxed">{description}</p>
       </div>
     </div>
+  );
+}
+
+type Repo = {
+  name: string;
+  owner: string;
+  description: string;
+  language: string;
+  langColor: string;
+  stars: number;
+  forks: number;
+  url: string;
+};
+
+function RepoCard({ repo }: { repo: Repo }) {
+  return (
+    <a
+      href={repo.url}
+      target="_blank"
+      rel="noreferrer"
+      className="group relative flex flex-col p-5 rounded-xl border border-border bg-card hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-0.5 transition-all"
+    >
+      <div className="flex items-start gap-3">
+        <FaGithub className="size-5 mt-0.5 text-muted-foreground group-hover:text-brand transition-colors" />
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-1.5 font-medium">
+            <span className="text-muted-foreground truncate">{repo.owner}</span>
+            <span className="text-muted-foreground">/</span>
+            <span className="text-brand truncate">{repo.name}</span>
+          </div>
+          <span className="inline-block mt-1.5 text-[10px] font-mono-tight px-1.5 py-0.5 rounded border border-border text-muted-foreground">
+            Public
+          </span>
+        </div>
+        <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+      </div>
+
+      <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
+        {repo.description}
+      </p>
+
+      <div className="mt-4 pt-4 border-t border-border/70 flex items-center gap-5 text-xs text-muted-foreground">
+        <span className="flex items-center gap-1.5">
+          <span className="size-2.5 rounded-full" style={{ backgroundColor: repo.langColor }} />
+          {repo.language}
+        </span>
+        <span className="flex items-center gap-1.5 font-mono-tight">
+          <Star className="size-3.5" />
+          {repo.stars.toLocaleString()}
+        </span>
+        <span className="flex items-center gap-1.5 font-mono-tight">
+          <GitFork className="size-3.5" />
+          {repo.forks.toLocaleString()}
+        </span>
+      </div>
+    </a>
   );
 }
 
@@ -320,17 +412,19 @@ function ContactLink({
   label,
 }: {
   href: string;
-  Icon: typeof Mail;
+  Icon: React.ComponentType<{ className?: string }>;
   label: string;
 }) {
   return (
     <a
       href={href}
-      className="group flex items-center gap-3 p-4 rounded-lg border border-border hover:border-gold/60 hover:bg-accent/40 transition-all"
+      target="_blank"
+      rel="noreferrer"
+      className="group flex items-center gap-3 p-4 rounded-lg border border-border hover:border-brand/60 hover:bg-accent/40 transition-all"
     >
-      <Icon className="size-5 text-muted-foreground group-hover:text-gold transition-colors" />
+      <Icon className="size-5 text-muted-foreground group-hover:text-brand transition-colors" />
       <span className="text-foreground">{label}</span>
-      <ArrowUpRight className="size-4 ml-auto text-muted-foreground group-hover:text-gold transition-colors" />
+      <ArrowUpRight className="size-4 ml-auto text-muted-foreground group-hover:text-brand transition-colors" />
     </a>
   );
 }
@@ -369,29 +463,49 @@ const EXPERIENCE = [
   },
 ];
 
-const PROJECTS = [
+const PROJECTS: Repo[] = [
   {
-    title: "Neural PDE Solver",
+    name: "neural-pde",
+    owner: "alexmartin",
     description:
-      "An open-source library implementing Fourier neural operators for parametric PDEs, with reproducible benchmarks across 8 physical systems.",
-    tags: ["PyTorch", "Research", "Open Source"],
+      "Fourier neural operators for parametric PDEs. Reproducible benchmarks across 8 physical systems with PyTorch Lightning.",
+    language: "Python",
+    langColor: "#3572A5",
+    stars: 412,
+    forks: 38,
+    url: "https://github.com/alexmartin/neural-pde",
   },
   {
-    title: "Causal Inference Toolkit",
+    name: "causal-toolkit",
+    owner: "alexmartin",
     description:
-      "End-to-end pipeline for estimating treatment effects from observational data, used in two published economics studies.",
-    tags: ["Python", "Statistics", "Econometrics"],
+      "End-to-end pipeline for estimating treatment effects from observational data. Used in two published economics studies.",
+    language: "Python",
+    langColor: "#3572A5",
+    stars: 189,
+    forks: 21,
+    url: "https://github.com/alexmartin/causal-toolkit",
   },
   {
-    title: "Astro Image Pipeline",
+    name: "astro-pipeline",
+    owner: "alexmartin",
     description:
-      "GPU-accelerated processing for amateur astrophotography — stacking, calibration and ML-based artifact removal.",
-    tags: ["CUDA", "Computer Vision"],
+      "GPU-accelerated astrophotography processing — stacking, calibration and ML-based artifact removal.",
+    language: "CUDA",
+    langColor: "#3A4E3A",
+    stars: 96,
+    forks: 12,
+    url: "https://github.com/alexmartin/astro-pipeline",
   },
   {
-    title: "Course Notes — Optimization",
+    name: "convex-notes",
+    owner: "alexmartin",
     description:
-      "A typeset companion to a graduate convex optimization course, with interactive Python notebooks for each chapter.",
-    tags: ["LaTeX", "Teaching"],
+      "Typeset companion to a graduate convex optimization course, with interactive Python notebooks per chapter.",
+    language: "TeX",
+    langColor: "#3D6117",
+    stars: 73,
+    forks: 9,
+    url: "https://github.com/alexmartin/convex-notes",
   },
 ];
