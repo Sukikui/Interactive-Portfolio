@@ -150,8 +150,6 @@ function Portfolio() {
             </div>
           </div>
         </div>
-          </div>
-        </div>
 
         {/* Scroll hint */}
         <button
