@@ -73,13 +73,11 @@ function Portfolio() {
         <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={`font-display font-semibold text-lg tracking-tight transition-colors ${
+            className={`font-display font-semibold text-base tracking-tight transition-colors ${
               scrolled ? "text-foreground" : "text-white"
             }`}
           >
-            <span className="font-mono-tight text-brand-soft">{"</"}</span>
-            AM
-            <span className="font-mono-tight text-brand-soft">{">"}</span>
+            Alex Martin
           </button>
 
           <nav className="hidden md:flex items-center gap-1">
