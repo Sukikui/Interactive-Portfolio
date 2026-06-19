@@ -15,7 +15,6 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
-import heroBg from "@/assets/hero-bg.jpg";
 import profile from "@/assets/profile.jpg";
 import { useTheme } from "@/lib/theme";
 
