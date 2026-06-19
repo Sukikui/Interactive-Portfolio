@@ -28,109 +28,126 @@
   --color-border: var(--border);
   --color-input: var(--input);
   --color-ring: var(--ring);
-  --color-gold: var(--gold);
-  --font-display: "Fraunces", Georgia, serif;
+  --color-brand: var(--brand);
+  --color-brand-soft: var(--brand-soft);
+  --color-cyan: var(--cyan);
+  --font-display: "Space Grotesk", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
 }
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.985 0.005 80);
-  --foreground: oklch(0.18 0.02 260);
+  --background: oklch(0.985 0.005 240);
+  --foreground: oklch(0.18 0.04 260);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 260);
+  --card-foreground: oklch(0.18 0.04 260);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.02 260);
-  --primary: oklch(0.22 0.03 260);
-  --primary-foreground: oklch(0.985 0.005 80);
-  --secondary: oklch(0.95 0.01 80);
-  --secondary-foreground: oklch(0.22 0.03 260);
-  --muted: oklch(0.95 0.01 80);
-  --muted-foreground: oklch(0.5 0.02 260);
-  --accent: oklch(0.93 0.02 80);
-  --accent-foreground: oklch(0.22 0.03 260);
+  --popover-foreground: oklch(0.18 0.04 260);
+  --primary: oklch(0.45 0.18 258);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --secondary: oklch(0.96 0.012 240);
+  --secondary-foreground: oklch(0.22 0.04 260);
+  --muted: oklch(0.96 0.012 240);
+  --muted-foreground: oklch(0.48 0.03 258);
+  --accent: oklch(0.93 0.02 240);
+  --accent-foreground: oklch(0.22 0.04 260);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.985 0.005 80);
-  --border: oklch(0.9 0.01 260);
-  --input: oklch(0.9 0.01 260);
-  --ring: oklch(0.5 0.02 260);
-  --gold: oklch(0.75 0.12 75);
+  --destructive-foreground: oklch(0.99 0.005 240);
+  --border: oklch(0.9 0.015 240);
+  --input: oklch(0.9 0.015 240);
+  --ring: oklch(0.55 0.15 258);
+  --brand: oklch(0.55 0.2 258);
+  --brand-soft: oklch(0.75 0.13 245);
+  --cyan: oklch(0.78 0.13 210);
 }
 
 .dark {
-  --background: oklch(0.14 0.015 260);
-  --foreground: oklch(0.96 0.01 80);
-  --card: oklch(0.18 0.02 260);
-  --card-foreground: oklch(0.96 0.01 80);
-  --popover: oklch(0.18 0.02 260);
-  --popover-foreground: oklch(0.96 0.01 80);
-  --primary: oklch(0.96 0.01 80);
-  --primary-foreground: oklch(0.18 0.02 260);
-  --secondary: oklch(0.24 0.02 260);
-  --secondary-foreground: oklch(0.96 0.01 80);
-  --muted: oklch(0.24 0.02 260);
-  --muted-foreground: oklch(0.7 0.02 80);
-  --accent: oklch(0.28 0.025 260);
-  --accent-foreground: oklch(0.96 0.01 80);
+  --background: oklch(0.13 0.02 260);
+  --foreground: oklch(0.96 0.01 240);
+  --card: oklch(0.17 0.025 260);
+  --card-foreground: oklch(0.96 0.01 240);
+  --popover: oklch(0.17 0.025 260);
+  --popover-foreground: oklch(0.96 0.01 240);
+  --primary: oklch(0.72 0.15 255);
+  --primary-foreground: oklch(0.13 0.02 260);
+  --secondary: oklch(0.22 0.03 260);
+  --secondary-foreground: oklch(0.96 0.01 240);
+  --muted: oklch(0.22 0.03 260);
+  --muted-foreground: oklch(0.72 0.02 240);
+  --accent: oklch(0.26 0.035 260);
+  --accent-foreground: oklch(0.96 0.01 240);
   --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.985 0.005 80);
-  --border: oklch(1 0 0 / 12%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.6 0.02 80);
-  --gold: oklch(0.8 0.13 75);
+  --destructive-foreground: oklch(0.99 0.005 240);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.7 0.15 255);
+  --brand: oklch(0.72 0.16 255);
+  --brand-soft: oklch(0.82 0.12 245);
+  --cyan: oklch(0.82 0.14 210);
 }
 
 @layer base {
-  * {
-    border-color: var(--color-border);
-  }
+  * { border-color: var(--color-border); }
 
-  html {
-    scroll-behavior: smooth;
-  }
+  html { scroll-behavior: smooth; }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    font-feature-settings: "ss01", "cv11";
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-display);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.025em;
   }
 }
 
-@utility text-gold {
-  color: var(--gold);
-}
-
-@utility bg-gold {
-  background-color: var(--gold);
-}
+@utility text-brand { color: var(--brand); }
+@utility text-brand-soft { color: var(--brand-soft); }
+@utility text-cyan { color: var(--cyan); }
+@utility bg-brand { background-color: var(--brand); }
+@utility border-brand { border-color: var(--brand); }
+@utility font-mono-tight { font-family: var(--font-mono); }
 
 @utility section-heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 500;
-  letter-spacing: -0.025em;
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 600;
+  letter-spacing: -0.03em;
+}
+
+@utility grid-bg {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--foreground) 6%, transparent) 1px, transparent 1px);
+  background-size: 56px 56px;
 }
 
 @keyframes scroll-hint {
-  0%, 100% { transform: translateY(0); opacity: 0.6; }
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
   50% { transform: translateY(8px); opacity: 1; }
 }
-
-@utility animate-scroll-hint {
-  animation: scroll-hint 1.8s ease-in-out infinite;
-}
+@utility animate-scroll-hint { animation: scroll-hint 1.8s ease-in-out infinite; }
 
 @keyframes fade-up {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
+@utility animate-fade-up { animation: fade-up 0.8s ease-out both; }
 
-@utility animate-fade-up {
-  animation: fade-up 0.8s ease-out both;
+@keyframes shimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 200% 50%; }
+}
+@utility text-gradient-brand {
+  background: linear-gradient(110deg, var(--brand) 0%, var(--cyan) 50%, var(--brand-soft) 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
 }
