@@ -15,7 +15,6 @@ import {
   ArrowUpRight,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
-import heroBg from "@/assets/hero-bg.jpg";
 import profile from "@/assets/profile.jpg";
 import { useTheme } from "@/lib/theme";
 
@@ -74,13 +73,11 @@ function Portfolio() {
         <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={`font-display font-semibold text-lg tracking-tight transition-colors ${
+            className={`font-display font-semibold text-base tracking-tight transition-colors ${
               scrolled ? "text-foreground" : "text-white"
             }`}
           >
-            <span className="font-mono-tight text-brand-soft">{"</"}</span>
-            AM
-            <span className="font-mono-tight text-brand-soft">{">"}</span>
+            Alex Martin
           </button>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -114,70 +111,42 @@ function Portfolio() {
       </header>
 
       {/* Hero */}
-      <section className="relative h-screen w-full overflow-hidden bg-[#05071a]">
-        <img
-          src={heroBg}
-          alt=""
-          width={1920}
-          height={1280}
-          className="absolute inset-0 h-full w-full object-cover opacity-90"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#05071a]/70 via-[#05071a]/60 to-[#05071a]/90" />
-        <div className="absolute inset-0 grid-bg opacity-[0.08]" />
+      <section className="relative h-screen w-full overflow-hidden bg-[#0b1020]">
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1020] via-[#0b1020] to-[#0a0e1c]" />
+        <div className="absolute inset-0 grid-bg opacity-[0.05]" />
+        <div className="absolute -top-32 -left-32 size-[480px] rounded-full bg-brand/10 blur-[120px]" />
+        <div className="absolute bottom-0 right-0 size-[420px] rounded-full bg-cyan/5 blur-[140px]" />
 
         <div className="relative h-full mx-auto max-w-6xl px-6 flex items-center">
-          <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-16 items-center w-full">
+          <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-center w-full">
             {/* Left — profile */}
             <div className="flex justify-center md:justify-start animate-fade-up">
               <div className="relative">
-                <div className="absolute -inset-3 rounded-full bg-gradient-to-tr from-brand/50 via-cyan/30 to-transparent blur-2xl" />
-                <div className="relative p-[2px] rounded-full bg-gradient-to-tr from-brand via-cyan to-brand-soft">
-                  <img
-                    src={profile}
-                    alt="Alex Martin portrait"
-                    width={320}
-                    height={320}
-                    className="size-56 md:size-72 rounded-full object-cover ring-2 ring-[#05071a]"
-                  />
-                </div>
+                <img
+                  src={profile}
+                  alt="Alex Martin portrait"
+                  width={320}
+                  height={320}
+                  className="size-56 md:size-72 rounded-full object-cover ring-1 ring-white/15 shadow-2xl shadow-black/40"
+                />
               </div>
             </div>
 
             {/* Right — text */}
             <div className="text-white animate-fade-up [animation-delay:120ms]">
-              <p className="font-mono-tight text-cyan text-xs tracking-[0.3em] uppercase mb-5">
-                <span className="text-white/40">~/</span>ai-research-engineer
+              <p className="text-brand-soft text-xs font-medium tracking-[0.25em] uppercase mb-5">
+                AI Research Engineer
               </p>
-              <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[0.95] tracking-tight">
+              <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[1.02] tracking-tight">
                 Alex Martin
               </h1>
-              <div className="mt-6 h-px w-20 bg-gradient-to-r from-brand to-cyan" />
+              <div className="mt-6 h-px w-16 bg-white/25" />
 
-              <p className="mt-7 max-w-xl text-xl md:text-2xl font-light leading-snug text-white/85">
-                I <span className="font-mono-tight text-cyan text-lg md:text-xl">{"{ build }"}</span>{" "}
-                <span className="font-display font-medium italic text-brand-soft">intelligent systems</span>
-                <br />
-                at the crossing of{" "}
-                <span className="font-display font-semibold text-white underline decoration-cyan decoration-2 underline-offset-[6px]">
-                  deep learning
-                </span>
-                ,{" "}
-                <span className="font-display font-semibold text-gradient-brand">applied math</span>
-                <br />
-                and{" "}
-                <span className="relative inline-block font-display font-medium">
-                  <span className="relative z-10 text-white">human-centered design</span>
-                  <span className="absolute inset-x-0 bottom-0 h-2 bg-brand/40 -z-0" />
-                </span>
-                <span className="text-cyan animate-pulse">.</span>
+              <p className="mt-7 max-w-xl text-lg md:text-xl font-light leading-relaxed text-white/75">
+                Building <span className="font-medium text-white">intelligent systems</span> at the
+                intersection of <span className="font-medium text-white">deep learning</span> and{" "}
+                <span className="font-medium text-white">applied mathematics</span>.
               </p>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3 text-xs font-mono-tight text-white/60">
-                <span className="px-2 py-1 rounded border border-white/15">PyTorch</span>
-                <span className="px-2 py-1 rounded border border-white/15">JAX</span>
-                <span className="px-2 py-1 rounded border border-white/15">Transformers</span>
-                <span className="px-2 py-1 rounded border border-white/15">Optimization</span>
-              </div>
             </div>
           </div>
         </div>
