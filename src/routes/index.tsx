@@ -6,6 +6,7 @@ import {
   Sun,
   Download,
   Mail,
+  User,
   GraduationCap,
   Briefcase,
   FolderGit2,
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
+  { id: "presentation", label: "Presentation" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
