@@ -192,7 +192,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="projects" index="03" Icon={FolderGit2} title="Open-Source Projects">
+        <Section id="projects" index="03" Icon={FolderGit2} title="Projects">
           <div className="grid md:grid-cols-2 gap-5">
             {PROJECTS.map((p) => (
               <RepoCard key={p.name} repo={p} />
