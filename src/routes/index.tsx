@@ -402,6 +402,7 @@ const EDUCATION = [
   {
     period: "2023 — 2026",
     degree: "M.Eng. in Applied Mathematics & Computer Science",
+    frDegree: "Diplôme d'Ingénieur",
     school: "École Polytechnique",
     details:
       "Specialization in statistical learning and optimization. Graduated with highest honors. Thesis on physics-informed neural networks for inverse problems.",
