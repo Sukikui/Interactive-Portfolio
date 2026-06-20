@@ -240,7 +240,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="contact" index="05" Icon={Mail} title="Get in Touch">
+        <Section id="contact" index="05" Icon={Mail} title="Contact">
           <div className="grid md:grid-cols-2 gap-10 items-start">
             <p className="text-lg text-muted-foreground leading-relaxed">
               Open to{" "}
