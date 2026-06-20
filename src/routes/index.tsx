@@ -155,7 +155,7 @@ function Portfolio() {
 
         {/* Scroll hint */}
         <button
-          onClick={() => scrollTo("education")}
+          onClick={() => scrollTo("presentation")}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/65 hover:text-white flex flex-col items-center gap-2 text-[10px] font-mono-tight uppercase tracking-[0.3em]"
         >
           <span>Scroll</span>
