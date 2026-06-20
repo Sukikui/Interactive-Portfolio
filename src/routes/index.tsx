@@ -170,6 +170,7 @@ function Portfolio() {
                 key={e.school}
                 period={e.period}
                 title={e.degree}
+                frTitle={e.frDegree}
                 subtitle={e.school}
                 description={e.details}
               />
