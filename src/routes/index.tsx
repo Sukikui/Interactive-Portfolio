@@ -6,6 +6,7 @@ import {
   Sun,
   Download,
   Mail,
+  User,
   GraduationCap,
   Briefcase,
   FolderGit2,
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/")({
 });
 
 const NAV = [
+  { id: "presentation", label: "Presentation" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
@@ -153,7 +155,7 @@ function Portfolio() {
 
         {/* Scroll hint */}
         <button
-          onClick={() => scrollTo("education")}
+          onClick={() => scrollTo("presentation")}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/65 hover:text-white flex flex-col items-center gap-2 text-[10px] font-mono-tight uppercase tracking-[0.3em]"
         >
           <span>Scroll</span>
@@ -163,7 +165,21 @@ function Portfolio() {
 
       {/* Sections */}
       <main className="relative">
-        <Section id="education" index="01" Icon={GraduationCap} title="Education">
+        <Section id="presentation" index="01" Icon={User} title="Presentation">
+          <div className="max-w-3xl">
+            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
+              I am an AI research engineer with a strong foundation in applied mathematics and deep learning. My work focuses on building robust, interpretable machine learning systems — from neural operators for physical simulation to causal inference pipelines for real-world decision-making.
+            </p>
+            <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+              I believe in open science and reproducible research. Most of my projects are publicly available, and I actively contribute to the open-source ecosystem around PyTorch and scientific machine learning.
+            </p>
+            <p className="mt-6 text-muted-foreground leading-relaxed">
+              Currently exploring PhD opportunities at the intersection of numerical analysis and generative modeling.
+            </p>
+          </div>
+        </Section>
+
+        <Section id="education" index="02" Icon={GraduationCap} title="Education">
           <div className="space-y-8">
             {EDUCATION.map((e) => (
               <TimelineItem
@@ -178,7 +194,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="experience" index="02" Icon={Briefcase} title="Experience">
+        <Section id="experience" index="03" Icon={Briefcase} title="Experience">
           <div className="space-y-8">
             {EXPERIENCE.map((e) => (
               <TimelineItem
@@ -192,7 +208,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="projects" index="03" Icon={FolderGit2} title="Projects">
+        <Section id="projects" index="04" Icon={FolderGit2} title="Projects">
           <div className="grid md:grid-cols-2 gap-5">
             {PROJECTS.map((p) => (
               <RepoCard key={p.name} repo={p} />
@@ -212,7 +228,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="cv" index="04" Icon={FileText} title="Curriculum Vitae">
+        <Section id="cv" index="05" Icon={FileText} title="Curriculum Vitae">
           <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 md:p-10">
             <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -240,7 +256,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="contact" index="05" Icon={Mail} title="Contact">
+        <Section id="contact" index="06" Icon={Mail} title="Contact">
           <div className="grid md:grid-cols-2 gap-10 items-start">
             <p className="text-lg text-muted-foreground leading-relaxed">
               Open to{" "}
