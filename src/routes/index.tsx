@@ -298,11 +298,13 @@ function Section({
 function TimelineItem({
   period,
   title,
+  frTitle,
   subtitle,
   description,
 }: {
   period: string;
   title: string;
+  frTitle?: string;
   subtitle: string;
   description: string;
 }) {
@@ -313,6 +315,9 @@ function TimelineItem({
       </div>
       <div>
         <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
+        {frTitle && (
+          <p className="text-sm text-muted-foreground mt-1 italic">{frTitle}</p>
+        )}
         <p className="text-sm text-brand mt-1 font-medium">{subtitle}</p>
         <p className="mt-3 text-muted-foreground leading-relaxed">{description}</p>
       </div>
