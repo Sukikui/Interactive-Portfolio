@@ -170,17 +170,17 @@ function Portfolio() {
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
               I am an AI research engineer with a strong foundation in applied mathematics and deep learning. My work focuses on building robust, interpretable machine learning systems — from neural operators for physical simulation to causal inference pipelines for real-world decision-making.
             </p>
-            <p className="mt-6 text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
               I believe in open science and reproducible research. Most of my projects are publicly available, and I actively contribute to the open-source ecosystem around PyTorch and scientific machine learning.
             </p>
-            <p className="mt-6 text-muted-foreground leading-relaxed">
+            <p className="mt-4 text-muted-foreground leading-relaxed">
               Currently exploring PhD opportunities at the intersection of numerical analysis and generative modeling.
             </p>
           </div>
         </Section>
 
         <Section id="education" index="02" Icon={GraduationCap} title="Education">
-          <div className="space-y-8">
+          <div className="space-y-6">
             {EDUCATION.map((e) => (
               <TimelineItem
                 key={e.school}
@@ -195,7 +195,7 @@ function Portfolio() {
         </Section>
 
         <Section id="experience" index="03" Icon={Briefcase} title="Experience">
-          <div className="space-y-8">
+          <div className="space-y-6">
             {EXPERIENCE.map((e) => (
               <TimelineItem
                 key={e.company}
@@ -209,12 +209,12 @@ function Portfolio() {
         </Section>
 
         <Section id="projects" index="04" Icon={FolderGit2} title="Projects">
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-4">
             {PROJECTS.map((p) => (
               <RepoCard key={p.name} repo={p} />
             ))}
           </div>
-          <div className="mt-8 text-center">
+          <div className="mt-6 text-center">
             <a
               href="https://github.com/alexmartin"
               target="_blank"
@@ -257,7 +257,7 @@ function Portfolio() {
         </Section>
 
         <Section id="contact" index="06" Icon={Mail} title="Contact">
-          <div className="grid md:grid-cols-2 gap-10 items-start">
+          <div className="grid md:grid-cols-2 gap-6 items-start">
             <p className="text-lg text-muted-foreground leading-relaxed">
               Open to{" "}
               <span className="text-brand font-medium">PhD opportunities</span>,
@@ -297,9 +297,9 @@ function Section({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} className="scroll-mt-20 py-24 md:py-32 border-b border-border">
+    <section id={id} className="scroll-mt-20 py-16 md:py-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-12 flex items-center gap-4">
+        <div className="mb-8 flex items-center gap-4">
           <span className="font-mono-tight text-xs text-brand">{index}</span>
           <div className="h-px flex-1 max-w-12 bg-border" />
           <Icon className="size-4 text-brand" />
@@ -325,7 +325,7 @@ function TimelineItem({
   description: string;
 }) {
   return (
-    <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-8 border-b border-border/60 last:border-0">
+    <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
       <div className="font-mono-tight text-xs text-muted-foreground pt-1.5 tracking-wider">
         {period}
       </div>
@@ -335,7 +335,7 @@ function TimelineItem({
           <p className="text-sm text-muted-foreground mt-1 italic">{frTitle}</p>
         )}
         <p className="text-sm text-brand mt-1 font-medium">{subtitle}</p>
-        <p className="mt-3 text-muted-foreground leading-relaxed">{description}</p>
+        <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>
       </div>
     </div>
   );
@@ -358,7 +358,7 @@ function RepoCard({ repo }: { repo: Repo }) {
       href={repo.url}
       target="_blank"
       rel="noreferrer"
-      className="group relative flex flex-col p-5 rounded-xl border border-border bg-card hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-0.5 transition-all"
+      className="group relative flex flex-col p-4 rounded-xl border border-border bg-card hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-0.5 transition-all"
     >
       <div className="flex items-start gap-3">
         <FaGithub className="size-5 mt-0.5 text-muted-foreground group-hover:text-brand transition-colors" />
