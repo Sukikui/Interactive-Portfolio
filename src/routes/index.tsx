@@ -345,6 +345,7 @@ function TimelineItem({
   highlights?: string[];
   courses?: string[];
   publications?: { venue: string; year: string; type?: string; status?: string; url?: string }[];
+  repos?: { url: string }[];
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
