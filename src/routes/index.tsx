@@ -671,6 +671,7 @@ const EXPERIENCE: {
       "Designed Transformer-based multimodal conditioning for morphology metrics injection",
       "Developed t-SNE / UMAP latent space analysis and morphology-based evaluation tools",
     ],
+    repos: [{ url: "https://github.com/Sukikui/PTI-LDM-VAE" }],
   },
   {
     period: "Feb 2025 — Jul 2025",
@@ -689,6 +690,7 @@ const EXPERIENCE: {
     publications: [
       { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
     ],
+    repos: [{ url: "https://github.com/creatis-myriad/GENESIS" }],
   },
   {
     period: "Feb 2024 — Jul 2024",
@@ -706,6 +708,7 @@ const EXPERIENCE: {
     publications: [
       { venue: "IEEE VRW", year: "2025", type: "Workshop", status: "published" },
     ],
+    repos: [{ url: "https://github.com/sensors-inl/Nervous-Toolkit" }],
   },
   {
     period: "Oct 2023 — Jan 2024",
