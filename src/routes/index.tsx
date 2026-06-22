@@ -201,11 +201,15 @@ function Portfolio() {
           <div className="space-y-6">
             {EXPERIENCE.map((e) => (
               <TimelineItem
-                key={e.company}
+                key={`${e.company}-${e.period}`}
                 period={e.period}
+                duration={e.duration}
                 title={e.role}
                 subtitle={e.company}
-                description={e.details}
+                location={e.location}
+                concurrent={e.kind}
+                supervisor={e.supervisor}
+                highlights={e.highlights}
               />
             ))}
           </div>
@@ -316,29 +320,40 @@ function Section({
 
 function TimelineItem({
   period,
+  duration,
   title,
   frTitle,
   subtitle,
   location,
   concurrent,
+  supervisor,
   description,
   highlights,
   courses,
 }: {
   period: string;
+  duration?: string;
   title: string;
   frTitle?: string;
   subtitle: string;
   location?: string;
   concurrent?: string;
+  supervisor?: string;
   description?: string;
   highlights?: string[];
   courses?: string[];
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
-      <div className="font-mono-tight text-xs text-muted-foreground pt-1.5 tracking-wider">
-        {period}
+      <div className="pt-1.5">
+        <div className="font-mono-tight text-xs text-muted-foreground tracking-wider">
+          {period}
+        </div>
+        {duration && (
+          <div className="font-mono-tight text-[10px] text-muted-foreground/60 mt-0.5 tracking-wider">
+            {duration}
+          </div>
+        )}
       </div>
       <div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -357,6 +372,9 @@ function TimelineItem({
         <h3 className="font-display text-xl font-semibold text-foreground mt-1">{title}</h3>
         {frTitle && (
           <p className="text-sm text-muted-foreground mt-0.5 italic">{frTitle}</p>
+        )}
+        {supervisor && (
+          <p className="text-xs text-muted-foreground/80 mt-1.5 italic">{supervisor}</p>
         )}
         {description && (
           <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>
