@@ -617,7 +617,7 @@ const EXPERIENCE: {
     period: "Feb 2025 — Jul 2025",
     duration: "6 months",
     kind: "Research Intern",
-    role: "3D Medical Image Analysis",
+    role: "Graph ML & 3D Medical Image Analysis",
     company: "CREATIS",
     location: "Lyon, France",
     supervisor: "Supervised by Dr. Odyssée Merveille, Dr. Nathan Painchaud and Prof. Olivier Bernard",
