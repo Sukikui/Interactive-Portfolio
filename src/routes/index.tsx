@@ -384,7 +384,8 @@ function renderWithGpa(text: string) {
   return (
     <>
       {before}
-      <span className="ml-2 font-mono-tight text-[11px] tracking-wider text-muted-foreground/80">
+      <span className="ml-2 inline-flex items-center gap-1 rounded border border-border/70 bg-muted/30 px-1.5 py-0.5 font-mono-tight text-[10px] tracking-wider text-muted-foreground/90 align-middle">
+        <span className="opacity-60">GPA</span>
         <span className="text-foreground/90">{value}</span>
         <span className="opacity-50">/{scale}</span>
       </span>
