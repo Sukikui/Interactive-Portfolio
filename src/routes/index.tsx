@@ -211,6 +211,7 @@ function Portfolio() {
                 supervisor={e.supervisor}
                 highlights={e.highlights}
                 publications={e.publications}
+                repos={e.repos}
               />
             ))}
           </div>
