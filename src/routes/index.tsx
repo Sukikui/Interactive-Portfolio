@@ -500,7 +500,7 @@ const EDUCATION: {
     school: "Centrale Lyon",
     location: "Lyon, FR",
     degree: "MSc in Machine Learning & Medical Imaging",
-    frDegree: "Master 2 Recherche",
+    frDegree: "Master 2",
     concurrent: "Double degree · INSA Lyon",
     highlights: [
       "Ranked 2nd in cohort — GPA 3.90 / 4.00",
@@ -534,7 +534,7 @@ const EDUCATION: {
     school: "Université de Lorraine",
     location: "Nancy, FR",
     degree: "University Diploma of Technology in Electrical Engineering",
-    frDegree: "DUT Génie Électrique et Informatique Industrielle",
+    frDegree: "DUT",
     highlights: [
       "Major in Multitasking & Object-Oriented Programming — GPA 4.00 / 4.00",
       "Ranked 1st in cohort with Highest Honors — overall GPA 3.89 / 4.00",
