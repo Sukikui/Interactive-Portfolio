@@ -701,7 +701,7 @@ const EXPERIENCE: {
       "Developed modular Python packages for BLE sensor acquisition and signal analytics",
     ],
     publications: [
-      { venue: "IEEE VRW", year: "2025", type: "Workshop", status: "published" },
+      { venue: "IEEE VRW", year: "2025", type: "Workshop", status: "published", url: "https://ieeexplore.ieee.org/document/10972783" },
     ],
     repos: [{ url: "https://github.com/sensors-inl/Nervous-Toolkit" }],
   },
