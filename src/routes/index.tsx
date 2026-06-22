@@ -628,6 +628,7 @@ const EXPERIENCE: {
   location?: string;
   supervisor?: string;
   highlights: string[];
+  publications?: { venue: string; year: string; type?: string; status?: string; url?: string }[];
 }[] = [
   {
     period: "Oct 2025 — Jan 2026",
@@ -656,7 +657,10 @@ const EXPERIENCE: {
       "Trained and compared nnU-Net 3D segmentation models for cardiac ventricle analysis",
       "Researched and trained GNN architectures for pulmonary embolism risk stratification",
       "Built PyTorch Geometric vascular graph datasets from segmentation-derived 3D anatomy",
-      "Co-authored a MICCAI 2026 submission, presented a poster and published a lab blog post",
+      "Presented a poster and published a lab blog post on the project",
+    ],
+    publications: [
+      { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
     ],
   },
   {
@@ -671,7 +675,9 @@ const EXPERIENCE: {
       "Researched robust real-time ECG / EDA peak detection methods for physiological VR monitoring",
       "Implemented ECG localization pipelines combining U-Net, LSTM and wavelet-based models",
       "Developed modular Python packages for BLE sensor acquisition and signal analytics",
-      "Co-authored an IEEE VRW 2025 publication",
+    ],
+    publications: [
+      { venue: "IEEE VRW", year: "2025", type: "Workshop", status: "published" },
     ],
   },
   {
