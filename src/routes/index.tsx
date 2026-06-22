@@ -655,6 +655,7 @@ const EXPERIENCE: {
   supervisor?: string;
   highlights: string[];
   publications?: { venue: string; year: string; type?: string; status?: string; url?: string }[];
+  repos?: { url: string }[];
 }[] = [
   {
     period: "Oct 2025 — Jan 2026",
