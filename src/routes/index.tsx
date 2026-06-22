@@ -588,20 +588,100 @@ const EDUCATION: {
   },
 ];
 
-const EXPERIENCE = [
+const EXPERIENCE: {
+  period: string;
+  duration?: string;
+  role: string;
+  kind?: string;
+  company: string;
+  location?: string;
+  supervisor?: string;
+  highlights: string[];
+}[] = [
   {
-    period: "2025 — 2026",
-    role: "Research Intern",
-    company: "INRIA — MLIA Team",
-    details:
-      "Designed and benchmarked neural operators for high-dimensional PDEs. Co-authored a paper currently under review at NeurIPS.",
+    period: "Oct 2025 — Jan 2026",
+    duration: "4 months",
+    kind: "Research Project",
+    role: "Conditional Latent Diffusion for Dental Prediction",
+    company: "BovoPredict · in collab. with INSA Lyon",
+    location: "Lyon, France",
+    supervisor: "Supervised by Dr. Thomas Grenier & Dr. Chantal Muller",
+    highlights: [
+      "Built a VAE + Latent Diffusion pipeline for dentate-to-edentulous CBCT slice generation",
+      "Used self-supervised latent learning and diffusion denoising to guide anatomical reconstruction",
+      "Designed Transformer-based multimodal conditioning for morphology metrics injection",
+      "Developed t-SNE / UMAP latent space analysis and morphology-based evaluation tools",
+    ],
   },
   {
-    period: "Summer 2024",
-    role: "Machine Learning Engineer Intern",
-    company: "Hugging Face",
-    details:
-      "Built data pipelines and evaluation harnesses for open multilingual language models. Contributed to several open-source repositories.",
+    period: "Feb 2025 — Jul 2025",
+    duration: "6 months",
+    kind: "Research Intern",
+    role: "Graph ML & 3D Computer Vision",
+    company: "CREATIS",
+    location: "Lyon, France",
+    supervisor: "Supervised by Dr. Odyssée Merveille & Prof. Olivier Bernard",
+    highlights: [
+      "Trained and compared nnU-Net 3D segmentation models for cardiac ventricle analysis",
+      "Researched and trained GNN architectures for pulmonary embolism risk stratification",
+      "Built PyTorch Geometric vascular graph datasets from segmentation-derived 3D anatomy",
+      "Co-authored a MICCAI 2026 submission, presented a poster and published a lab blog post",
+    ],
+  },
+  {
+    period: "Feb 2024 — Jul 2024",
+    duration: "6 months",
+    kind: "Research Intern",
+    role: "Real-Time Deep Learning for Noisy Time-Series",
+    company: "Institut des Nanotechnologies de Lyon",
+    location: "Lyon, France",
+    supervisor: "Supervised by Dr. Bertrand Massot",
+    highlights: [
+      "Researched robust real-time ECG / EDA peak detection methods for physiological VR monitoring",
+      "Implemented ECG localization pipelines combining U-Net, LSTM and wavelet-based models",
+      "Developed modular Python packages for BLE sensor acquisition and signal analytics",
+      "Co-authored an IEEE VRW 2025 publication",
+    ],
+  },
+  {
+    period: "Oct 2023 — Jan 2024",
+    duration: "4 months",
+    kind: "Technical Project",
+    role: "Embedded Computer Vision for Autonomous Drone Control",
+    company: "INSA Lyon",
+    location: "Lyon, France",
+    supervisor: "Supervised by Dr. Jean-François Mogniotte",
+    highlights: [
+      "Designed a dual-ESP32 drone architecture with onboard CNN gesture recognition",
+      "Developed real-time C / C++ firmware for sensor acquisition and SPI / I2C communication",
+      "Implemented Kalman filtering for altitude estimation using ToF, barometer and IMU sensors",
+      "Designed a custom drone PCB and monitoring dashboard for hardware debugging",
+    ],
+  },
+  {
+    period: "Apr 2022 — Jul 2022",
+    duration: "4 months",
+    kind: "R&D Intern",
+    role: "Embedded Systems",
+    company: "Institut Jean Lamour",
+    location: "Nancy, France",
+    highlights: [
+      "Developed STM32 serial communication modules in C / C++",
+      "Controlled an acoustic levitation device with configurable PWM",
+      "Built a Python API for device monitoring and wrote the documentation",
+    ],
+  },
+  {
+    period: "Sep 2021 — Apr 2022",
+    duration: "8 months",
+    kind: "Academic Tutor",
+    role: "Mathematics & Applied Physics",
+    company: "Université de Lorraine",
+    location: "Nancy, France",
+    highlights: [
+      "Teaching and support for first-year students",
+      "Courses: complex analysis, electrostatics and electromagnetism",
+    ],
   },
 ];
 
