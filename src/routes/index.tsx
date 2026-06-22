@@ -502,6 +502,7 @@ const EDUCATION: {
   frDegree?: string;
   concurrent?: string;
   highlights: string[];
+  courses?: string[];
 }[] = [
   {
     period: "Feb 2025 — Mar 2026",
@@ -513,6 +514,14 @@ const EDUCATION: {
       "Ranked 2nd in cohort — GPA 3.90 / 4.00",
       "Completed alongside my final year at INSA Lyon",
     ],
+    courses: [
+      "Machine Learning",
+      "Inverse Problems",
+      "Image Segmentation",
+      "Filtering and Registration",
+      "Magnetic Resonance Imaging",
+      "Bibliography",
+    ],
   },
   {
     period: "Sep 2022 — Mar 2026",
@@ -523,6 +532,18 @@ const EDUCATION: {
     highlights: [
       "Major in Deep Learning, Image & Signal Processing — GPA 4.00 / 4.00",
       "Ranked in the top 10% of cohort — overall GPA 3.76 / 4.00",
+    ],
+    courses: [
+      "Image Processing and Analysis",
+      "Image Deep Learning",
+      "Image Reconstruction",
+      "Estimation, Learning and Decision",
+      "Operations Research and Optimization",
+      "Signal Analysis and Modeling",
+      "Digital Processors: CPU and GPU",
+      "2D/3D Optical Acquisition",
+      "Real-Time Computer Engineering",
+      "Advanced Control",
     ],
   },
   {
