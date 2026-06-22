@@ -384,9 +384,10 @@ function TimelineItem({
               {courses.map((c) => (
                 <li
                   key={c}
-                  className="relative pl-3 text-sm text-muted-foreground/90 leading-snug before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-px before:bg-muted-foreground/40"
+                  className="flex items-baseline gap-2 text-sm text-muted-foreground/90 leading-snug"
                 >
-                  {c}
+                  <span className="font-mono-tight text-brand/70 text-xs">›</span>
+                  <span>{c}</span>
                 </li>
               ))}
             </ul>
