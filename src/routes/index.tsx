@@ -409,7 +409,7 @@ function TimelineItem({
                     p.url ? "hover:border-brand/60 hover:bg-brand/10 transition-colors" : ""
                   }`}
                 >
-                  <span className="flex items-center gap-1.5 px-2 py-1 bg-brand/10 text-brand/90 tracking-wide">
+                  <span className="flex items-center gap-1.5 px-2 py-1 text-brand/90 tracking-wide">
                     <FileText className="size-3" />
                     {p.type ?? "Publication"}
                   </span>
