@@ -211,6 +211,7 @@ function Portfolio() {
                 supervisor={e.supervisor}
                 highlights={e.highlights}
                 publications={e.publications}
+                repos={e.repos}
               />
             ))}
           </div>
@@ -332,6 +333,7 @@ function TimelineItem({
   highlights,
   courses,
   publications,
+  repos,
 }: {
   period: string;
   duration?: string;
@@ -345,6 +347,7 @@ function TimelineItem({
   highlights?: string[];
   courses?: string[];
   publications?: { venue: string; year: string; type?: string; status?: string; url?: string }[];
+  repos?: { url: string }[];
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
@@ -394,15 +397,15 @@ function TimelineItem({
             ))}
           </ul>
         )}
-        {publications && publications.length > 0 && (
+        {((publications && publications.length > 0) || (repos && repos.length > 0)) && (
           <div className="mt-4 flex flex-wrap gap-2">
-            {publications.map((p, i) => {
+            {publications?.map((p, i) => {
               const Tag = p.url ? "a" : "div";
               return (
                 <Tag
-                  key={i}
+                  key={`pub-${i}`}
                   {...(p.url ? { href: p.url, target: "_blank", rel: "noreferrer" } : {})}
-                  className={`group inline-flex items-stretch rounded-md border border-brand/30 bg-brand/5 overflow-hidden font-mono-tight text-[11px] ${
+                  className={`inline-flex items-stretch rounded-md border border-brand/30 bg-brand/5 overflow-hidden font-mono-tight text-[11px] ${
                     p.url ? "hover:border-brand/60 hover:bg-brand/10 transition-colors" : ""
                   }`}
                 >
@@ -418,6 +421,29 @@ function TimelineItem({
                     )}
                   </span>
                 </Tag>
+              );
+            })}
+            {repos?.map((r, i) => {
+              const url = r.url.replace(/\/$/, "");
+              const path = url.replace(/^https?:\/\/(www\.)?github\.com\//, "");
+              return (
+                <a
+                  key={`repo-${i}`}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-stretch rounded-md border border-border bg-card overflow-hidden font-mono-tight text-[11px] hover:border-brand/60 hover:bg-accent/40 transition-colors"
+                >
+                  <span className="flex items-center gap-1.5 px-2 py-1 bg-muted/40 text-muted-foreground uppercase tracking-wider">
+                    <FaGithub className="size-3" />
+                    Repo
+                  </span>
+                  <span className="flex items-center gap-1 px-2 py-1 text-foreground/90">
+                    <span className="opacity-60">{path.split("/")[0]}/</span>
+                    <span className="font-semibold text-brand">{path.split("/")[1]}</span>
+                    <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </span>
+                </a>
               );
             })}
           </div>
@@ -629,6 +655,7 @@ const EXPERIENCE: {
   supervisor?: string;
   highlights: string[];
   publications?: { venue: string; year: string; type?: string; status?: string; url?: string }[];
+  repos?: { url: string }[];
 }[] = [
   {
     period: "Oct 2025 — Jan 2026",
@@ -644,6 +671,7 @@ const EXPERIENCE: {
       "Designed Transformer-based multimodal conditioning for morphology metrics injection",
       "Developed t-SNE / UMAP latent space analysis and morphology-based evaluation tools",
     ],
+    repos: [{ url: "https://github.com/Sukikui/PTI-LDM-VAE" }],
   },
   {
     period: "Feb 2025 — Jul 2025",
@@ -662,6 +690,7 @@ const EXPERIENCE: {
     publications: [
       { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
     ],
+    repos: [{ url: "https://github.com/creatis-myriad/GENESIS" }],
   },
   {
     period: "Feb 2024 — Jul 2024",
@@ -679,6 +708,7 @@ const EXPERIENCE: {
     publications: [
       { venue: "IEEE VRW", year: "2025", type: "Workshop", status: "published" },
     ],
+    repos: [{ url: "https://github.com/sensors-inl/Nervous-Toolkit" }],
   },
   {
     period: "Oct 2023 — Jan 2024",
