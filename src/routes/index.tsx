@@ -684,7 +684,7 @@ const EXPERIENCE: {
     ],
     publications: [
       { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
-      { venue: "Myriad Lab Blog", year: "2025", type: "Tutorial", status: "published", url: "https://creatis-myriad.github.io/tutorials/2025-03-28-tutorial-graph-neural-networks.html" },
+      { venue: "Intro. to GNNs", year: "", type: "Blog Post", url: "https://creatis-myriad.github.io/tutorials/2025-03-28-tutorial-graph-neural-networks.html" },
     ],
     repos: [{ url: "https://github.com/creatis-myriad/GENESIS" }],
   },
