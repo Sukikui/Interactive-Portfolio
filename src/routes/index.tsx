@@ -188,7 +188,9 @@ function Portfolio() {
                 title={e.degree}
                 frTitle={e.frDegree}
                 subtitle={e.school}
-                description={e.details}
+                location={e.location}
+                concurrent={e.concurrent}
+                highlights={e.highlights}
               />
             ))}
           </div>
@@ -316,13 +318,19 @@ function TimelineItem({
   title,
   frTitle,
   subtitle,
+  location,
+  concurrent,
   description,
+  highlights,
 }: {
   period: string;
   title: string;
   frTitle?: string;
   subtitle: string;
-  description: string;
+  location?: string;
+  concurrent?: string;
+  description?: string;
+  highlights?: string[];
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
@@ -330,12 +338,38 @@ function TimelineItem({
         {period}
       </div>
       <div>
-        <h3 className="font-display text-xl font-semibold text-foreground">{title}</h3>
+        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+          <p className="text-sm text-brand font-medium">{subtitle}</p>
+          {location && (
+            <span className="font-mono-tight text-[10px] uppercase tracking-wider text-muted-foreground">
+              {location}
+            </span>
+          )}
+          {concurrent && (
+            <span className="text-[10px] font-mono-tight uppercase tracking-wider px-1.5 py-0.5 rounded border border-brand/40 text-brand/90">
+              {concurrent}
+            </span>
+          )}
+        </div>
+        <h3 className="font-display text-xl font-semibold text-foreground mt-1">{title}</h3>
         {frTitle && (
-          <p className="text-sm text-muted-foreground mt-1 italic">{frTitle}</p>
+          <p className="text-sm text-muted-foreground mt-0.5 italic">{frTitle}</p>
         )}
-        <p className="text-sm text-brand mt-1 font-medium">{subtitle}</p>
-        <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>
+        {description && (
+          <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>
+        )}
+        {highlights && highlights.length > 0 && (
+          <ul className="mt-3 space-y-1.5">
+            {highlights.map((h, i) => (
+              <li
+                key={i}
+                className="relative pl-4 text-sm text-muted-foreground leading-relaxed before:content-[''] before:absolute before:left-0 before:top-[0.55em] before:size-1 before:rounded-full before:bg-brand/60"
+              >
+                {h}
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
@@ -420,21 +454,59 @@ function ContactLink({
   );
 }
 
-const EDUCATION = [
+const EDUCATION: {
+  period: string;
+  school: string;
+  location?: string;
+  degree: string;
+  frDegree?: string;
+  concurrent?: string;
+  highlights: string[];
+}[] = [
   {
-    period: "2023 — 2026",
-    degree: "M.Eng. in Applied Mathematics & Computer Science",
-    frDegree: "Diplôme d'Ingénieur",
-    school: "École Polytechnique",
-    details:
-      "Specialization in statistical learning and optimization. Graduated with highest honors. Thesis on physics-informed neural networks for inverse problems.",
+    period: "Feb 2025 — Mar 2026",
+    school: "Centrale Lyon",
+    location: "Lyon, FR",
+    degree: "MSc in Machine Learning & Medical Imaging",
+    frDegree: "Master 2 Recherche",
+    concurrent: "Double degree · INSA Lyon",
+    highlights: [
+      "Ranked 2nd in cohort — GPA 3.90 / 4.00",
+      "Completed alongside the final year of the INSA Lyon engineering degree",
+    ],
   },
   {
-    period: "2021 — 2023",
-    degree: "Preparatory Classes — MP* (Math/Physics)",
-    school: "Lycée Louis-le-Grand, Paris",
-    details:
-      "Intensive two-year program in advanced mathematics, physics and theoretical computer science.",
+    period: "Sep 2022 — Mar 2026",
+    school: "INSA Lyon",
+    location: "Lyon, FR",
+    degree: "MSc in Electrical Engineering",
+    frDegree: "Diplôme d'Ingénieur — Institut National des Sciences Appliquées",
+    highlights: [
+      "Major in Deep Learning, Image & Signal Processing — GPA 4.00 / 4.00",
+      "Ranked in the top 10% of cohort — overall GPA 3.76 / 4.00",
+    ],
+  },
+  {
+    period: "Sep 2024 — Dec 2024",
+    school: "Tōhoku University",
+    location: "Sendai, JP",
+    degree: "Exchange Semester — Computer Science & Computer Vision",
+    concurrent: "Exchange during INSA Lyon",
+    highlights: [
+      "Completed the Intensive Japanese Language Program",
+      "Mentored bachelor students on Computer Vision projects",
+    ],
+  },
+  {
+    period: "Sep 2020 — Jul 2022",
+    school: "Université de Lorraine",
+    location: "Nancy, FR",
+    degree: "University Diploma of Technology in Electrical Engineering",
+    frDegree: "DUT Génie Électrique et Informatique Industrielle",
+    highlights: [
+      "Major in Multitasking & Object-Oriented Programming — GPA 4.00 / 4.00",
+      "Ranked 1st in cohort with Highest Honors — overall GPA 3.89 / 4.00",
+    ],
   },
 ];
 
