@@ -486,7 +486,7 @@ const EDUCATION: {
     school: "Centrale Lyon · Université Lyon 1",
     location: "Lyon, France",
     degree: "MSc in Machine Learning & Medical Imaging",
-    frDegree: "Master 2 — co-habilité Centrale Lyon / Université Lyon 1",
+    frDegree: "Master 2",
     highlights: [
       "Ranked 2nd in cohort — GPA 3.90 / 4.00",
       "Completed alongside my final year at INSA Lyon",
