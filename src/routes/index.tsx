@@ -380,16 +380,9 @@ function TimelineItem({
               Relevant coursework
               <span className="opacity-60">({courses.length})</span>
             </summary>
-            <div className="mt-2 flex flex-wrap gap-1.5">
-              {courses.map((c) => (
-                <span
-                  key={c}
-                  className="font-mono-tight text-[11px] px-2 py-0.5 rounded border border-border/70 bg-muted/30 text-muted-foreground/90"
-                >
-                  {c}
-                </span>
-              ))}
-            </div>
+            <p className="mt-2 text-sm text-muted-foreground/90 leading-relaxed">
+              {courses.join(" · ")}
+            </p>
           </details>
         )}
       </div>
