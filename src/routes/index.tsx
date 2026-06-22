@@ -332,6 +332,7 @@ function TimelineItem({
   highlights,
   courses,
   publications,
+  repos,
 }: {
   period: string;
   duration?: string;
