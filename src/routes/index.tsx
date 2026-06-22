@@ -191,6 +191,7 @@ function Portfolio() {
                 location={e.location}
                 concurrent={e.concurrent}
                 highlights={e.highlights}
+                courses={e.courses}
               />
             ))}
           </div>
