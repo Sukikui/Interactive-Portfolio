@@ -391,6 +391,34 @@ function TimelineItem({
             ))}
           </ul>
         )}
+        {publications && publications.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {publications.map((p, i) => {
+              const Tag = p.url ? "a" : "div";
+              return (
+                <Tag
+                  key={i}
+                  {...(p.url ? { href: p.url, target: "_blank", rel: "noreferrer" } : {})}
+                  className={`group inline-flex items-stretch rounded-md border border-brand/30 bg-brand/5 overflow-hidden font-mono-tight text-[11px] ${
+                    p.url ? "hover:border-brand/60 hover:bg-brand/10 transition-colors" : ""
+                  }`}
+                >
+                  <span className="flex items-center gap-1.5 px-2 py-1 bg-brand/10 text-brand/90 uppercase tracking-wider">
+                    <FileText className="size-3" />
+                    {p.type ?? "Publication"}
+                  </span>
+                  <span className="flex items-center gap-1.5 px-2 py-1 text-foreground/90">
+                    <span className="font-semibold">{p.venue}</span>
+                    <span className="opacity-60">{p.year}</span>
+                    {p.status && (
+                      <span className="opacity-60 italic normal-case">· {p.status}</span>
+                    )}
+                  </span>
+                </Tag>
+              );
+            })}
+          </div>
+        )}
         {courses && courses.length > 0 && (
           <details className="group mt-3">
             <summary className="cursor-pointer list-none inline-flex items-center gap-1.5 font-mono-tight text-[11px] tracking-wider text-muted-foreground hover:text-brand transition-colors">
