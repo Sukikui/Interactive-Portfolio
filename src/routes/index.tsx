@@ -522,7 +522,7 @@ const EDUCATION: {
     period: "Sep 2024 — Dec 2024",
     school: "Tōhoku University",
     location: "Sendai, JP",
-    degree: "Exchange Semester — Computer Science & Computer Vision",
+    degree: "Exchange Semester",
     concurrent: "Exchange during INSA Lyon",
     highlights: [
       "Completed the Intensive Japanese Language Program",
