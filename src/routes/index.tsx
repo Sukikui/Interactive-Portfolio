@@ -380,9 +380,16 @@ function TimelineItem({
               Relevant coursework
               <span className="opacity-60">({courses.length})</span>
             </summary>
-            <p className="mt-2 text-sm text-muted-foreground/90 leading-relaxed">
-              {courses.join(" · ")}
-            </p>
+            <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
+              {courses.map((c) => (
+                <li
+                  key={c}
+                  className="relative pl-3 text-sm text-muted-foreground/90 leading-snug before:content-[''] before:absolute before:left-0 before:top-[0.6em] before:w-1.5 before:h-px before:bg-muted-foreground/40"
+                >
+                  {c}
+                </li>
+              ))}
+            </ul>
           </details>
         )}
       </div>
