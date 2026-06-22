@@ -409,7 +409,7 @@ function TimelineItem({
                     p.url ? "hover:border-brand/60 hover:bg-brand/10 transition-colors" : ""
                   }`}
                 >
-                  <span className="flex items-center gap-1.5 px-2 py-1 bg-brand/10 text-brand/90 uppercase tracking-wider">
+                  <span className="flex items-center gap-1.5 px-2 py-1 bg-brand/10 text-brand/90 tracking-wide">
                     <FileText className="size-3" />
                     {p.type ?? "Publication"}
                   </span>
@@ -432,17 +432,12 @@ function TimelineItem({
                   href={url}
                   target="_blank"
                   rel="noreferrer"
-                  className="group inline-flex items-stretch rounded-md border border-border bg-card overflow-hidden font-mono-tight text-[11px] hover:border-brand/60 hover:bg-accent/40 transition-colors"
+                  className="group inline-flex items-center gap-1.5 px-2 py-1 rounded-md border border-border bg-card font-mono-tight text-[11px] hover:border-brand/60 hover:bg-accent/40 transition-colors"
                 >
-                  <span className="flex items-center gap-1.5 px-2 py-1 bg-muted/40 text-muted-foreground uppercase tracking-wider">
-                    <FaGithub className="size-3" />
-                    Repo
-                  </span>
-                  <span className="flex items-center gap-1 px-2 py-1 text-foreground/90">
-                    <span className="opacity-60">{path.split("/")[0]}/</span>
-                    <span className="font-semibold text-brand">{path.split("/")[1]}</span>
-                    <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
-                  </span>
+                  <FaGithub className="size-3.5 text-muted-foreground group-hover:text-brand transition-colors" />
+                  <span className="opacity-60">{path.split("/")[0]}/</span>
+                  <span className="font-semibold text-brand">{path.split("/")[1]}</span>
+                  <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                 </a>
               );
             })}
