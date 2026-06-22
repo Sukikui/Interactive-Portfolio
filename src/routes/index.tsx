@@ -210,6 +210,7 @@ function Portfolio() {
                 concurrent={e.kind}
                 supervisor={e.supervisor}
                 highlights={e.highlights}
+                publications={e.publications}
               />
             ))}
           </div>
