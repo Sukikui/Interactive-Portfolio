@@ -191,6 +191,7 @@ function Portfolio() {
                 location={e.location}
                 concurrent={e.concurrent}
                 highlights={e.highlights}
+                courses={e.courses}
               />
             ))}
           </div>
@@ -322,6 +323,7 @@ function TimelineItem({
   concurrent,
   description,
   highlights,
+  courses,
 }: {
   period: string;
   title: string;
@@ -331,6 +333,7 @@ function TimelineItem({
   concurrent?: string;
   description?: string;
   highlights?: string[];
+  courses?: string[];
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
@@ -369,6 +372,25 @@ function TimelineItem({
               </li>
             ))}
           </ul>
+        )}
+        {courses && courses.length > 0 && (
+          <details className="group mt-3">
+            <summary className="cursor-pointer list-none inline-flex items-center gap-1.5 font-mono-tight text-[11px] tracking-wider text-muted-foreground hover:text-brand transition-colors">
+              <ChevronDown className="size-3 transition-transform group-open:rotate-180" />
+              Relevant coursework
+              <span className="opacity-60">({courses.length})</span>
+            </summary>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {courses.map((c) => (
+                <span
+                  key={c}
+                  className="font-mono-tight text-[11px] px-2 py-0.5 rounded border border-border/70 bg-muted/30 text-muted-foreground/90"
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+          </details>
         )}
       </div>
     </div>
@@ -480,6 +502,7 @@ const EDUCATION: {
   frDegree?: string;
   concurrent?: string;
   highlights: string[];
+  courses?: string[];
 }[] = [
   {
     period: "Feb 2025 — Mar 2026",
@@ -491,6 +514,14 @@ const EDUCATION: {
       "Ranked 2nd in cohort — GPA 3.90 / 4.00",
       "Completed alongside my final year at INSA Lyon",
     ],
+    courses: [
+      "Machine Learning",
+      "Inverse Problems",
+      "Image Segmentation",
+      "Filtering and Registration",
+      "Magnetic Resonance Imaging",
+      "Bibliography",
+    ],
   },
   {
     period: "Sep 2022 — Mar 2026",
@@ -501,6 +532,18 @@ const EDUCATION: {
     highlights: [
       "Major in Deep Learning, Image & Signal Processing — GPA 4.00 / 4.00",
       "Ranked in the top 10% of cohort — overall GPA 3.76 / 4.00",
+    ],
+    courses: [
+      "Image Processing and Analysis",
+      "Image Deep Learning",
+      "Image Reconstruction",
+      "Estimation, Learning and Decision",
+      "Operations Research and Optimization",
+      "Signal Analysis and Modeling",
+      "Digital Processors: CPU and GPU",
+      "2D/3D Optical Acquisition",
+      "Real-Time Computer Engineering",
+      "Advanced Control",
     ],
   },
   {
