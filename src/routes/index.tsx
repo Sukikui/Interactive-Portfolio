@@ -376,34 +376,19 @@ function TimelineItem({
 }
 
 function renderWithGpa(text: string) {
-  // Match patterns like "GPA: 3.90/4.00" or "GPA 3.90 / 4.00"
   const re = /(?:—\s*)?GPA[:\s]*([0-9]\.[0-9]{1,2})\s*\/\s*([0-9]\.[0-9]{1,2})/i;
   const m = text.match(re);
   if (!m) return text;
   const before = text.slice(0, m.index).replace(/[\s—–-]+$/, "");
   const [, value, scale] = m;
-  const ratio = Math.min(1, parseFloat(value) / parseFloat(scale));
   return (
-    <span className="flex flex-wrap items-center gap-x-3 gap-y-1.5">
-      <span>{before}</span>
-      <span
-        className="inline-flex items-center gap-1.5 rounded-md border border-brand/30 bg-brand/5 px-2 py-0.5 font-mono-tight text-[11px] tracking-wider text-brand"
-        title={`GPA ${value} / ${scale}`}
-      >
-        <span className="opacity-70">GPA</span>
-        <span className="font-semibold text-foreground">{value}</span>
-        <span className="opacity-60">/ {scale}</span>
-        <span
-          aria-hidden
-          className="ml-1 h-1 w-10 rounded-full bg-brand/15 overflow-hidden"
-        >
-          <span
-            className="block h-full rounded-full bg-brand"
-            style={{ width: `${ratio * 100}%` }}
-          />
-        </span>
+    <>
+      {before}
+      <span className="ml-2 font-mono-tight text-[11px] tracking-wider text-muted-foreground/80">
+        <span className="text-foreground/90">{value}</span>
+        <span className="opacity-50">/{scale}</span>
       </span>
-    </span>
+    </>
   );
 }
 
@@ -534,7 +519,7 @@ const EDUCATION: {
     school: "Université de Lorraine",
     location: "Nancy, FR",
     degree: "University Diploma of Technology in Electrical Engineering",
-    frDegree: "DUT",
+    frDegree: "DUT GEII",
     highlights: [
       "Major in Multitasking & Object-Oriented Programming — GPA 4.00 / 4.00",
       "Ranked 1st in cohort with Highest Honors — overall GPA 3.89 / 4.00",
