@@ -483,11 +483,10 @@ const EDUCATION: {
 }[] = [
   {
     period: "Feb 2025 — Mar 2026",
-    school: "Centrale Lyon",
+    school: "Centrale Lyon · Université Lyon 1",
     location: "Lyon, France",
     degree: "MSc in Machine Learning & Medical Imaging",
-    frDegree: "Master 2",
-    concurrent: "Double degree · INSA Lyon",
+    frDegree: "Master 2 — co-habilité Centrale Lyon / Université Lyon 1",
     highlights: [
       "Ranked 2nd in cohort — GPA 3.90 / 4.00",
       "Completed alongside my final year at INSA Lyon",
@@ -509,7 +508,6 @@ const EDUCATION: {
     school: "Tōhoku University",
     location: "Sendai, Japon",
     degree: "Exchange Semester",
-    concurrent: "Exchange during INSA Lyon",
     highlights: [
       "Completed the Intensive Japanese Language Program",
       "Mentored bachelor students on Computer Vision projects",
