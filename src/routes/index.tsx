@@ -210,6 +210,7 @@ function Portfolio() {
                 concurrent={e.kind}
                 supervisor={e.supervisor}
                 highlights={e.highlights}
+                publications={e.publications}
               />
             ))}
           </div>
@@ -330,6 +331,7 @@ function TimelineItem({
   description,
   highlights,
   courses,
+  publications,
 }: {
   period: string;
   duration?: string;
@@ -342,6 +344,7 @@ function TimelineItem({
   description?: string;
   highlights?: string[];
   courses?: string[];
+  publications?: { venue: string; year: string; type?: string; status?: string; url?: string }[];
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
@@ -390,6 +393,34 @@ function TimelineItem({
               </li>
             ))}
           </ul>
+        )}
+        {publications && publications.length > 0 && (
+          <div className="mt-4 flex flex-wrap gap-2">
+            {publications.map((p, i) => {
+              const Tag = p.url ? "a" : "div";
+              return (
+                <Tag
+                  key={i}
+                  {...(p.url ? { href: p.url, target: "_blank", rel: "noreferrer" } : {})}
+                  className={`group inline-flex items-stretch rounded-md border border-brand/30 bg-brand/5 overflow-hidden font-mono-tight text-[11px] ${
+                    p.url ? "hover:border-brand/60 hover:bg-brand/10 transition-colors" : ""
+                  }`}
+                >
+                  <span className="flex items-center gap-1.5 px-2 py-1 bg-brand/10 text-brand/90 uppercase tracking-wider">
+                    <FileText className="size-3" />
+                    {p.type ?? "Publication"}
+                  </span>
+                  <span className="flex items-center gap-1.5 px-2 py-1 text-foreground/90">
+                    <span className="font-semibold">{p.venue}</span>
+                    <span className="opacity-60">{p.year}</span>
+                    {p.status && (
+                      <span className="opacity-60 italic normal-case">· {p.status}</span>
+                    )}
+                  </span>
+                </Tag>
+              );
+            })}
+          </div>
         )}
         {courses && courses.length > 0 && (
           <details className="group mt-3">
@@ -597,6 +628,7 @@ const EXPERIENCE: {
   location?: string;
   supervisor?: string;
   highlights: string[];
+  publications?: { venue: string; year: string; type?: string; status?: string; url?: string }[];
 }[] = [
   {
     period: "Oct 2025 — Jan 2026",
@@ -625,7 +657,10 @@ const EXPERIENCE: {
       "Trained and compared nnU-Net 3D segmentation models for cardiac ventricle analysis",
       "Researched and trained GNN architectures for pulmonary embolism risk stratification",
       "Built PyTorch Geometric vascular graph datasets from segmentation-derived 3D anatomy",
-      "Co-authored a MICCAI 2026 submission, presented a poster and published a lab blog post",
+      "Presented a poster and published a lab blog post on the project",
+    ],
+    publications: [
+      { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
     ],
   },
   {
@@ -640,7 +675,9 @@ const EXPERIENCE: {
       "Researched robust real-time ECG / EDA peak detection methods for physiological VR monitoring",
       "Implemented ECG localization pipelines combining U-Net, LSTM and wavelet-based models",
       "Developed modular Python packages for BLE sensor acquisition and signal analytics",
-      "Co-authored an IEEE VRW 2025 publication",
+    ],
+    publications: [
+      { venue: "IEEE VRW", year: "2025", type: "Workshop", status: "published" },
     ],
   },
   {
