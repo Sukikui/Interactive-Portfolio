@@ -394,15 +394,15 @@ function TimelineItem({
             ))}
           </ul>
         )}
-        {publications && publications.length > 0 && (
+        {((publications && publications.length > 0) || (repos && repos.length > 0)) && (
           <div className="mt-4 flex flex-wrap gap-2">
-            {publications.map((p, i) => {
+            {publications?.map((p, i) => {
               const Tag = p.url ? "a" : "div";
               return (
                 <Tag
-                  key={i}
+                  key={`pub-${i}`}
                   {...(p.url ? { href: p.url, target: "_blank", rel: "noreferrer" } : {})}
-                  className={`group inline-flex items-stretch rounded-md border border-brand/30 bg-brand/5 overflow-hidden font-mono-tight text-[11px] ${
+                  className={`inline-flex items-stretch rounded-md border border-brand/30 bg-brand/5 overflow-hidden font-mono-tight text-[11px] ${
                     p.url ? "hover:border-brand/60 hover:bg-brand/10 transition-colors" : ""
                   }`}
                 >
@@ -418,6 +418,29 @@ function TimelineItem({
                     )}
                   </span>
                 </Tag>
+              );
+            })}
+            {repos?.map((r, i) => {
+              const url = r.url.replace(/\/$/, "");
+              const path = url.replace(/^https?:\/\/(www\.)?github\.com\//, "");
+              return (
+                <a
+                  key={`repo-${i}`}
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group inline-flex items-stretch rounded-md border border-border bg-card overflow-hidden font-mono-tight text-[11px] hover:border-brand/60 hover:bg-accent/40 transition-colors"
+                >
+                  <span className="flex items-center gap-1.5 px-2 py-1 bg-muted/40 text-muted-foreground uppercase tracking-wider">
+                    <FaGithub className="size-3" />
+                    Repo
+                  </span>
+                  <span className="flex items-center gap-1 px-2 py-1 text-foreground/90">
+                    <span className="opacity-60">{path.split("/")[0]}/</span>
+                    <span className="font-semibold text-brand">{path.split("/")[1]}</span>
+                    <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                  </span>
+                </a>
               );
             })}
           </div>
