@@ -341,7 +341,7 @@ function TimelineItem({
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <p className="text-sm text-brand font-medium">{subtitle}</p>
           {location && (
-            <span className="font-mono-tight text-[10px] uppercase tracking-wider text-muted-foreground">
+            <span className="font-mono-tight text-[11px] tracking-wide text-muted-foreground">
               {location}
             </span>
           )}
@@ -484,19 +484,19 @@ const EDUCATION: {
   {
     period: "Feb 2025 — Mar 2026",
     school: "Centrale Lyon",
-    location: "Lyon, FR",
+    location: "Lyon, France",
     degree: "MSc in Machine Learning & Medical Imaging",
     frDegree: "Master 2",
     concurrent: "Double degree · INSA Lyon",
     highlights: [
       "Ranked 2nd in cohort — GPA 3.90 / 4.00",
-      "Completed alongside the final year of the INSA Lyon engineering degree",
+      "Completed alongside my final year at INSA Lyon",
     ],
   },
   {
     period: "Sep 2022 — Mar 2026",
     school: "INSA Lyon",
-    location: "Lyon, FR",
+    location: "Lyon, France",
     degree: "MSc in Electrical Engineering",
     frDegree: "Diplôme d'Ingénieur",
     highlights: [
@@ -507,7 +507,7 @@ const EDUCATION: {
   {
     period: "Sep 2024 — Dec 2024",
     school: "Tōhoku University",
-    location: "Sendai, JP",
+    location: "Sendai, Japon",
     degree: "Exchange Semester",
     concurrent: "Exchange during INSA Lyon",
     highlights: [
@@ -518,7 +518,7 @@ const EDUCATION: {
   {
     period: "Sep 2020 — Jul 2022",
     school: "Université de Lorraine",
-    location: "Nancy, FR",
+    location: "Nancy, France",
     degree: "University Diploma of Technology in Electrical Engineering",
     frDegree: "DUT GEII",
     highlights: [
