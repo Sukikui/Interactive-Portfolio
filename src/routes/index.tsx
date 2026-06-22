@@ -322,6 +322,7 @@ function TimelineItem({
   concurrent,
   description,
   highlights,
+  courses,
 }: {
   period: string;
   title: string;
@@ -331,6 +332,7 @@ function TimelineItem({
   concurrent?: string;
   description?: string;
   highlights?: string[];
+  courses?: string[];
 }) {
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
@@ -369,6 +371,25 @@ function TimelineItem({
               </li>
             ))}
           </ul>
+        )}
+        {courses && courses.length > 0 && (
+          <details className="group mt-3">
+            <summary className="cursor-pointer list-none inline-flex items-center gap-1.5 font-mono-tight text-[11px] tracking-wider text-muted-foreground hover:text-brand transition-colors">
+              <ChevronDown className="size-3 transition-transform group-open:rotate-180" />
+              Relevant coursework
+              <span className="opacity-60">({courses.length})</span>
+            </summary>
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {courses.map((c) => (
+                <span
+                  key={c}
+                  className="font-mono-tight text-[11px] px-2 py-0.5 rounded border border-border/70 bg-muted/30 text-muted-foreground/90"
+                >
+                  {c}
+                </span>
+              ))}
+            </div>
+          </details>
         )}
       </div>
     </div>
