@@ -16,7 +16,7 @@ import {
   ArrowUpRight,
   FlaskConical,
 } from "lucide-react";
-import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { FaGithub, FaLinkedin } from "react-icons/fa6";
 import profile from "@/assets/profile.jpg";
 import { useTheme } from "@/lib/theme";
 
@@ -343,20 +343,19 @@ function Portfolio() {
         </Section>
 
         <Section id="contact" index="07" Icon={Mail} title="Contact">
-          <div className="grid md:grid-cols-2 gap-6 items-start">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Open to <span className="text-brand font-medium">PhD opportunities</span>, research collaborations and
-              engineering positions. I usually reply within a couple of days.
+          <div className="max-w-2xl">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              Open to <span className="text-foreground font-medium">PhD opportunities</span>, research collaborations
+              and engineering positions. I usually reply within a couple of days.
             </p>
-            <div className="space-y-3">
+            <div className="mt-8 flex flex-col divide-y divide-border border-y border-border">
               <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
-              <ContactLink href="https://github.com/alexmartin" Icon={FaGithub} label="github.com/alexmartin" />
               <ContactLink
                 href="https://linkedin.com/in/alexmartin"
                 Icon={FaLinkedin}
                 label="linkedin.com/in/alexmartin"
               />
-              <ContactLink href="https://x.com/alexmartin" Icon={FaXTwitter} label="@alexmartin" />
+              <ContactLink href="https://github.com/alexmartin" Icon={FaGithub} label="github.com/alexmartin" />
             </div>
           </div>
         </Section>
@@ -746,11 +745,11 @@ function ContactLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex items-center gap-3 p-4 rounded-lg border border-border hover:border-brand/60 hover:bg-accent/40 transition-all"
+      className="group flex items-center gap-4 py-4"
     >
-      <Icon className="size-5 text-muted-foreground group-hover:text-brand transition-colors" />
-      <span className="text-foreground">{label}</span>
-      <ArrowUpRight className="size-4 ml-auto text-muted-foreground group-hover:text-brand transition-colors" />
+      <Icon className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+      <span className="text-sm text-foreground">{label}</span>
+      <ArrowUpRight className="size-3.5 ml-auto text-muted-foreground group-hover:text-foreground transition-colors" />
     </a>
   );
 }
