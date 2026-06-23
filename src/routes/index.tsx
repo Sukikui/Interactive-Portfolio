@@ -175,24 +175,24 @@ function Portfolio() {
                   <User className="size-4 text-brand" />
                   <h2 className="section-heading text-foreground">Presentation</h2>
                 </div>
-                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                   A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
                   state-of-the-art AI models driving concrete applications in the real world.
                 </p>
-                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
                   Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years
                   in the field of Electrical Engineering. I quickly became passionate about and self-taught in
                   Computer Vision, which allowed me to start a drone project embedding a real-time AI model on my
                   personal time, and which I then continued as part of my curriculum at INSA Lyon.
                 </p>
-                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
                   Eager to discover varied architectures and applications of Machine Learning in demanding
                   environments, with the opportunity to contribute to publications, I decided to multiply my
                   experiences in laboratories, notably in the medical and biomedical fields. This allowed me to learn
                   to understand, adapt and implement quickly and rigorously recent models from specialized AI
                   conferences and journals.
                 </p>
-                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
                   In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects
                   around Minecraft including network communications, APIs and server tools. I also enjoy doing some
                   web development from time to time, as you can see with this very website. I invite you to consult
@@ -207,7 +207,7 @@ function Portfolio() {
                   <FlaskConical className="size-4 text-brand" />
                   <h2 className="section-heading text-foreground">Research interests</h2>
                 </div>
-                <ul className="space-y-3 text-sm md:text-base text-muted-foreground leading-relaxed">
+                <ul className="space-y-3 text-xs md:text-sm text-muted-foreground leading-relaxed">
                   <li className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
                     <span>
