@@ -313,11 +313,13 @@ function Portfolio() {
                   <span className="text-sm font-light">{EMAIL}</span>
                   <span
                     aria-hidden
-                    className={`pointer-events-none absolute left-full ml-3 whitespace-nowrap text-[11px] font-mono-tight uppercase tracking-[0.2em] text-emerald-300 transition-all duration-300 ${
-                      emailCopied ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-1"
+                    className={`pointer-events-none absolute left-0 top-full mt-1 whitespace-nowrap text-[10px] font-mono-tight uppercase tracking-[0.2em] transition-all duration-300 ${
+                      emailCopied
+                        ? "opacity-100 translate-y-0 text-emerald-300"
+                        : "text-white/60 opacity-0 -translate-y-0.5 group-hover:opacity-100 group-hover:translate-y-0"
                     }`}
                   >
-                    Copied
+                    {emailCopied ? "Copié !" : "Cliquer pour copier"}
                   </span>
                 </button>
                 <span className="h-4 w-px bg-white/20" />
