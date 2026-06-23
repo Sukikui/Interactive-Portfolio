@@ -480,21 +480,65 @@ function renderWithGpa(text: string) {
   );
 }
 
-type Repo = {
-  name: string;
-  owner: string;
-  description: string;
-  language: string;
-  langColor: string;
-  stars: number;
-  forks: number;
-  url: string;
+const LANGUAGE_COLORS: Record<string, string> = {
+  Python: "#3572A5",
+  TypeScript: "#3178c6",
+  JavaScript: "#f1e05a",
+  "Jupyter Notebook": "#DA5B0B",
+  Shell: "#89e051",
+  "C++": "#f34b7d",
+  C: "#555555",
+  TeX: "#3D6117",
+  CUDA: "#3A4E3A",
+  HTML: "#e34c26",
+  CSS: "#563d7c",
+  Rust: "#dea584",
+  Go: "#00ADD8",
+  Dockerfile: "#384d54",
+  Makefile: "#427819",
+  Lua: "#000080",
+  Julia: "#a270ba",
+  R: "#198CE7",
 };
 
-function RepoCard({ repo }: { repo: Repo }) {
+type RepoRef = { owner: string; name: string };
+
+type RepoData = {
+  description: string | null;
+  languages: { name: string; pct: number }[];
+};
+
+function RepoCard({ repo }: { repo: RepoRef }) {
+  const [data, setData] = useState<RepoData | null>(null);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    let cancelled = false;
+    const base = `https://api.github.com/repos/${repo.owner}/${repo.name}`;
+    Promise.all([
+      fetch(base).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
+      fetch(`${base}/languages`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
+    ])
+      .then(([info, langs]: [{ description: string | null }, Record<string, number>]) => {
+        if (cancelled) return;
+        const total = Object.values(langs).reduce((a, b) => a + b, 0) || 1;
+        const sorted = Object.entries(langs)
+          .sort((a, b) => b[1] - a[1])
+          .slice(0, 4)
+          .map(([name, bytes]) => ({ name, pct: (bytes / total) * 100 }));
+        setData({ description: info.description, languages: sorted });
+      })
+      .catch(() => {
+        if (!cancelled) setError(true);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [repo.owner, repo.name]);
+
   return (
     <a
-      href={repo.url}
+      href={`https://github.com/${repo.owner}/${repo.name}`}
       target="_blank"
       rel="noreferrer"
       className="group relative flex flex-col p-4 rounded-xl border border-border bg-card hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5 hover:-translate-y-0.5 transition-all"
@@ -507,29 +551,27 @@ function RepoCard({ repo }: { repo: Repo }) {
             <span className="text-muted-foreground">/</span>
             <span className="text-brand truncate">{repo.name}</span>
           </div>
-          <span className="inline-block mt-1.5 text-[10px] font-mono-tight px-1.5 py-0.5 rounded border border-border text-muted-foreground">
-            Public
-          </span>
         </div>
         <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </div>
 
-      <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">{repo.description}</p>
+      <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3 min-h-[2.5rem]">
+        {error ? "Repository information unavailable." : (data?.description ?? "Loading…")}
+      </p>
 
-      <div className="mt-4 pt-4 border-t border-border/70 flex items-center gap-5 text-xs text-muted-foreground">
-        <span className="flex items-center gap-1.5">
-          <span className="size-2.5 rounded-full" style={{ backgroundColor: repo.langColor }} />
-          {repo.language}
-        </span>
-        <span className="flex items-center gap-1.5 font-mono-tight">
-          <Star className="size-3.5" />
-          {repo.stars.toLocaleString()}
-        </span>
-        <span className="flex items-center gap-1.5 font-mono-tight">
-          <GitFork className="size-3.5" />
-          {repo.forks.toLocaleString()}
-        </span>
-      </div>
+      {data?.languages && data.languages.length > 0 && (
+        <div className="mt-4 pt-4 border-t border-border/70 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
+          {data.languages.map((l) => (
+            <span key={l.name} className="flex items-center gap-1.5">
+              <span
+                className="size-2.5 rounded-full"
+                style={{ backgroundColor: LANGUAGE_COLORS[l.name] ?? "#888" }}
+              />
+              {l.name}
+            </span>
+          ))}
+        </div>
+      )}
     </a>
   );
 }
