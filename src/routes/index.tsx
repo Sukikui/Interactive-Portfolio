@@ -49,7 +49,7 @@ const NAV = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Side Projects" },
   { id: "cv", label: "CV" },
-  { id: "contact", label: "Contact" },
+  
 ];
 
 function Portfolio() {
@@ -273,6 +273,36 @@ function Portfolio() {
                 <span className="font-medium text-white">deep learning</span> and{" "}
                 <span className="font-medium text-white">applied mathematics</span>.
               </p>
+
+              <div className="mt-8 flex items-center gap-5">
+                <a
+                  href="mailto:tristan.habemont@gmail.com"
+                  aria-label="Email"
+                  className="group inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+                >
+                  <Mail className="size-5" />
+                  <span className="hidden sm:inline text-sm font-light">tristan.habemont@gmail.com</span>
+                </a>
+                <span className="h-4 w-px bg-white/20" />
+                <a
+                  href="https://linkedin.com/in/tristan-habemont"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <FaLinkedin className="size-5" />
+                </a>
+                <a
+                  href="https://github.com/sukikui"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <FaGithub className="size-5" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -475,24 +505,6 @@ function Portfolio() {
                 <Download className="size-4" />
                 Download CV
               </a>
-            </div>
-          </div>
-        </Section>
-
-        <Section id="contact" index="07" Icon={Mail} title="Contact">
-          <div>
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              Open to <span className="text-foreground font-medium">PhD opportunities</span>, research collaborations
-              and engineering positions. I usually reply within a couple of days.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-start gap-x-8 gap-y-3">
-              <ContactLink href="mailto:tristan.habemont@gmail.com" Icon={Mail} label="tristan.habemont@gmail.com" />
-              <ContactLink
-                href="https://linkedin.com/in/tristan-habemont"
-                Icon={FaLinkedin}
-                label="linkedin.com/in/tristan-habemont"
-              />
-              <ContactLink href="https://github.com/sukikui" Icon={FaGithub} label="github.com/sukikui" />
             </div>
           </div>
         </Section>
@@ -868,27 +880,6 @@ function RepoCard({ repo }: { repo: RepoRef }) {
   );
 }
 
-function ContactLink({
-  href,
-  Icon,
-  label,
-}: {
-  href: string;
-  Icon: React.ComponentType<{ className?: string }>;
-  label: string;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-    >
-      <Icon className="size-4" />
-      <span>{label}</span>
-    </a>
-  );
-}
 
 const EDUCATION: {
   period: string;
