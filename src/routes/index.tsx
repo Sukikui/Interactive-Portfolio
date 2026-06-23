@@ -745,11 +745,11 @@ function ContactLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex items-center gap-3 p-4 rounded-lg border border-border hover:border-brand/60 hover:bg-accent/40 transition-all"
+      className="group flex items-center gap-4 py-4"
     >
-      <Icon className="size-5 text-muted-foreground group-hover:text-brand transition-colors" />
-      <span className="text-foreground">{label}</span>
-      <ArrowUpRight className="size-4 ml-auto text-muted-foreground group-hover:text-brand transition-colors" />
+      <Icon className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
+      <span className="text-sm text-foreground">{label}</span>
+      <ArrowUpRight className="size-3.5 ml-auto text-muted-foreground group-hover:text-foreground transition-colors" />
     </a>
   );
 }
