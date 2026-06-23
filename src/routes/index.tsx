@@ -402,7 +402,7 @@ function TimelineItem({
                   </span>
                   <span className="flex items-center gap-1.5 px-2 py-1 text-foreground/90">
                     <span className="font-semibold">{p.venue}</span>
-                    <span className="opacity-60">{p.year}</span>
+                    <span className="font-semibold">{p.year}</span>
                     {p.status && <span className="opacity-60 italic normal-case">· {p.status}</span>}
                   </span>
                 </Tag>
