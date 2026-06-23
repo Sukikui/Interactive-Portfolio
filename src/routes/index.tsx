@@ -397,17 +397,17 @@ function TimelineItem({
                 <Tag
                   key={`pub-${i}`}
                   {...(p.url ? { href: p.url, target: "_blank", rel: "noreferrer" } : {})}
-                  className={`inline-flex items-stretch rounded-md border border-brand/30 bg-brand/5 overflow-hidden font-mono-tight text-[11px] ${
-                    p.url ? "hover:border-brand/60 hover:bg-brand/10 transition-colors" : ""
+                  className={`inline-flex items-stretch rounded-md border border-border bg-card overflow-hidden font-mono-tight text-[11px] ${
+                    p.url ? "hover:border-brand/60 hover:bg-accent/40 transition-colors" : ""
                   }`}
                 >
-                  <span className="flex items-center gap-1.5 px-2 py-1 text-brand/90 tracking-wide">
+                  <span className="flex items-center gap-1.5 px-2 py-1 text-muted-foreground tracking-wide">
                     <FileText className="size-3" />
                     {p.type ?? "Publication"}
                   </span>
                   <span className="flex items-center gap-1.5 px-2 py-1 text-foreground/90">
-                    <span className="font-semibold">{p.venue}</span>
-                    <span className="font-semibold">{p.year}</span>
+                    <span className="font-semibold text-brand">{p.venue}</span>
+                    {p.year && <span className="font-semibold text-brand">{p.year}</span>}
                     {p.status && <span className="opacity-60 italic normal-case">· {p.status}</span>}
                   </span>
                 </Tag>
