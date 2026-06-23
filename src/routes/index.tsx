@@ -11,8 +11,6 @@ import {
   Briefcase,
   FolderGit2,
   FileText,
-  Star,
-  GitFork,
   ArrowUpRight,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
