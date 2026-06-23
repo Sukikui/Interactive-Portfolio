@@ -49,7 +49,7 @@ const NAV = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Side Projects" },
   { id: "cv", label: "CV" },
-  { id: "contact", label: "Contact" },
+  
 ];
 
 function Portfolio() {
