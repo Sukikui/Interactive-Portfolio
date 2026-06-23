@@ -702,7 +702,6 @@ const EXPERIENCE: {
         venue: "IEEE VRW",
         year: "2025",
         type: "Workshop",
-        status: "published",
         url: "https://ieeexplore.ieee.org/document/10972783",
       },
     ],
