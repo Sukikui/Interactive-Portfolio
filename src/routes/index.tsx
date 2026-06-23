@@ -44,7 +44,7 @@ const NAV = [
   { id: "research", label: "Research" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
-  { id: "projects", label: "Projects" },
+  { id: "projects", label: "Side Projects" },
   { id: "cv", label: "CV" },
   { id: "contact", label: "Contact" },
 ];
@@ -287,7 +287,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="projects" index="05" Icon={FolderGit2} title="Projects">
+        <Section id="projects" index="05" Icon={FolderGit2} title="Side Projects">
           <div className="space-y-10">
             {PROJECT_GROUPS.map((group) => (
               <div key={group.title}>
