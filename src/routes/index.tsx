@@ -124,13 +124,13 @@ function Portfolio() {
           <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-center w-full">
             {/* Left — profile */}
             <div className="flex justify-center md:justify-start animate-fade-up">
-              <div className="relative">
+              <div className="relative size-56 md:size-72 rounded-full overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40">
                 <img
                   src={profile}
                   alt="Tristan Habémont portrait"
                   width={320}
                   height={320}
-                  className="size-56 md:size-72 rounded-full object-cover ring-1 ring-white/15 shadow-2xl shadow-black/40"
+                  className="absolute inset-0 h-full w-full object-cover scale-[1.2] translate-y-[10%]"
                 />
               </div>
             </div>
