@@ -110,7 +110,8 @@ function Portfolio() {
       const track = navTrackRef.current;
       const container = track?.parentElement;
       if (!el || !track || !container) return;
-      const max = Math.max(0, track.scrollWidth - container.clientWidth);
+      const END_GUTTER = 96; // keep last item clear of the fade/theme icon
+      const max = Math.max(0, track.scrollWidth - container.clientWidth - END_GUTTER);
       setNavOffset(Math.min(el.offsetLeft, max));
     };
     measure();
@@ -174,7 +175,7 @@ function Portfolio() {
           >
             <div
               ref={navTrackRef}
-              className="relative flex items-center gap-1 pr-40 transition-transform duration-500 ease-out"
+              className="relative flex items-center gap-1 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(${-navOffset}px)` }}
             >
               {NAV.map((n) => (
