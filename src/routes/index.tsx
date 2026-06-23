@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   ChevronDown,
   Moon,
@@ -73,6 +73,32 @@ function Portfolio() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  // Track current active section for the compact mobile nav
+  const [activeId, setActiveId] = useState<string>(NAV[0].id);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveId((visible[0].target as HTMLElement).id);
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    NAV.forEach((n) => {
+      const el = document.getElementById(n.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [navOffset, setNavOffset] = useState(0);
+  useLayoutEffect(() => {
+    const el = itemRefs.current[activeId];
+    if (el) setNavOffset(el.offsetLeft);
+  }, [activeId, scrolled]);
+
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -90,16 +116,17 @@ function Portfolio() {
       >
 
 
-        <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
+        <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-3">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={`font-display font-semibold text-base tracking-tight transition-colors ${
+            className={`hidden md:block font-display font-semibold text-base tracking-tight transition-colors ${
               scrolled ? "text-foreground" : "text-white"
             }`}
           >
             Tristan Habémont
           </button>
 
+          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-1">
             {NAV.map((n) => (
               <button
@@ -116,10 +143,47 @@ function Portfolio() {
             ))}
           </nav>
 
+          {/* Compact mobile nav — auto-slides to put active section first */}
+          <nav
+            className="md:hidden flex-1 min-w-0 overflow-hidden"
+            style={{
+              maskImage:
+                "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+            }}
+          >
+            <div
+              className="flex items-center gap-1 transition-transform duration-500 ease-out"
+              style={{ transform: `translateX(${-navOffset}px)` }}
+            >
+              {NAV.map((n) => (
+                <button
+                  key={n.id}
+                  ref={(el) => {
+                    itemRefs.current[n.id] = el;
+                  }}
+                  onClick={() => scrollTo(n.id)}
+                  className={`shrink-0 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                    scrolled
+                      ? n.id === activeId
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                      : n.id === activeId
+                        ? "text-white"
+                        : "text-white/75 hover:text-white"
+                  }`}
+                >
+                  {n.label}
+                </button>
+              ))}
+            </div>
+          </nav>
+
           <button
             onClick={toggle}
             aria-label="Toggle theme"
-            className={`p-2 rounded-md transition-colors ${
+            className={`shrink-0 p-2 rounded-md transition-colors ${
               scrolled ? "text-foreground hover:bg-accent" : "text-white hover:bg-white/10"
             }`}
           >
