@@ -184,6 +184,7 @@ function Portfolio() {
             }}
           >
             <div
+              ref={navTrackRef}
               className="flex items-center gap-1 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(${-navOffset}px)` }}
             >
