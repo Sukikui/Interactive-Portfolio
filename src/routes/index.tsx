@@ -191,7 +191,7 @@ function Portfolio() {
         >
           <Info className="size-3.5 text-white/40 group-hover:text-white/80 transition-colors" />
           <span className="text-[11px] text-white/70 font-light opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
-            I took this photo at Entsū-in (円通院) Temple in Matsushima :)
+            I took this photo at Entsū-in Temple (円通院) in Matsushima :)
           </span>
         </div>
       </section>
