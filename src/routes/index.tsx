@@ -592,7 +592,6 @@ function RepoCard({ repo }: { repo: RepoRef }) {
       cancelled = true;
     };
   }, [repo.owner, repo.name, cacheKey]);
-  }, [repo.owner, repo.name]);
 
   const hasFooter = !!(data && (data.languages.length > 0 || data.license || data.releases > 0));
 
