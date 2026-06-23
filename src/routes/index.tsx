@@ -512,12 +512,33 @@ type RepoData = {
   releases: number;
 };
 
+const REPO_CACHE_TTL = 6 * 60 * 60 * 1000; // 6h
+
+function readRepoCache(key: string): { data: RepoData; ts: number } | null {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? (JSON.parse(raw) as { data: RepoData; ts: number }) : null;
+  } catch {
+    return null;
+  }
+}
+
 function RepoCard({ repo }: { repo: RepoRef }) {
-  const [data, setData] = useState<RepoData | null>(null);
+  const cacheKey = `repo-cache:${repo.owner}/${repo.name}`;
+  const [data, setData] = useState<RepoData | null>(() => {
+    if (typeof window === "undefined") return null;
+    return readRepoCache(cacheKey)?.data ?? null;
+  });
   const [error, setError] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
+    const cached = readRepoCache(cacheKey);
+    if (cached && Date.now() - cached.ts < REPO_CACHE_TTL) {
+      setData(cached.data);
+      return;
+    }
+
     const base = `https://api.github.com/repos/${repo.owner}/${repo.name}`;
     Promise.all([
       fetch(base).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
@@ -549,15 +570,28 @@ function RepoCard({ repo }: { repo: RepoRef }) {
             lic && lic.spdx_id && lic.spdx_id !== "NOASSERTION"
               ? lic.spdx_id
               : (lic?.name ?? null);
-          setData({ description: info.description, languages: sorted, license, releases });
+          const next: RepoData = { description: info.description, languages: sorted, license, releases };
+          setData(next);
+          try {
+            localStorage.setItem(cacheKey, JSON.stringify({ data: next, ts: Date.now() }));
+          } catch {
+            /* ignore quota errors */
+          }
         },
       )
       .catch(() => {
-        if (!cancelled) setError(true);
+        if (cancelled) return;
+        // Fall back to stale cache rather than showing an error.
+        if (cached) {
+          setData(cached.data);
+        } else {
+          setError(true);
+        }
       });
     return () => {
       cancelled = true;
     };
+  }, [repo.owner, repo.name, cacheKey]);
   }, [repo.owner, repo.name]);
 
   const hasFooter = !!(data && (data.languages.length > 0 || data.license || data.releases > 0));
