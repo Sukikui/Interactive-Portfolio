@@ -132,10 +132,10 @@ function Portfolio() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform translate-y-0 opacity-100 ${
           scrolled
-            ? "translate-y-0 opacity-100 backdrop-blur-md bg-background/50 border-b border-border/40"
-            : "-translate-y-full opacity-0 bg-transparent border-b border-transparent pointer-events-none"
+            ? "backdrop-blur-md bg-background/50 border-b border-border/40"
+            : "bg-transparent border-b border-transparent"
         }`}
       >
 
