@@ -102,21 +102,25 @@ function Portfolio() {
 
   const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const navTrackRef = useRef<HTMLDivElement>(null);
-  const [navOffset, setNavOffset] = useState(0);
+  const navContainerRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    const measure = () => {
+    const apply = () => {
       const el = itemRefs.current[activeId];
-      const track = navTrackRef.current;
-      const container = track?.parentElement;
-      if (!el || !track || !container) return;
-      const END_GUTTER = -64; // negative = slide further so last item sits further left
-      const max = Math.max(0, track.scrollWidth - container.clientWidth - END_GUTTER);
-      setNavOffset(Math.min(el.offsetLeft, max));
+      const container = navContainerRef.current;
+      if (!el || !container) return;
+      const END_GUTTER = -64; // negative pushes the last item further left
+      const maxNatural = Math.max(0, container.scrollWidth - container.clientWidth);
+      const target = Math.min(
+        el.offsetLeft,
+        container.scrollWidth - container.clientWidth - END_GUTTER,
+      );
+      const clamped = Math.max(0, Math.min(target, maxNatural));
+      container.scrollTo({ left: clamped, behavior: "smooth" });
     };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    apply();
+    window.addEventListener("resize", apply);
+    return () => window.removeEventListener("resize", apply);
   }, [activeId, scrolled]);
 
 
