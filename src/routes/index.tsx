@@ -348,7 +348,7 @@ function Portfolio() {
               Open to <span className="text-foreground font-medium">PhD opportunities</span>, research collaborations
               and engineering positions. I usually reply within a couple of days.
             </p>
-            <div className="mt-8 flex flex-col divide-y divide-border border-y border-border">
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
               <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
               <ContactLink
                 href="https://linkedin.com/in/alexmartin"
@@ -745,11 +745,10 @@ function ContactLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex items-center gap-4 py-4"
+      className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
     >
-      <Icon className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-      <span className="text-sm text-foreground">{label}</span>
-      <ArrowUpRight className="size-3.5 ml-auto text-muted-foreground group-hover:text-foreground transition-colors" />
+      <Icon className="size-4" />
+      <span>{label}</span>
     </a>
   );
 }
