@@ -170,17 +170,16 @@ function Portfolio() {
               state-of-the-art AI models driving concrete applications in the real world.
             </p>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Having always wanted to understand intelligent systems, I began and pursued my studies for five years in
-              the field of electrical engineering. This training gave me a strong sensitivity to signals, physical
-              systems and implementation constraints, before I progressively specialized in Machine Learning and
-              Computer Vision through my academic and personal projects.
+              Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years in the
+              field of Electrical Engineering. I quickly became passionate about and self-taught in Computer Vision,
+              which allowed me to start a drone project embedding a real-time AI model on my personal time, and which I
+              then continued as part of my curriculum at INSA Lyon.
             </p>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
               Eager to discover varied architectures and applications of Machine Learning in demanding environments,
               with the opportunity to contribute to publications, I decided to multiply my experiences in laboratories,
               notably in the medical and biomedical fields. This allowed me to learn to understand, adapt and implement
-              quickly and rigorously recent models from specialized AI conferences and journals, on complex data and
-              with strong evaluation constraints.
+              quickly and rigorously recent models from specialized AI conferences and journals.
             </p>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
               In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects around
