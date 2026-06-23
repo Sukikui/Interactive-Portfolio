@@ -27,13 +27,13 @@ import { useTheme } from "@/lib/theme";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Tristan Habémont — AI Research Engineer" },
+      { title: "Tristan Habémont — Machine Learning & Computer Vision Engineer" },
       {
         name: "description",
         content:
-          "Academic portfolio of Tristan Habémont, AI research engineer. Research interests, education, experience, open-source projects and CV.",
+          "Academic portfolio of Tristan Habémont, Machine Learning & Computer Vision Engineer. Research interests, education, experience, open-source projects and CV.",
       },
-      { property: "og:title", content: "Tristan Habémont — AI Research Engineer" },
+      { property: "og:title", content: "Tristan Habémont — Machine Learning & Computer Vision Engineer" },
       {
         property: "og:description",
         content: "Research interests, projects and CV of Tristan Habémont, AI research engineer.",
