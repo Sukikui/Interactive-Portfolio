@@ -54,6 +54,7 @@ const NAV = [
 
 function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
+  const [showCredit, setShowCredit] = useState(false);
   const { theme, toggle } = useTheme();
 
   useEffect(() => {
@@ -65,6 +66,11 @@ function Portfolio() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowCredit(true), 10000);
+    return () => window.clearTimeout(timer);
   }, []);
 
 
@@ -178,10 +184,14 @@ function Portfolio() {
 
 
         {/* Photo credit */}
-        <div className="absolute bottom-6 left-6 group flex items-center gap-2">
+        <div
+          className={`absolute bottom-6 left-6 group flex items-center gap-2 transition-opacity duration-700 ${
+            showCredit ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+        >
           <Info className="size-3.5 text-white/40 group-hover:text-white/80 transition-colors" />
           <span className="text-[11px] text-white/70 font-light opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0 transition-all duration-300 pointer-events-none whitespace-nowrap">
-            I took this photo at Entsū-in Temple in Matsushima :)
+            I took this photo at Entsū-in (円通院) Temple in Matsushima :)
           </span>
         </div>
       </section>
