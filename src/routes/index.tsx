@@ -110,7 +110,8 @@ function Portfolio() {
       const track = navTrackRef.current;
       const container = track?.parentElement;
       if (!el || !track || !container) return;
-      const max = Math.max(0, track.scrollWidth - container.clientWidth);
+      const END_GUTTER = 96; // keep last item clear of the fade/theme icon
+      const max = Math.max(0, track.scrollWidth - container.clientWidth - END_GUTTER);
       setNavOffset(Math.min(el.offsetLeft, max));
     };
     measure();
