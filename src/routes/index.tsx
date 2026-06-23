@@ -506,6 +506,7 @@ type RepoRef = { owner: string; name: string };
 type RepoData = {
   description: string | null;
   languages: { name: string; pct: number }[];
+  license: string | null;
 };
 
 function RepoCard({ repo }: { repo: RepoRef }) {
@@ -519,15 +520,25 @@ function RepoCard({ repo }: { repo: RepoRef }) {
       fetch(base).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
       fetch(`${base}/languages`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
     ])
-      .then(([info, langs]: [{ description: string | null }, Record<string, number>]) => {
-        if (cancelled) return;
-        const total = Object.values(langs).reduce((a, b) => a + b, 0) || 1;
-        const sorted = Object.entries(langs)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, 4)
-          .map(([name, bytes]) => ({ name, pct: (bytes / total) * 100 }));
-        setData({ description: info.description, languages: sorted });
-      })
+      .then(
+        ([info, langs]: [
+          { description: string | null; license: { spdx_id?: string; name?: string } | null },
+          Record<string, number>,
+        ]) => {
+          if (cancelled) return;
+          const total = Object.values(langs).reduce((a, b) => a + b, 0) || 1;
+          const sorted = Object.entries(langs)
+            .sort((a, b) => b[1] - a[1])
+            .slice(0, 4)
+            .map(([name, bytes]) => ({ name, pct: (bytes / total) * 100 }));
+          const lic = info.license;
+          const license =
+            lic && lic.spdx_id && lic.spdx_id !== "NOASSERTION"
+              ? lic.spdx_id
+              : (lic?.name ?? null);
+          setData({ description: info.description, languages: sorted, license });
+        },
+      )
       .catch(() => {
         if (!cancelled) setError(true);
       });
@@ -535,6 +546,8 @@ function RepoCard({ repo }: { repo: RepoRef }) {
       cancelled = true;
     };
   }, [repo.owner, repo.name]);
+
+  const hasFooter = !!(data && (data.languages.length > 0 || data.license));
 
   return (
     <a
@@ -559,9 +572,9 @@ function RepoCard({ repo }: { repo: RepoRef }) {
         {error ? "Repository information unavailable." : (data?.description ?? "Loading…")}
       </p>
 
-      {data?.languages && data.languages.length > 0 && (
+      {hasFooter && (
         <div className="mt-4 pt-4 border-t border-border/70 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
-          {data.languages.map((l) => (
+          {data!.languages.map((l) => (
             <span key={l.name} className="flex items-center gap-1.5">
               <span
                 className="size-2.5 rounded-full"
@@ -570,6 +583,12 @@ function RepoCard({ repo }: { repo: RepoRef }) {
               {l.name}
             </span>
           ))}
+          {data!.license && (
+            <span className="flex items-center gap-1.5">
+              <Scale className="size-3.5" />
+              {data!.license}
+            </span>
+          )}
         </div>
       )}
     </a>
