@@ -56,6 +56,22 @@ const NAV = [
 function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
   const [showCredit, setShowCredit] = useState(false);
+  const [emailCopied, setEmailCopied] = useState(false);
+  const EMAIL = "tristan.habemont@gmail.com";
+  const copyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(EMAIL);
+    } catch {
+      const ta = document.createElement("textarea");
+      ta.value = EMAIL;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand("copy");
+      ta.remove();
+    }
+    setEmailCopied(true);
+    window.setTimeout(() => setEmailCopied(false), 1800);
+  };
   const { theme, toggle } = useTheme();
 
   useEffect(() => {
