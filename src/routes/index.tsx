@@ -73,6 +73,32 @@ function Portfolio() {
     return () => window.clearTimeout(timer);
   }, []);
 
+  // Track current active section for the compact mobile nav
+  const [activeId, setActiveId] = useState<string>(NAV[0].id);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActiveId((visible[0].target as HTMLElement).id);
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 1] },
+    );
+    NAV.forEach((n) => {
+      const el = document.getElementById(n.id);
+      if (el) observer.observe(el);
+    });
+    return () => observer.disconnect();
+  }, []);
+
+  const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [navOffset, setNavOffset] = useState(0);
+  useLayoutEffect(() => {
+    const el = itemRefs.current[activeId];
+    if (el) setNavOffset(el.offsetLeft);
+  }, [activeId, scrolled]);
+
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
