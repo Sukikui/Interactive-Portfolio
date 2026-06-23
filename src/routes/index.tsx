@@ -208,7 +208,7 @@ function Portfolio() {
                 title={e.role}
                 subtitle={e.company}
                 location={e.location}
-                concurrent={e.kind}
+                kind={e.kind}
                 supervisor={e.supervisor}
                 highlights={e.highlights}
                 publications={e.publications}
