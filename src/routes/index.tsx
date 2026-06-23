@@ -307,10 +307,10 @@ function Portfolio() {
           </div>
           <div className="mt-8 text-center">
             <a
-              href="https://github.com/alexmartin"
+              href="https://github.com/Sukikui"
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:text-cyan transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-medium text-brand hover:opacity-80 transition-opacity"
             >
               <FaGithub className="size-4" />
               See all repositories on GitHub
