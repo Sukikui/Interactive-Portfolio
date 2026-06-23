@@ -22,16 +22,16 @@ import { useTheme } from "@/lib/theme";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Alex Martin — AI Research Engineer" },
+      { title: "Tristan Habémont — AI Research Engineer" },
       {
         name: "description",
         content:
-          "Academic portfolio of Alex Martin, AI research engineer. Research interests, education, experience, open-source projects and CV.",
+          "Academic portfolio of Tristan Habémont, AI research engineer. Research interests, education, experience, open-source projects and CV.",
       },
-      { property: "og:title", content: "Alex Martin — AI Research Engineer" },
+      { property: "og:title", content: "Tristan Habémont — AI Research Engineer" },
       {
         property: "og:description",
-        content: "Research interests, projects and CV of Alex Martin, AI research engineer.",
+        content: "Research interests, projects and CV of Tristan Habémont, AI research engineer.",
       },
     ],
   }),
@@ -79,7 +79,7 @@ function Portfolio() {
               scrolled ? "text-foreground" : "text-white"
             }`}
           >
-            Alex Martin
+            Tristan Habémont
           </button>
 
           <nav className="hidden md:flex items-center gap-1">
@@ -124,7 +124,7 @@ function Portfolio() {
               <div className="relative">
                 <img
                   src={profile}
-                  alt="Alex Martin portrait"
+                  alt="Tristan Habémont portrait"
                   width={320}
                   height={320}
                   className="size-56 md:size-72 rounded-full object-cover ring-1 ring-white/15 shadow-2xl shadow-black/40"
@@ -138,7 +138,7 @@ function Portfolio() {
                 AI Research Engineer
               </p>
               <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[1.02] tracking-tight">
-                Alex Martin
+                Tristan Habémont
               </h1>
               <div className="mt-6 h-px w-16 bg-white/25" />
 
@@ -282,7 +282,7 @@ function Portfolio() {
 
         <footer className="border-t border-border py-8">
           <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-mono-tight text-muted-foreground">
-            <p>© {new Date().getFullYear()} Alex Martin · All rights reserved</p>
+            <p>© {new Date().getFullYear()} Tristan Habémont · All rights reserved</p>
             <p>Built with TanStack Start · Designed in the open</p>
           </div>
         </footer>
