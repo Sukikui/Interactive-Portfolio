@@ -50,7 +50,6 @@ const NAV = [
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Side Projects" },
   { id: "cv", label: "CV" },
-  
 ];
 
 function Portfolio() {
@@ -128,10 +127,7 @@ function Portfolio() {
       if (!el || !container) return;
       const END_GUTTER = -64; // negative pushes the last item further left
       const maxNatural = Math.max(0, container.scrollWidth - container.clientWidth);
-      const target = Math.min(
-        el.offsetLeft,
-        container.scrollWidth - container.clientWidth - END_GUTTER,
-      );
+      const target = Math.min(el.offsetLeft, container.scrollWidth - container.clientWidth - END_GUTTER);
       const clamped = Math.max(0, Math.min(target, maxNatural));
       container.scrollTo({ left: clamped, behavior: "smooth" });
     };
@@ -139,7 +135,6 @@ function Portfolio() {
     window.addEventListener("resize", apply);
     return () => window.removeEventListener("resize", apply);
   }, [activeId, scrolled]);
-
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -149,23 +144,22 @@ function Portfolio() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Header — rendered twice: a static one over the hero (always visible there),
           and a fixed one that slides in once the hero is out of view. */}
-      {([
-        {
-          key: "hero",
-          wrapperClass:
-            "absolute inset-x-0 top-0 z-50 bg-transparent border-b border-transparent",
-          onDark: true,
-        },
-        {
-          key: "fixed",
-          wrapperClass: `fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-background/50 border-b border-border/40 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
-            scrolled
-              ? "translate-y-0 opacity-100"
-              : "-translate-y-full opacity-0 pointer-events-none"
-          }`,
-          onDark: false,
-        },
-      ] as const).map(({ key, wrapperClass, onDark }) => (
+      {(
+        [
+          {
+            key: "hero",
+            wrapperClass: "absolute inset-x-0 top-0 z-50 bg-transparent border-b border-transparent",
+            onDark: true,
+          },
+          {
+            key: "fixed",
+            wrapperClass: `fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-background/50 border-b border-border/40 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+              scrolled ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+            }`,
+            onDark: false,
+          },
+        ] as const
+      ).map(({ key, wrapperClass, onDark }) => (
         <header key={key} className={wrapperClass} aria-hidden={key === "fixed" && !scrolled}>
           <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-3">
             <button
@@ -199,10 +193,8 @@ function Portfolio() {
               ref={key === "fixed" ? navContainerRef : undefined}
               className="md:hidden flex-1 min-w-0 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               style={{
-                maskImage:
-                  "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
-                WebkitMaskImage:
-                  "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+                maskImage: "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+                WebkitMaskImage: "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
               }}
             >
               <div
@@ -251,14 +243,8 @@ function Portfolio() {
 
       {/* Hero */}
       <section className="relative h-screen w-full overflow-hidden bg-[#0b1020]">
-        <img
-          src={heroBgAsset.url}
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover"
-        />
+        <img src={heroBgAsset.url} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
         <div className="absolute inset-0 bg-black/60" />
-
 
         <div className="relative h-full mx-auto max-w-6xl px-6 flex items-center">
           <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-center w-full">
@@ -278,7 +264,7 @@ function Portfolio() {
             {/* Right — text */}
             <div className="text-white animate-fade-up [animation-delay:120ms]">
               <p className="text-brand-soft text-xs font-medium tracking-[0.25em] uppercase mb-5">
-                AI Research Engineer
+                Machine Learning & Computer Vision Engineer
               </p>
               <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[1.02] tracking-tight">
                 Tristan Habémont
@@ -355,7 +341,6 @@ function Portfolio() {
           <ChevronDown className="size-5 animate-scroll-hint" />
         </button>
 
-
         {/* Photo credit */}
         <div
           className={`absolute bottom-6 left-6 group flex items-center gap-2 transition-opacity duration-700 ${
@@ -386,24 +371,22 @@ function Portfolio() {
                   state-of-the-art AI models driving concrete applications in the real world.
                 </p>
                 <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
-                  Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years
-                  in the field of Electrical Engineering. I quickly became passionate about and self-taught in
-                  Computer Vision, which allowed me to start a drone project embedding a real-time AI model on my
-                  personal time, and which I then continued as part of my curriculum at INSA Lyon.
+                  Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years in
+                  the field of Electrical Engineering. I quickly became passionate about and self-taught in Computer
+                  Vision, which allowed me to start a drone project embedding a real-time AI model on my personal time,
+                  and which I then continued as part of my curriculum at INSA Lyon.
                 </p>
                 <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
-                  Eager to discover varied architectures and applications of Machine Learning in demanding
-                  environments, with the opportunity to contribute to publications, I decided to multiply my
-                  experiences in laboratories, notably in the medical and biomedical fields. This allowed me to learn
-                  to understand, adapt and implement quickly and rigorously recent models from specialized AI
-                  conferences and journals.
+                  Eager to discover varied architectures and applications of Machine Learning in demanding environments,
+                  with the opportunity to contribute to publications, I decided to multiply my experiences in
+                  laboratories, notably in the medical and biomedical fields. This allowed me to learn to understand,
+                  adapt and implement quickly and rigorously recent models from specialized AI conferences and journals.
                 </p>
                 <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
                   In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects
-                  around Minecraft including network communications, APIs and server tools. I also enjoy doing some
-                  web development from time to time, as you can see with this very website. I invite you to consult
-                  my GitHub, which reflects my attachment to clean, documented projects integrating good CI/CD
-                  practices.
+                  around Minecraft including network communications, APIs and server tools. I also enjoy doing some web
+                  development from time to time, as you can see with this very website. I invite you to consult my
+                  GitHub, which reflects my attachment to clean, documented projects integrating good CI/CD practices.
                 </p>
               </div>
               <div id="research" className="scroll-mt-20 lg:border-l lg:border-border lg:pl-16">
@@ -679,9 +662,10 @@ function TimelineItem({
                       {p.year && <span className="ml-1">{p.year}</span>}
                     </span>
                     {p.status && <span className="opacity-60 italic normal-case">· {p.status}</span>}
-                    {p.url && <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />}
+                    {p.url && (
+                      <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
+                    )}
                   </span>
-
                 </Tag>
               );
             })}
@@ -838,10 +822,7 @@ function RepoCard({ repo }: { repo: RepoRef }) {
             .slice(0, 4)
             .map(([name, bytes]) => ({ name, pct: (bytes / total) * 100 }));
           const lic = info.license;
-          const license =
-            lic && lic.spdx_id && lic.spdx_id !== "NOASSERTION"
-              ? lic.spdx_id
-              : (lic?.name ?? null);
+          const license = lic && lic.spdx_id && lic.spdx_id !== "NOASSERTION" ? lic.spdx_id : (lic?.name ?? null);
           const next: RepoData = { description: info.description, languages: sorted, license, releases };
           setData(next);
           try {
@@ -894,10 +875,7 @@ function RepoCard({ repo }: { repo: RepoRef }) {
         <div className="mt-4 pt-4 border-t border-border/70 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
           {data!.languages.map((l) => (
             <span key={l.name} className="flex items-center gap-1.5">
-              <span
-                className="size-2.5 rounded-full"
-                style={{ backgroundColor: LANGUAGE_COLORS[l.name] ?? "#888" }}
-              />
+              <span className="size-2.5 rounded-full" style={{ backgroundColor: LANGUAGE_COLORS[l.name] ?? "#888" }} />
               {l.name}
             </span>
           ))}
@@ -918,7 +896,6 @@ function RepoCard({ repo }: { repo: RepoRef }) {
     </a>
   );
 }
-
 
 const EDUCATION: {
   period: string;
