@@ -479,24 +479,6 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="contact" index="07" Icon={Mail} title="Contact">
-          <div>
-            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-              Open to <span className="text-foreground font-medium">PhD opportunities</span>, research collaborations
-              and engineering positions. I usually reply within a couple of days.
-            </p>
-            <div className="mt-8 flex flex-wrap items-center justify-start gap-x-8 gap-y-3">
-              <ContactLink href="mailto:tristan.habemont@gmail.com" Icon={Mail} label="tristan.habemont@gmail.com" />
-              <ContactLink
-                href="https://linkedin.com/in/tristan-habemont"
-                Icon={FaLinkedin}
-                label="linkedin.com/in/tristan-habemont"
-              />
-              <ContactLink href="https://github.com/sukikui" Icon={FaGithub} label="github.com/sukikui" />
-            </div>
-          </div>
-        </Section>
-
         <footer className="border-t border-border py-8">
           <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row items-center justify-between gap-3 text-xs font-mono-tight text-muted-foreground">
             <p>© {new Date().getFullYear()} Tristan Habémont · All rights reserved</p>
