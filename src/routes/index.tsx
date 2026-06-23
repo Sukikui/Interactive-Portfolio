@@ -670,7 +670,7 @@ const EXPERIENCE: {
     publications: [
       { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
       {
-        venue: "Intro. to GNNs",
+        venue: "Introduction to Graph Neural Networks",
         year: "",
         type: "Blog Post",
         url: "https://creatis-myriad.github.io/tutorials/2025-03-28-tutorial-graph-neural-networks.html",
