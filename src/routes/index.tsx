@@ -843,7 +843,7 @@ const EXPERIENCE: {
     period: "Oct 2025 — Jan 2026",
     duration: "4 months",
     kind: "Research Project",
-    role: "Conditional Latent Diffusion for Dental Prediction",
+    role: "Generative Deep Learning for Dental Prediction",
     company: "BovoPredict",
     location: "Lyon, France",
     supervisor: "Supervised by Dr. Thomas Grenier and Dr. Chantal Muller",
