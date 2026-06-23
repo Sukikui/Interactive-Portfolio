@@ -789,48 +789,6 @@ const EXPERIENCE: {
   },
 ];
 
-const PROJECTS: Repo[] = [
-  {
-    name: "neural-pde",
-    owner: "alexmartin",
-    description:
-      "Fourier neural operators for parametric PDEs. Reproducible benchmarks across 8 physical systems with PyTorch Lightning.",
-    language: "Python",
-    langColor: "#3572A5",
-    stars: 412,
-    forks: 38,
-    url: "https://github.com/alexmartin/neural-pde",
-  },
-  {
-    name: "causal-toolkit",
-    owner: "alexmartin",
-    description:
-      "End-to-end pipeline for estimating treatment effects from observational data. Used in two published economics studies.",
-    language: "Python",
-    langColor: "#3572A5",
-    stars: 189,
-    forks: 21,
-    url: "https://github.com/alexmartin/causal-toolkit",
-  },
-  {
-    name: "astro-pipeline",
-    owner: "alexmartin",
-    description: "GPU-accelerated astrophotography processing — stacking, calibration and ML-based artifact removal.",
-    language: "CUDA",
-    langColor: "#3A4E3A",
-    stars: 96,
-    forks: 12,
-    url: "https://github.com/alexmartin/astro-pipeline",
-  },
-  {
-    name: "convex-notes",
-    owner: "alexmartin",
-    description:
-      "Typeset companion to a graduate convex optimization course, with interactive Python notebooks per chapter.",
-    language: "TeX",
-    langColor: "#3D6117",
-    stars: 73,
-    forks: 9,
-    url: "https://github.com/alexmartin/convex-notes",
-  },
+const PROJECTS: RepoRef[] = [
+  { owner: "creatis-myriad", name: "GENESIS" },
 ];
