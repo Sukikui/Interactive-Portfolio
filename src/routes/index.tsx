@@ -73,31 +73,61 @@ function Portfolio() {
     return () => window.clearTimeout(timer);
   }, []);
 
-  // Track current active section for the compact mobile nav
+  // Track current active section based on scroll position
   const [activeId, setActiveId] = useState<string>(NAV[0].id);
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        if (visible[0]) setActiveId((visible[0].target as HTMLElement).id);
-      },
-      { rootMargin: "-30% 0px -60% 0px", threshold: [0, 0.25, 0.5, 1] },
-    );
-    NAV.forEach((n) => {
-      const el = document.getElementById(n.id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
+    const onScroll = () => {
+      const probe = window.scrollY + 96; // just below header
+      let current = NAV[0].id;
+      for (const n of NAV) {
+        const el = document.getElementById(n.id);
+        if (el && el.getBoundingClientRect().top + window.scrollY <= probe) {
+          current = n.id;
+        }
+      }
+      setActiveId(current);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const navTrackRef = useRef<HTMLDivElement>(null);
   const [navOffset, setNavOffset] = useState(0);
   useLayoutEffect(() => {
     const el = itemRefs.current[activeId];
-    if (el) setNavOffset(el.offsetLeft);
+    const track = navTrackRef.current;
+    if (!el || !track) return;
+    // Measure position relative to the track, ignoring its current transform
+    const elRect = el.getBoundingClientRect();
+    const trackRect = track.getBoundingClientRect();
+    const currentTransform = new DOMMatrixReadOnly(
+      getComputedStyle(track).transform,
+    );
+    const relative = elRect.left - trackRect.left - currentTransform.m41;
+    setNavOffset(relative);
   }, [activeId, scrolled]);
+
+  useEffect(() => {
+    const onResize = () => {
+      const el = itemRefs.current[activeId];
+      const track = navTrackRef.current;
+      if (!el || !track) return;
+      const elRect = el.getBoundingClientRect();
+      const trackRect = track.getBoundingClientRect();
+      const currentTransform = new DOMMatrixReadOnly(
+        getComputedStyle(track).transform,
+      );
+      setNavOffset(elRect.left - trackRect.left - currentTransform.m41);
+    };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [activeId]);
 
 
   const scrollTo = (id: string) => {
