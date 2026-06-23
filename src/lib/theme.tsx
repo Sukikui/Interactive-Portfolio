@@ -1,13 +1,9 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
-export type Theme = "light" | "dark" | "system";
-const ThemeCtx = createContext<{ theme: Theme; setTheme: (t: Theme) => void; toggle: () => void }>({
-  theme: "system",
-  setTheme: () => {},
-  toggle: () => {},
-});
+type Theme = "light" | "dark";
+const ThemeCtx = createContext<{ theme: Theme; toggle: () => void }>({ theme: "dark", toggle: () => {} });
 
-const getSystemTheme = (): "light" | "dark" =>
+const getSystemTheme = (): Theme =>
   typeof window !== "undefined" && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -15,28 +11,21 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const stored = (typeof window !== "undefined" && localStorage.getItem("theme")) as Theme | null;
-    const initial: Theme = stored ?? "dark";
+    const initial: Theme = stored ?? getSystemTheme();
     setTheme(initial);
   }, []);
 
   useEffect(() => {
     const root = document.documentElement;
-    const applied = theme === "system" ? getSystemTheme() : theme;
-    root.classList.toggle("dark", applied === "dark");
+    root.classList.toggle("dark", theme === "dark");
     localStorage.setItem("theme", theme);
-
-    if (theme === "system") {
-      const mq = window.matchMedia("(prefers-color-scheme: dark)");
-      const handler = () => root.classList.toggle("dark", mq.matches);
-      mq.addEventListener("change", handler);
-      return () => mq.removeEventListener("change", handler);
-    }
   }, [theme]);
 
-  const toggle = () =>
-    setTheme((t) => (t === "light" ? "dark" : t === "dark" ? "system" : "light"));
-
-  return <ThemeCtx.Provider value={{ theme, setTheme, toggle }}>{children}</ThemeCtx.Provider>;
+  return (
+    <ThemeCtx.Provider value={{ theme, toggle: () => setTheme((t) => (t === "dark" ? "light" : "dark")) }}>
+      {children}
+    </ThemeCtx.Provider>
+  );
 }
 
 export const useTheme = () => useContext(ThemeCtx);
