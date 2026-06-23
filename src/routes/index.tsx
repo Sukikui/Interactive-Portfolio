@@ -36,7 +36,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Tristan Habémont — Machine Learning & Computer Vision Engineer" },
       {
         property: "og:description",
-        content: "Research interests, projects and CV of Tristan Habémont, AI research engineer.",
+        content:
+          "Research interests, projects and CV of Tristan Habémont, Machine Learning & Computer Vision Engineer.",
       },
     ],
   }),
