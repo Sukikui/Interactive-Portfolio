@@ -166,16 +166,26 @@ function Portfolio() {
         <Section id="presentation" index="01" Icon={User} title="Presentation">
           <div className="max-w-3xl">
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I am an AI research engineer with a strong foundation in applied mathematics and deep learning. My work
-              focuses on building robust, interpretable machine learning systems — from neural operators for physical
-              simulation to causal inference pipelines for real-world decision-making.
+              A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
+              state-of-the-art AI models driving concrete applications in the real world.
             </p>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I believe in open science and reproducible research. Most of my projects are publicly available, and I
-              actively contribute to the open-source ecosystem around PyTorch and scientific machine learning.
+              Having always wanted to understand intelligent systems, I began and pursued my studies for five years in
+              the field of electrical engineering. This training gave me a strong sensitivity to signals, physical
+              systems and implementation constraints, before I progressively specialized in Machine Learning and
+              Computer Vision through my academic and personal projects.
             </p>
-            <p className="mt-4 text-muted-foreground leading-relaxed">
-              Currently exploring PhD opportunities at the intersection of numerical analysis and generative modeling.
+            <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
+              Eager to discover varied architectures and applications of Machine Learning in demanding environments,
+              with the opportunity to contribute to publications, I decided to multiply my experiences in laboratories,
+              notably in the medical and biomedical fields. This allowed me to learn to understand, adapt and implement
+              quickly and rigorously recent models from specialized AI conferences and journals, on complex data and
+              with strong evaluation constraints.
+            </p>
+            <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
+              In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects around
+              Minecraft including network communications, APIs and server tools. I invite you to consult my GitHub,
+              which reflects my attachment to clean, documented projects integrating good CI/CD practices.
             </p>
           </div>
         </Section>
