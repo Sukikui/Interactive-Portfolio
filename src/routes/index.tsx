@@ -819,4 +819,6 @@ const PROJECTS: RepoRef[] = [
   { owner: "Sukikui", name: "BiomeMap" },
   { owner: "Sukikui", name: "PlayerCoordsAPI" },
   { owner: "Sukikui", name: "GPA-Calculator" },
+  { owner: "Sukikui", name: "PMC-Plan" },
+  { owner: "Sukikui", name: "ESP32-CAM-Sign-Recognition" },
 ];
