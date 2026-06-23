@@ -620,7 +620,7 @@ const EDUCATION: {
     frDegree: "Diplôme Universitaire de Technologie",
     highlights: [
       "Major in Multitasking & Object-Oriented Programming — GPA 4.00 / 4.00",
-      "Ranked 1st in cohort with Highest Honors — overall GPA 3.89 / 4.00",
+      "Ranked 1st in cohort, with Highest Honors — overall GPA 3.89 / 4.00",
     ],
   },
 ];
