@@ -14,6 +14,7 @@ import {
   Scale,
   Tag,
   ArrowUpRight,
+  FlaskConical,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import profile from "@/assets/profile.jpg";
