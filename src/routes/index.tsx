@@ -456,9 +456,17 @@ function renderWithGpa(text: string) {
   if (!m) return text;
   const before = text.slice(0, m.index).replace(/[\s—–\-,;:]+$/, "");
   const [, overall, value, scale] = m;
+  const majorMatch = before.match(/^(Major in\s+)(.+)$/i);
   return (
     <>
-      {before}
+      {majorMatch ? (
+        <>
+          {majorMatch[1]}
+          <span className="font-semibold text-foreground">{majorMatch[2]}</span>
+        </>
+      ) : (
+        before
+      )}
       <span className="ml-2 inline-flex items-center gap-1 rounded border border-border/70 bg-muted/30 px-1.5 py-0.5 font-mono-tight text-[10px] tracking-wider text-muted-foreground/90 align-middle">
         <span className="opacity-60">{overall ? "Overall GPA" : "GPA"}</span>
         <span className="text-foreground/90">{value}</span>
