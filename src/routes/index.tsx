@@ -518,7 +518,7 @@ function Portfolio() {
                 <p className="mt-2 text-muted-foreground max-w-lg">
                   Complete academic record, publications, talks and technical proficiencies in a single PDF.
                 </p>
-                <p className="mt-3 font-mono-tight text-xs text-muted-foreground">v.2026.06 · PDF · ~180 KB</p>
+                <p className="mt-3 font-mono-tight text-xs text-muted-foreground">PDF · ~180 KB</p>
               </div>
               <a
                 href="/cv.pdf"
