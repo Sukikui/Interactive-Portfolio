@@ -319,7 +319,7 @@ function Portfolio() {
                         : "text-white/60 opacity-0 -translate-y-0.5 group-hover:opacity-100 group-hover:translate-y-0"
                     }`}
                   >
-                    {emailCopied ? "Copié !" : "Cliquer pour copier"}
+                    {emailCopied ? "Copied!" : "Click to copy"}
                   </span>
                 </button>
                 <span className="h-4 w-px bg-white/20" />
