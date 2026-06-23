@@ -4,6 +4,7 @@ import {
   ChevronDown,
   Moon,
   Sun,
+  Monitor,
   Download,
   Mail,
   User,
@@ -102,12 +103,19 @@ function Portfolio() {
 
           <button
             onClick={toggle}
-            aria-label="Toggle theme"
+            aria-label={`Theme: ${theme}. Click to change.`}
+            title={`Theme: ${theme}`}
             className={`p-2 rounded-md transition-colors ${
               scrolled ? "text-foreground hover:bg-accent" : "text-white hover:bg-white/10"
             }`}
           >
-            {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            {theme === "dark" ? (
+              <Moon className="size-4" />
+            ) : theme === "light" ? (
+              <Sun className="size-4" />
+            ) : (
+              <Monitor className="size-4" />
+            )}
           </button>
         </div>
       </header>
