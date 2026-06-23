@@ -102,9 +102,7 @@ function Portfolio() {
             onClick={toggle}
             aria-label="Toggle theme"
             className={`p-2 rounded-md transition-colors ${
-              scrolled
-                ? "text-foreground hover:bg-accent"
-                : "text-white hover:bg-white/10"
+              scrolled ? "text-foreground hover:bg-accent" : "text-white hover:bg-white/10"
             }`}
           >
             {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
@@ -145,8 +143,8 @@ function Portfolio() {
               <div className="mt-6 h-px w-16 bg-white/25" />
 
               <p className="mt-7 max-w-xl text-lg md:text-xl font-light leading-relaxed text-white/75">
-                Building <span className="font-medium text-white">intelligent systems</span> at the
-                intersection of <span className="font-medium text-white">deep learning</span> and{" "}
+                Building <span className="font-medium text-white">intelligent systems</span> at the intersection of{" "}
+                <span className="font-medium text-white">deep learning</span> and{" "}
                 <span className="font-medium text-white">applied mathematics</span>.
               </p>
             </div>
@@ -168,10 +166,13 @@ function Portfolio() {
         <Section id="presentation" index="01" Icon={User} title="Presentation">
           <div className="max-w-3xl">
             <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I am an AI research engineer with a strong foundation in applied mathematics and deep learning. My work focuses on building robust, interpretable machine learning systems — from neural operators for physical simulation to causal inference pipelines for real-world decision-making.
+              I am an AI research engineer with a strong foundation in applied mathematics and deep learning. My work
+              focuses on building robust, interpretable machine learning systems — from neural operators for physical
+              simulation to causal inference pipelines for real-world decision-making.
             </p>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              I believe in open science and reproducible research. Most of my projects are publicly available, and I actively contribute to the open-source ecosystem around PyTorch and scientific machine learning.
+              I believe in open science and reproducible research. Most of my projects are publicly available, and I
+              actively contribute to the open-source ecosystem around PyTorch and scientific machine learning.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
               Currently exploring PhD opportunities at the intersection of numerical analysis and generative modeling.
@@ -242,16 +243,11 @@ function Portfolio() {
             <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div>
-                <h3 className="font-display text-2xl font-semibold text-card-foreground">
-                  Full Curriculum Vitae
-                </h3>
+                <h3 className="font-display text-2xl font-semibold text-card-foreground">Full Curriculum Vitae</h3>
                 <p className="mt-2 text-muted-foreground max-w-lg">
-                  Complete academic record, publications, talks and technical proficiencies
-                  in a single PDF.
+                  Complete academic record, publications, talks and technical proficiencies in a single PDF.
                 </p>
-                <p className="mt-3 font-mono-tight text-xs text-muted-foreground">
-                  v.2026.06 · PDF · ~180 KB
-                </p>
+                <p className="mt-3 font-mono-tight text-xs text-muted-foreground">v.2026.06 · PDF · ~180 KB</p>
               </div>
               <a
                 href="/cv.pdf"
@@ -268,14 +264,17 @@ function Portfolio() {
         <Section id="contact" index="06" Icon={Mail} title="Contact">
           <div className="grid md:grid-cols-2 gap-6 items-start">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Open to{" "}
-              <span className="text-brand font-medium">PhD opportunities</span>,
-              research collaborations and engineering positions. I usually reply within a couple of days.
+              Open to <span className="text-brand font-medium">PhD opportunities</span>, research collaborations and
+              engineering positions. I usually reply within a couple of days.
             </p>
             <div className="space-y-3">
               <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
               <ContactLink href="https://github.com/alexmartin" Icon={FaGithub} label="github.com/alexmartin" />
-              <ContactLink href="https://linkedin.com/in/alexmartin" Icon={FaLinkedin} label="linkedin.com/in/alexmartin" />
+              <ContactLink
+                href="https://linkedin.com/in/alexmartin"
+                Icon={FaLinkedin}
+                label="linkedin.com/in/alexmartin"
+              />
               <ContactLink href="https://x.com/alexmartin" Icon={FaXTwitter} label="@alexmartin" />
             </div>
           </div>
@@ -352,22 +351,16 @@ function TimelineItem({
   return (
     <div className="grid md:grid-cols-[180px_1fr] gap-2 md:gap-8 pb-6 border-b border-border/60 last:border-0 last:pb-0">
       <div className="pt-1.5">
-        <div className="font-mono-tight text-xs text-muted-foreground tracking-wider">
-          {period}
-        </div>
+        <div className="font-mono-tight text-xs text-muted-foreground tracking-wider">{period}</div>
         {duration && (
-          <div className="font-mono-tight text-[10px] text-muted-foreground/60 mt-0.5 tracking-wider">
-            {duration}
-          </div>
+          <div className="font-mono-tight text-[10px] text-muted-foreground/60 mt-0.5 tracking-wider">{duration}</div>
         )}
       </div>
       <div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <p className="text-sm text-brand font-medium">{subtitle}</p>
           {location && (
-            <span className="font-mono-tight text-[11px] tracking-wide text-muted-foreground">
-              {location}
-            </span>
+            <span className="font-mono-tight text-[11px] tracking-wide text-muted-foreground">{location}</span>
           )}
           {concurrent && (
             <span className="text-[10px] font-mono-tight uppercase tracking-wider px-1.5 py-0.5 rounded border border-brand/40 text-brand/90">
@@ -376,15 +369,9 @@ function TimelineItem({
           )}
         </div>
         <h3 className="font-display text-xl font-semibold text-foreground mt-1">{title}</h3>
-        {frTitle && (
-          <p className="text-sm text-muted-foreground mt-0.5 italic">{frTitle}</p>
-        )}
-        {supervisor && (
-          <p className="text-xs text-muted-foreground/80 mt-1.5 italic">{supervisor}</p>
-        )}
-        {description && (
-          <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>
-        )}
+        {frTitle && <p className="text-sm text-muted-foreground mt-0.5 italic">{frTitle}</p>}
+        {supervisor && <p className="text-xs text-muted-foreground/80 mt-1.5 italic">{supervisor}</p>}
+        {description && <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>}
         {highlights && highlights.length > 0 && (
           <ul className="mt-3 space-y-1.5">
             {highlights.map((h, i) => (
@@ -416,9 +403,7 @@ function TimelineItem({
                   <span className="flex items-center gap-1.5 px-2 py-1 text-foreground/90">
                     <span className="font-semibold">{p.venue}</span>
                     <span className="opacity-60">{p.year}</span>
-                    {p.status && (
-                      <span className="opacity-60 italic normal-case">· {p.status}</span>
-                    )}
+                    {p.status && <span className="opacity-60 italic normal-case">· {p.status}</span>}
                   </span>
                 </Tag>
               );
@@ -452,10 +437,7 @@ function TimelineItem({
             </summary>
             <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
               {courses.map((c) => (
-                <li
-                  key={c}
-                  className="flex items-baseline gap-2 text-sm text-muted-foreground/90 leading-snug"
-                >
+                <li key={c} className="flex items-baseline gap-2 text-sm text-muted-foreground/90 leading-snug">
                   <span className="font-mono-tight text-brand/70 text-xs">›</span>
                   <span>{c}</span>
                 </li>
@@ -520,9 +502,7 @@ function RepoCard({ repo }: { repo: Repo }) {
         <ArrowUpRight className="size-4 text-muted-foreground group-hover:text-brand group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
       </div>
 
-      <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">
-        {repo.description}
-      </p>
+      <p className="mt-3 text-sm text-muted-foreground leading-relaxed line-clamp-3">{repo.description}</p>
 
       <div className="mt-4 pt-4 border-t border-border/70 flex items-center gap-5 text-xs text-muted-foreground">
         <span className="flex items-center gap-1.5">
@@ -581,10 +561,7 @@ const EDUCATION: {
     location: "Lyon, France",
     degree: "MSc in Machine Learning & Medical Imaging",
     frDegree: "Master 2",
-    highlights: [
-      "Ranked 2nd in cohort — GPA 3.90 / 4.00",
-      "Completed alongside my final year at INSA Lyon",
-    ],
+    highlights: ["Ranked 2nd in cohort — GPA 3.90 / 4.00", "Completed alongside my final year at INSA Lyon"],
     courses: [
       "Machine Learning",
       "Inverse Problems",
@@ -632,7 +609,7 @@ const EDUCATION: {
     school: "Université de Lorraine",
     location: "Nancy, France",
     degree: "University Diploma of Technology in Electrical Engineering",
-    frDegree: "DUT GEII",
+    frDegree: "",
     highlights: [
       "Major in Multitasking & Object-Oriented Programming — GPA 4.00 / 4.00",
       "Ranked 1st in cohort with Highest Honors — overall GPA 3.89 / 4.00",
@@ -684,7 +661,12 @@ const EXPERIENCE: {
     ],
     publications: [
       { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
-      { venue: "Intro. to GNNs", year: "", type: "Blog Post", url: "https://creatis-myriad.github.io/tutorials/2025-03-28-tutorial-graph-neural-networks.html" },
+      {
+        venue: "Intro. to GNNs",
+        year: "",
+        type: "Blog Post",
+        url: "https://creatis-myriad.github.io/tutorials/2025-03-28-tutorial-graph-neural-networks.html",
+      },
     ],
     repos: [{ url: "https://github.com/creatis-myriad/GENESIS" }],
   },
@@ -702,7 +684,13 @@ const EXPERIENCE: {
       "Developed modular Python packages for BLE sensor acquisition and signal analytics",
     ],
     publications: [
-      { venue: "IEEE VRW", year: "2025", type: "Workshop", status: "published", url: "https://ieeexplore.ieee.org/document/10972783" },
+      {
+        venue: "IEEE VRW",
+        year: "2025",
+        type: "Workshop",
+        status: "published",
+        url: "https://ieeexplore.ieee.org/document/10972783",
+      },
     ],
     repos: [{ url: "https://github.com/sensors-inl/Nervous-Toolkit" }],
   },
@@ -774,8 +762,7 @@ const PROJECTS: Repo[] = [
   {
     name: "astro-pipeline",
     owner: "alexmartin",
-    description:
-      "GPU-accelerated astrophotography processing — stacking, calibration and ML-based artifact removal.",
+    description: "GPU-accelerated astrophotography processing — stacking, calibration and ML-based artifact removal.",
     language: "CUDA",
     langColor: "#3A4E3A",
     stars: 96,
