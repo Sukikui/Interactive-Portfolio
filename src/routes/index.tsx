@@ -405,10 +405,11 @@ function TimelineItem({
                     <FileText className="size-3" />
                     {p.type ?? "Publication"}
                   </span>
-                  <span className="flex items-center gap-1.5 px-2 py-1 text-foreground/90">
+                  <span className="flex items-center gap-1.5 px-2 py-1 text-foreground/90 group">
                     <span className="font-semibold text-brand">{p.venue}</span>
                     {p.year && <span className="font-semibold text-brand">{p.year}</span>}
                     {p.status && <span className="opacity-60 italic normal-case">· {p.status}</span>}
+                    {p.url && <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />}
                   </span>
                 </Tag>
               );
