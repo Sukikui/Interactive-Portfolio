@@ -945,16 +945,36 @@ const EXPERIENCE: {
   },
 ];
 
-const PROJECTS: RepoRef[] = [
-  { owner: "creatis-myriad", name: "GENESIS" },
-  { owner: "sensors-inl", name: "Nervous-Toolkit" },
-  { owner: "Sukikui", name: "PTI-LDM-VAE" },
-  { owner: "Sukikui", name: "Vision-Hub" },
-  { owner: "Sukikui", name: "ESP32-Vision-Node" },
-  { owner: "Sukikui", name: "MineVerify" },
-  { owner: "Sukikui", name: "BiomeMap" },
-  { owner: "Sukikui", name: "PlayerCoordsAPI" },
-  { owner: "Sukikui", name: "GPA-Calculator" },
-  { owner: "Sukikui", name: "PMC-Plan" },
-  { owner: "Sukikui", name: "ESP32-CAM-Sign-Recognition" },
+const PROJECT_GROUPS: { title: string; repos: RepoRef[] }[] = [
+  {
+    title: "Featured above",
+    repos: [
+      { owner: "creatis-myriad", name: "GENESIS" },
+      { owner: "sensors-inl", name: "Nervous-Toolkit" },
+      { owner: "Sukikui", name: "PTI-LDM-VAE" },
+    ],
+  },
+  {
+    title: "Minecraft",
+    repos: [
+      { owner: "Sukikui", name: "MineVerify" },
+      { owner: "Sukikui", name: "BiomeMap" },
+      { owner: "Sukikui", name: "PlayerCoordsAPI" },
+      { owner: "Sukikui", name: "PMC-Plan" },
+    ],
+  },
+  {
+    title: "Embedded Software",
+    repos: [
+      { owner: "Sukikui", name: "ESP32-Vision-Node" },
+      { owner: "Sukikui", name: "ESP32-CAM-Sign-Recognition" },
+    ],
+  },
+  {
+    title: "Miscellaneous",
+    repos: [
+      { owner: "Sukikui", name: "Vision-Hub" },
+      { owner: "Sukikui", name: "GPA-Calculator" },
+    ],
+  },
 ];
