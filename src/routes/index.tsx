@@ -508,6 +508,7 @@ type RepoData = {
   description: string | null;
   languages: { name: string; pct: number }[];
   license: string | null;
+  releases: number;
 };
 
 function RepoCard({ repo }: { repo: RepoRef }) {
@@ -520,11 +521,21 @@ function RepoCard({ repo }: { repo: RepoRef }) {
     Promise.all([
       fetch(base).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
       fetch(`${base}/languages`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
+      fetch(`${base}/releases?per_page=1`).then((r) =>
+        r.ok
+          ? r.json().then((arr: unknown[]) => {
+              const link = r.headers.get("Link") ?? "";
+              const m = link.match(/<[^>]*[?&]page=(\d+)[^>]*>;\s*rel="last"/);
+              return m ? parseInt(m[1], 10) : arr.length;
+            })
+          : Promise.reject(new Error(String(r.status))),
+      ),
     ])
       .then(
-        ([info, langs]: [
+        ([info, langs, releases]: [
           { description: string | null; license: { spdx_id?: string; name?: string } | null },
           Record<string, number>,
+          number,
         ]) => {
           if (cancelled) return;
           const total = Object.values(langs).reduce((a, b) => a + b, 0) || 1;
@@ -537,7 +548,7 @@ function RepoCard({ repo }: { repo: RepoRef }) {
             lic && lic.spdx_id && lic.spdx_id !== "NOASSERTION"
               ? lic.spdx_id
               : (lic?.name ?? null);
-          setData({ description: info.description, languages: sorted, license });
+          setData({ description: info.description, languages: sorted, license, releases });
         },
       )
       .catch(() => {
@@ -548,7 +559,7 @@ function RepoCard({ repo }: { repo: RepoRef }) {
     };
   }, [repo.owner, repo.name]);
 
-  const hasFooter = !!(data && (data.languages.length > 0 || data.license));
+  const hasFooter = !!(data && (data.languages.length > 0 || data.license || data.releases > 0));
 
   return (
     <a
@@ -588,6 +599,12 @@ function RepoCard({ repo }: { repo: RepoRef }) {
             <span className="flex items-center gap-1.5">
               <Scale className="size-3.5" />
               {data!.license}
+            </span>
+          )}
+          {data!.releases > 0 && (
+            <span className="flex items-center gap-1.5 font-mono-tight">
+              <Tag className="size-3.5" />
+              {data!.releases} {data!.releases === 1 ? "release" : "releases"}
             </span>
           )}
         </div>
