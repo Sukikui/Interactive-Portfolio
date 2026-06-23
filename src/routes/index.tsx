@@ -164,29 +164,58 @@ function Portfolio() {
       {/* Sections */}
       <main className="relative">
         <Section id="presentation" index="01" Icon={User} title="Presentation">
-          <div className="max-w-3xl">
-            <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
-              A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
-              state-of-the-art AI models driving concrete applications in the real world.
-            </p>
-            <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years in the
-              field of Electrical Engineering. I quickly became passionate about and self-taught in Computer Vision,
-              which allowed me to start a drone project embedding a real-time AI model on my personal time, and which I
-              then continued as part of my curriculum at INSA Lyon.
-            </p>
-            <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              Eager to discover varied architectures and applications of Machine Learning in demanding environments,
-              with the opportunity to contribute to publications, I decided to multiply my experiences in laboratories,
-              notably in the medical and biomedical fields. This allowed me to learn to understand, adapt and implement
-              quickly and rigorously recent models from specialized AI conferences and journals.
-            </p>
-            <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
-              In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects around
-              Minecraft including network communications, APIs and server tools. I also enjoy doing some web
-              development from time to time, as you can see with this very website. I invite you to consult my GitHub,
-              which reflects my attachment to clean, documented projects integrating good CI/CD practices.
-            </p>
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
+            <div>
+              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
+                state-of-the-art AI models driving concrete applications in the real world.
+              </p>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years in
+                the field of Electrical Engineering. I quickly became passionate about and self-taught in Computer
+                Vision, which allowed me to start a drone project embedding a real-time AI model on my personal time,
+                and which I then continued as part of my curriculum at INSA Lyon.
+              </p>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                Eager to discover varied architectures and applications of Machine Learning in demanding environments,
+                with the opportunity to contribute to publications, I decided to multiply my experiences in
+                laboratories, notably in the medical and biomedical fields. This allowed me to learn to understand,
+                adapt and implement quickly and rigorously recent models from specialized AI conferences and journals.
+              </p>
+              <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects
+                around Minecraft including network communications, APIs and server tools. I also enjoy doing some web
+                development from time to time, as you can see with this very website. I invite you to consult my
+                GitHub, which reflects my attachment to clean, documented projects integrating good CI/CD practices.
+              </p>
+            </div>
+            <div className="lg:border-l lg:border-border lg:pl-12">
+              <h3 className="text-xs font-mono-tight uppercase tracking-[0.25em] text-muted-foreground mb-4">
+                Research interests
+              </h3>
+              <ul className="space-y-3 text-sm md:text-base text-muted-foreground leading-relaxed">
+                <li className="flex gap-3">
+                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
+                  <span><span className="text-foreground font-medium">Computer Vision</span> — detection, segmentation, tracking and 3D understanding.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
+                  <span><span className="text-foreground font-medium">Medical &amp; biomedical imaging</span> — adapting state-of-the-art models to clinical data and constraints.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
+                  <span><span className="text-foreground font-medium">Real-time &amp; embedded AI</span> — efficient inference on edge devices, drones and robotics.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
+                  <span><span className="text-foreground font-medium">Foundation &amp; multimodal models</span> — leveraging large pretrained vision and vision-language models for downstream tasks.</span>
+                </li>
+                <li className="flex gap-3">
+                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
+                  <span><span className="text-foreground font-medium">Reliable ML engineering</span> — reproducible pipelines, rigorous evaluation and clean MLOps practices.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </Section>
 
