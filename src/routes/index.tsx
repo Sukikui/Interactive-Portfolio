@@ -291,7 +291,7 @@ function Portfolio() {
                 <span className="font-medium text-white">applied mathematics</span>.
               </p>
 
-              <div className="mt-8 flex items-center gap-5">
+              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
                 <button
                   type="button"
                   onClick={copyEmail}
