@@ -348,7 +348,7 @@ function Portfolio() {
               Open to <span className="text-foreground font-medium">PhD opportunities</span>, research collaborations
               and engineering positions. I usually reply within a couple of days.
             </p>
-            <div className="mt-8 flex flex-wrap items-center justify-between gap-x-8 gap-y-3">
+            <div className="mt-8 flex flex-wrap items-center justify-end gap-x-8 gap-y-3">
               <ContactLink href="mailto:tristan.habemont@gmail.com" Icon={Mail} label="tristan.habemont@gmail.com" />
               <ContactLink
                 href="https://linkedin.com/in/tristan-habemont"
