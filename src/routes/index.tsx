@@ -102,21 +102,25 @@ function Portfolio() {
 
   const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const navTrackRef = useRef<HTMLDivElement>(null);
-  const [navOffset, setNavOffset] = useState(0);
+  const navContainerRef = useRef<HTMLElement>(null);
 
   useLayoutEffect(() => {
-    const measure = () => {
+    const apply = () => {
       const el = itemRefs.current[activeId];
-      const track = navTrackRef.current;
-      const container = track?.parentElement;
-      if (!el || !track || !container) return;
-      const END_GUTTER = -64; // negative = slide further so last item sits further left
-      const max = Math.max(0, track.scrollWidth - container.clientWidth - END_GUTTER);
-      setNavOffset(Math.min(el.offsetLeft, max));
+      const container = navContainerRef.current;
+      if (!el || !container) return;
+      const END_GUTTER = -64; // negative pushes the last item further left
+      const maxNatural = Math.max(0, container.scrollWidth - container.clientWidth);
+      const target = Math.min(
+        el.offsetLeft,
+        container.scrollWidth - container.clientWidth - END_GUTTER,
+      );
+      const clamped = Math.max(0, Math.min(target, maxNatural));
+      container.scrollTo({ left: clamped, behavior: "smooth" });
     };
-    measure();
-    window.addEventListener("resize", measure);
-    return () => window.removeEventListener("resize", measure);
+    apply();
+    window.addEventListener("resize", apply);
+    return () => window.removeEventListener("resize", apply);
   }, [activeId, scrolled]);
 
 
@@ -163,9 +167,10 @@ function Portfolio() {
             ))}
           </nav>
 
-          {/* Compact mobile nav — auto-slides to put active section first */}
+          {/* Compact mobile nav — auto-slides to active section, user can also swipe */}
           <nav
-            className="md:hidden flex-1 min-w-0 overflow-hidden"
+            ref={navContainerRef}
+            className="md:hidden flex-1 min-w-0 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             style={{
               maskImage:
                 "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
@@ -175,8 +180,7 @@ function Portfolio() {
           >
             <div
               ref={navTrackRef}
-              className="relative flex items-center gap-1 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(${-navOffset}px)` }}
+              className="relative flex items-center gap-1 w-max pr-20"
             >
               {NAV.map((n) => (
                 <button
