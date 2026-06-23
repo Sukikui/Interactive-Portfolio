@@ -501,6 +501,7 @@ const LANGUAGE_COLORS: Record<string, string> = {
   Lua: "#000080",
   Julia: "#a270ba",
   R: "#198CE7",
+  Java: "#b07219",
 };
 
 type RepoRef = { owner: string; name: string };
