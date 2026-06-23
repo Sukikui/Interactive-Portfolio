@@ -122,10 +122,7 @@ function Portfolio() {
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0b1020]/70 via-[#0b1020]/60 to-[#0a0e1c]/85" />
-        <div className="absolute inset-0 grid-bg opacity-[0.05]" />
-        <div className="absolute -top-32 -left-32 size-[480px] rounded-full bg-brand/10 blur-[120px]" />
-        <div className="absolute bottom-0 right-0 size-[420px] rounded-full bg-cyan/5 blur-[140px]" />
+        <div className="absolute inset-0 bg-black/60" />
 
 
         <div className="relative h-full mx-auto max-w-6xl px-6 flex items-center">
