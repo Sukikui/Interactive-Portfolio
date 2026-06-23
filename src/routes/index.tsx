@@ -103,7 +103,11 @@ function Portfolio() {
   useLayoutEffect(() => {
     const measure = () => {
       const el = itemRefs.current[activeId];
-      if (el) setNavOffset(el.offsetLeft);
+      const track = navTrackRef.current;
+      const container = track?.parentElement;
+      if (!el || !track || !container) return;
+      const max = Math.max(0, track.scrollWidth - container.clientWidth);
+      setNavOffset(Math.min(el.offsetLeft, max));
     };
     measure();
     window.addEventListener("resize", measure);
