@@ -249,7 +249,7 @@ function Portfolio() {
           </div>
         </section>
 
-        <Section id="education" index="02" Icon={GraduationCap} title="Education">
+        <Section id="education" index="03" Icon={GraduationCap} title="Education">
           <div className="space-y-6">
             {EDUCATION.map((e) => (
               <TimelineItem
@@ -267,7 +267,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="experience" index="03" Icon={Briefcase} title="Experience">
+        <Section id="experience" index="04" Icon={Briefcase} title="Experience">
           <div className="space-y-6">
             {EXPERIENCE.map((e) => (
               <TimelineItem
@@ -287,7 +287,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="projects" index="04" Icon={FolderGit2} title="Projects">
+        <Section id="projects" index="05" Icon={FolderGit2} title="Projects">
           <div className="grid md:grid-cols-2 gap-4">
             {PROJECTS.map((p) => (
               <RepoCard key={p.name} repo={p} />
@@ -307,7 +307,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="cv" index="05" Icon={FileText} title="Curriculum Vitae">
+        <Section id="cv" index="06" Icon={FileText} title="Curriculum Vitae">
           <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 md:p-10">
             <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -330,7 +330,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="contact" index="06" Icon={Mail} title="Contact">
+        <Section id="contact" index="07" Icon={Mail} title="Contact">
           <div className="grid md:grid-cols-2 gap-6 items-start">
             <p className="text-lg text-muted-foreground leading-relaxed">
               Open to <span className="text-brand font-medium">PhD opportunities</span>, research collaborations and
