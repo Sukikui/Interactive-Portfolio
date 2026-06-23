@@ -213,7 +213,7 @@ function Portfolio() {
                   <span className="font-mono-tight text-xs text-brand">02</span>
                   <div className="h-px flex-1 max-w-12 bg-border" />
                   <FlaskConical className="size-4 text-brand" />
-                  <h2 className="section-heading text-foreground">Research interests</h2>
+                  <h2 className="section-heading text-foreground">Interests</h2>
                 </div>
                 <ul className="space-y-3 text-xs md:text-sm text-muted-foreground leading-relaxed">
                   <li className="flex gap-3">
