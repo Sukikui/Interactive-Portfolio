@@ -99,35 +99,16 @@ function Portfolio() {
   const itemRefs = useRef<Record<string, HTMLButtonElement | null>>({});
   const navTrackRef = useRef<HTMLDivElement>(null);
   const [navOffset, setNavOffset] = useState(0);
-  useLayoutEffect(() => {
-    const el = itemRefs.current[activeId];
-    const track = navTrackRef.current;
-    if (!el || !track) return;
-    // Measure position relative to the track, ignoring its current transform
-    const elRect = el.getBoundingClientRect();
-    const trackRect = track.getBoundingClientRect();
-    const currentTransform = new DOMMatrixReadOnly(
-      getComputedStyle(track).transform,
-    );
-    const relative = elRect.left - trackRect.left - currentTransform.m41;
-    setNavOffset(relative);
-  }, [activeId, scrolled]);
 
-  useEffect(() => {
-    const onResize = () => {
+  useLayoutEffect(() => {
+    const measure = () => {
       const el = itemRefs.current[activeId];
-      const track = navTrackRef.current;
-      if (!el || !track) return;
-      const elRect = el.getBoundingClientRect();
-      const trackRect = track.getBoundingClientRect();
-      const currentTransform = new DOMMatrixReadOnly(
-        getComputedStyle(track).transform,
-      );
-      setNavOffset(elRect.left - trackRect.left - currentTransform.m41);
+      if (el) setNavOffset(el.offsetLeft);
     };
-    window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
-  }, [activeId]);
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
+  }, [activeId, scrolled]);
 
 
   const scrollTo = (id: string) => {
@@ -185,7 +166,7 @@ function Portfolio() {
           >
             <div
               ref={navTrackRef}
-              className="flex items-center gap-1 transition-transform duration-500 ease-out"
+              className="relative flex items-center gap-1 transition-transform duration-500 ease-out"
               style={{ transform: `translateX(${-navOffset}px)` }}
             >
               {NAV.map((n) => (
