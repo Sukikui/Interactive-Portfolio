@@ -14,6 +14,7 @@ import {
   Scale,
   Tag,
   ArrowUpRight,
+  FlaskConical,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import profile from "@/assets/profile.jpg";
@@ -40,6 +41,7 @@ export const Route = createFileRoute("/")({
 
 const NAV = [
   { id: "presentation", label: "Presentation" },
+  { id: "research", label: "Research" },
   { id: "education", label: "Education" },
   { id: "experience", label: "Experience" },
   { id: "projects", label: "Projects" },
@@ -163,63 +165,91 @@ function Portfolio() {
 
       {/* Sections */}
       <main className="relative">
-        <Section id="presentation" index="01" Icon={User} title="Presentation">
-          <div className="grid gap-10 lg:grid-cols-2 lg:gap-12">
-            <div>
-              <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
-                state-of-the-art AI models driving concrete applications in the real world.
-              </p>
-              <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
-                Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years in
-                the field of Electrical Engineering. I quickly became passionate about and self-taught in Computer
-                Vision, which allowed me to start a drone project embedding a real-time AI model on my personal time,
-                and which I then continued as part of my curriculum at INSA Lyon.
-              </p>
-              <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
-                Eager to discover varied architectures and applications of Machine Learning in demanding environments,
-                with the opportunity to contribute to publications, I decided to multiply my experiences in
-                laboratories, notably in the medical and biomedical fields. This allowed me to learn to understand,
-                adapt and implement quickly and rigorously recent models from specialized AI conferences and journals.
-              </p>
-              <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
-                In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects
-                around Minecraft including network communications, APIs and server tools. I also enjoy doing some web
-                development from time to time, as you can see with this very website. I invite you to consult my
-                GitHub, which reflects my attachment to clean, documented projects integrating good CI/CD practices.
-              </p>
-            </div>
-            <div className="lg:border-l lg:border-border lg:pl-12">
-              <h3 className="text-xs font-mono-tight uppercase tracking-[0.25em] text-muted-foreground mb-4">
-                Research interests
-              </h3>
-              <ul className="space-y-3 text-sm md:text-base text-muted-foreground leading-relaxed">
-                <li className="flex gap-3">
-                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
-                  <span><span className="text-foreground font-medium">Computer Vision</span> — detection, segmentation, tracking and 3D understanding.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
-                  <span><span className="text-foreground font-medium">Medical &amp; biomedical imaging</span> — adapting state-of-the-art models to clinical data and constraints.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
-                  <span><span className="text-foreground font-medium">Real-time &amp; embedded AI</span> — efficient inference on edge devices, drones and robotics.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
-                  <span><span className="text-foreground font-medium">Foundation &amp; multimodal models</span> — leveraging large pretrained vision and vision-language models for downstream tasks.</span>
-                </li>
-                <li className="flex gap-3">
-                  <span className="text-brand mt-1.5 size-1.5 shrink-0 rounded-full bg-brand" />
-                  <span><span className="text-foreground font-medium">Reliable ML engineering</span> — reproducible pipelines, rigorous evaluation and clean MLOps practices.</span>
-                </li>
-              </ul>
+        <section className="scroll-mt-20 py-16 md:py-20 border-b border-border">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+              <div id="presentation" className="scroll-mt-20">
+                <div className="mb-8 flex items-center gap-4">
+                  <span className="font-mono-tight text-xs text-brand">01</span>
+                  <div className="h-px flex-1 max-w-12 bg-border" />
+                  <User className="size-4 text-brand" />
+                  <h2 className="section-heading text-foreground">Presentation</h2>
+                </div>
+                <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+                  A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
+                  state-of-the-art AI models driving concrete applications in the real world.
+                </p>
+                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                  Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years
+                  in the field of Electrical Engineering. I quickly became passionate about and self-taught in
+                  Computer Vision, which allowed me to start a drone project embedding a real-time AI model on my
+                  personal time, and which I then continued as part of my curriculum at INSA Lyon.
+                </p>
+                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                  Eager to discover varied architectures and applications of Machine Learning in demanding
+                  environments, with the opportunity to contribute to publications, I decided to multiply my
+                  experiences in laboratories, notably in the medical and biomedical fields. This allowed me to learn
+                  to understand, adapt and implement quickly and rigorously recent models from specialized AI
+                  conferences and journals.
+                </p>
+                <p className="mt-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+                  In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects
+                  around Minecraft including network communications, APIs and server tools. I also enjoy doing some
+                  web development from time to time, as you can see with this very website. I invite you to consult
+                  my GitHub, which reflects my attachment to clean, documented projects integrating good CI/CD
+                  practices.
+                </p>
+              </div>
+              <div id="research" className="scroll-mt-20 lg:border-l lg:border-border lg:pl-16">
+                <div className="mb-8 flex items-center gap-4">
+                  <span className="font-mono-tight text-xs text-brand">02</span>
+                  <div className="h-px flex-1 max-w-12 bg-border" />
+                  <FlaskConical className="size-4 text-brand" />
+                  <h2 className="section-heading text-foreground">Research interests</h2>
+                </div>
+                <ul className="space-y-3 text-sm md:text-base text-muted-foreground leading-relaxed">
+                  <li className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
+                    <span>
+                      <span className="text-foreground font-medium">Computer Vision</span> — detection, segmentation,
+                      tracking and 3D understanding.
+                    </span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
+                    <span>
+                      <span className="text-foreground font-medium">Medical &amp; biomedical imaging</span> — adapting
+                      state-of-the-art models to clinical data and constraints.
+                    </span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
+                    <span>
+                      <span className="text-foreground font-medium">Real-time &amp; embedded AI</span> — efficient
+                      inference on edge devices, drones and robotics.
+                    </span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
+                    <span>
+                      <span className="text-foreground font-medium">Foundation &amp; multimodal models</span> —
+                      leveraging large pretrained vision and vision-language models for downstream tasks.
+                    </span>
+                  </li>
+                  <li className="flex gap-3">
+                    <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
+                    <span>
+                      <span className="text-foreground font-medium">Reliable ML engineering</span> — reproducible
+                      pipelines, rigorous evaluation and clean MLOps practices.
+                    </span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-        </Section>
+        </section>
 
-        <Section id="education" index="02" Icon={GraduationCap} title="Education">
+        <Section id="education" index="03" Icon={GraduationCap} title="Education">
           <div className="space-y-6">
             {EDUCATION.map((e) => (
               <TimelineItem
@@ -237,7 +267,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="experience" index="03" Icon={Briefcase} title="Experience">
+        <Section id="experience" index="04" Icon={Briefcase} title="Experience">
           <div className="space-y-6">
             {EXPERIENCE.map((e) => (
               <TimelineItem
@@ -257,7 +287,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="projects" index="04" Icon={FolderGit2} title="Projects">
+        <Section id="projects" index="05" Icon={FolderGit2} title="Projects">
           <div className="grid md:grid-cols-2 gap-4">
             {PROJECTS.map((p) => (
               <RepoCard key={p.name} repo={p} />
@@ -277,7 +307,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="cv" index="05" Icon={FileText} title="Curriculum Vitae">
+        <Section id="cv" index="06" Icon={FileText} title="Curriculum Vitae">
           <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 md:p-10">
             <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
@@ -300,7 +330,7 @@ function Portfolio() {
           </div>
         </Section>
 
-        <Section id="contact" index="06" Icon={Mail} title="Contact">
+        <Section id="contact" index="07" Icon={Mail} title="Contact">
           <div className="grid md:grid-cols-2 gap-6 items-start">
             <p className="text-lg text-muted-foreground leading-relaxed">
               Open to <span className="text-brand font-medium">PhD opportunities</span>, research collaborations and
