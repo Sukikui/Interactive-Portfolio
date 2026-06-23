@@ -291,11 +291,11 @@ function Portfolio() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
               <div id="presentation" className="scroll-mt-20">
-                <div className="mb-8 flex items-center gap-4">
+                <div className="mb-8 flex items-center gap-2">
                   <span className="font-mono-tight text-xs text-brand">01</span>
                   <div className="h-px flex-1 max-w-6 bg-border" />
                   <User className="size-4 text-brand" />
-                  <h2 className="section-heading text-foreground">Presentation</h2>
+                  <h2 className="section-heading text-foreground ml-2">Presentation</h2>
                 </div>
                 <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
                   A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
@@ -323,11 +323,11 @@ function Portfolio() {
                 </p>
               </div>
               <div id="research" className="scroll-mt-20 lg:border-l lg:border-border lg:pl-16">
-                <div className="mb-8 flex items-center gap-4">
+                <div className="mb-8 flex items-center gap-2">
                   <span className="font-mono-tight text-xs text-brand">02</span>
                   <div className="h-px flex-1 max-w-6 bg-border" />
                   <FlaskConical className="size-4 text-brand" />
-                  <h2 className="section-heading text-foreground">Interests</h2>
+                  <h2 className="section-heading text-foreground ml-2">Interests</h2>
                 </div>
                 <ul className="space-y-3 text-xs md:text-sm text-muted-foreground leading-relaxed">
                   <li className="flex gap-3">
@@ -509,11 +509,11 @@ function Section({
   return (
     <section id={id} className="scroll-mt-20 py-16 md:py-20 border-b border-border">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="mb-8 flex items-center gap-4">
+        <div className="mb-8 flex items-center gap-2">
           <span className="font-mono-tight text-xs text-brand">{index}</span>
           <div className="h-px flex-1 max-w-6 bg-border" />
           <Icon className="size-4 text-brand" />
-          <h2 className="section-heading text-foreground">{title}</h2>
+          <h2 className="section-heading text-foreground ml-2">{title}</h2>
         </div>
         {children}
       </div>
