@@ -371,9 +371,7 @@ function TimelineItem({
           )}
         </div>
         {kind && (
-          <div className="mt-2 font-mono-tight text-[10px] uppercase tracking-[0.18em] text-brand/80">
-            {kind}
-          </div>
+          <div className="mt-2 font-mono-tight text-[10px] uppercase tracking-[0.18em] text-brand/80">{kind}</div>
         )}
         <h3 className="font-display text-xl font-semibold text-foreground mt-1">{title}</h3>
         {frTitle && <p className="text-sm text-muted-foreground mt-0.5 italic">{frTitle}</p>}
@@ -648,7 +646,7 @@ const EXPERIENCE: {
     period: "Oct 2025 — Jan 2026",
     duration: "4 months",
     kind: "Research Project",
-    role: "Conditional Latent Diffusion for Dental Prediction",
+    role: "Generative Deep Learning for Dental Prediction",
     company: "BovoPredict",
     location: "Lyon, France",
     supervisor: "Supervised by Dr. Thomas Grenier and Dr. Chantal Muller",
