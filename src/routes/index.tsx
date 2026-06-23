@@ -745,11 +745,10 @@ function ContactLink({
       href={href}
       target="_blank"
       rel="noreferrer"
-      className="group flex items-center gap-4 py-4"
+      className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
     >
-      <Icon className="size-4 text-muted-foreground group-hover:text-foreground transition-colors" />
-      <span className="text-sm text-foreground">{label}</span>
-      <ArrowUpRight className="size-3.5 ml-auto text-muted-foreground group-hover:text-foreground transition-colors" />
+      <Icon className="size-4" />
+      <span>{label}</span>
     </a>
   );
 }
