@@ -130,7 +130,7 @@ function Portfolio() {
                   alt="Tristan Habémont portrait"
                   width={320}
                   height={320}
-                  className="absolute inset-0 h-full w-full object-cover scale-[1.2]"
+                  className="absolute inset-0 h-full w-full object-cover scale-[1.2] translate-y-[3%]"
                 />
               </div>
             </div>
