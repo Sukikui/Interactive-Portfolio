@@ -966,6 +966,7 @@ const PROJECT_GROUPS: { title: string; repos: RepoRef[] }[] = [
   {
     title: "Embedded Software",
     repos: [
+      { owner: "Sukikui", name: "Vision-Hub" },
       { owner: "Sukikui", name: "ESP32-Vision-Node" },
       { owner: "Sukikui", name: "ESP32-CAM-Sign-Recognition" },
     ],
@@ -973,7 +974,6 @@ const PROJECT_GROUPS: { title: string; repos: RepoRef[] }[] = [
   {
     title: "Miscellaneous",
     repos: [
-      { owner: "Sukikui", name: "Vision-Hub" },
       { owner: "Sukikui", name: "GPA-Calculator" },
     ],
   },
