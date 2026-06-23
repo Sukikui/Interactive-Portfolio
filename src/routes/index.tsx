@@ -349,13 +349,13 @@ function Portfolio() {
               and engineering positions. I usually reply within a couple of days.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
-              <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
+              <ContactLink href="mailto:tristan.habemont@gmail.com" Icon={Mail} label="tristan.habemont@gmail.com" />
               <ContactLink
-                href="https://linkedin.com/in/alexmartin"
+                href="https://linkedin.com/in/tristan-habemont"
                 Icon={FaLinkedin}
-                label="linkedin.com/in/alexmartin"
+                label="linkedin.com/in/tristan-habemont"
               />
-              <ContactLink href="https://github.com/alexmartin" Icon={FaGithub} label="github.com/alexmartin" />
+              <ContactLink href="https://github.com/sukikui" Icon={FaGithub} label="github.com/sukikui" />
             </div>
           </div>
         </Section>
