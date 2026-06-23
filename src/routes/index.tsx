@@ -343,20 +343,19 @@ function Portfolio() {
         </Section>
 
         <Section id="contact" index="07" Icon={Mail} title="Contact">
-          <div className="grid md:grid-cols-2 gap-6 items-start">
-            <p className="text-lg text-muted-foreground leading-relaxed">
-              Open to <span className="text-brand font-medium">PhD opportunities</span>, research collaborations and
-              engineering positions. I usually reply within a couple of days.
+          <div className="max-w-2xl">
+            <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
+              Open to <span className="text-foreground font-medium">PhD opportunities</span>, research collaborations
+              and engineering positions. I usually reply within a couple of days.
             </p>
-            <div className="space-y-3">
+            <div className="mt-8 flex flex-col divide-y divide-border border-y border-border">
               <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
-              <ContactLink href="https://github.com/alexmartin" Icon={FaGithub} label="github.com/alexmartin" />
               <ContactLink
                 href="https://linkedin.com/in/alexmartin"
                 Icon={FaLinkedin}
                 label="linkedin.com/in/alexmartin"
               />
-              <ContactLink href="https://x.com/alexmartin" Icon={FaXTwitter} label="@alexmartin" />
+              <ContactLink href="https://github.com/alexmartin" Icon={FaGithub} label="github.com/alexmartin" />
             </div>
           </div>
         </Section>
