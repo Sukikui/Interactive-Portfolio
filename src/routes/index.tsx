@@ -811,4 +811,12 @@ const EXPERIENCE: {
 
 const PROJECTS: RepoRef[] = [
   { owner: "creatis-myriad", name: "GENESIS" },
+  { owner: "sensors-inl", name: "Nervous-Toolkit" },
+  { owner: "Sukikui", name: "PTI-LDM-VAE" },
+  { owner: "Sukikui", name: "Vision-Hub" },
+  { owner: "Sukikui", name: "ESP32-Vision-Node" },
+  { owner: "Sukikui", name: "MineVerify" },
+  { owner: "Sukikui", name: "BiomeMap" },
+  { owner: "Sukikui", name: "PlayerCoordsAPI" },
+  { owner: "Sukikui", name: "GPA-Calculator" },
 ];
