@@ -273,6 +273,36 @@ function Portfolio() {
                 <span className="font-medium text-white">deep learning</span> and{" "}
                 <span className="font-medium text-white">applied mathematics</span>.
               </p>
+
+              <div className="mt-8 flex items-center gap-5">
+                <a
+                  href="mailto:tristan.habemont@gmail.com"
+                  aria-label="Email"
+                  className="group inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+                >
+                  <Mail className="size-5" />
+                  <span className="hidden sm:inline text-sm font-light">tristan.habemont@gmail.com</span>
+                </a>
+                <span className="h-4 w-px bg-white/20" />
+                <a
+                  href="https://linkedin.com/in/tristan-habemont"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="LinkedIn"
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <FaLinkedin className="size-5" />
+                </a>
+                <a
+                  href="https://github.com/sukikui"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label="GitHub"
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <FaGithub className="size-5" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
