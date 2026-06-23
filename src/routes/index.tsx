@@ -54,6 +54,7 @@ const NAV = [
 
 function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
+  const [showCredit, setShowCredit] = useState(false);
   const { theme, toggle } = useTheme();
 
   useEffect(() => {
@@ -65,6 +66,11 @@ function Portfolio() {
       window.removeEventListener("scroll", onScroll);
       window.removeEventListener("resize", onScroll);
     };
+  }, []);
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setShowCredit(true), 10000);
+    return () => window.clearTimeout(timer);
   }, []);
 
 
