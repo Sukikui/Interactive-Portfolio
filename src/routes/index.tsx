@@ -293,7 +293,7 @@ function Portfolio() {
               <div id="presentation" className="scroll-mt-20">
                 <div className="mb-8 flex items-center gap-4">
                   <span className="font-mono-tight text-xs text-brand">01</span>
-                  <div className="h-px flex-1 max-w-12 bg-border" />
+                  <div className="h-px flex-1 max-w-6 bg-border" />
                   <User className="size-4 text-brand" />
                   <h2 className="section-heading text-foreground">Presentation</h2>
                 </div>
@@ -325,7 +325,7 @@ function Portfolio() {
               <div id="research" className="scroll-mt-20 lg:border-l lg:border-border lg:pl-16">
                 <div className="mb-8 flex items-center gap-4">
                   <span className="font-mono-tight text-xs text-brand">02</span>
-                  <div className="h-px flex-1 max-w-12 bg-border" />
+                  <div className="h-px flex-1 max-w-6 bg-border" />
                   <FlaskConical className="size-4 text-brand" />
                   <h2 className="section-heading text-foreground">Interests</h2>
                 </div>
@@ -511,7 +511,7 @@ function Section({
       <div className="mx-auto max-w-6xl px-6">
         <div className="mb-8 flex items-center gap-4">
           <span className="font-mono-tight text-xs text-brand">{index}</span>
-          <div className="h-px flex-1 max-w-12 bg-border" />
+          <div className="h-px flex-1 max-w-6 bg-border" />
           <Icon className="size-4 text-brand" />
           <h2 className="section-heading text-foreground">{title}</h2>
         </div>
