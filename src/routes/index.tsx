@@ -167,9 +167,10 @@ function Portfolio() {
             ))}
           </nav>
 
-          {/* Compact mobile nav — auto-slides to put active section first */}
+          {/* Compact mobile nav — auto-slides to active section, user can also swipe */}
           <nav
-            className="md:hidden flex-1 min-w-0 overflow-hidden"
+            ref={navContainerRef}
+            className="md:hidden flex-1 min-w-0 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
             style={{
               maskImage:
                 "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
@@ -179,8 +180,7 @@ function Portfolio() {
           >
             <div
               ref={navTrackRef}
-              className="relative flex items-center gap-1 transition-transform duration-500 ease-out"
-              style={{ transform: `translateX(${-navOffset}px)` }}
+              className="relative flex items-center gap-1 w-max pr-20"
             >
               {NAV.map((n) => (
                 <button
