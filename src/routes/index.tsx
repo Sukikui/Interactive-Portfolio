@@ -130,92 +130,107 @@ function Portfolio() {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
-      {/* Header */}
-      <header
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform translate-y-0 opacity-100 ${
-          scrolled
-            ? "backdrop-blur-md bg-background/50 border-b border-border/40"
-            : "bg-transparent border-b border-transparent"
-        }`}
-      >
-
-
-        <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-3">
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className={`hidden md:block font-display font-semibold text-base tracking-tight transition-colors ${
-              scrolled ? "text-foreground" : "text-white"
-            }`}
-          >
-            Tristan Habémont
-          </button>
-
-          {/* Desktop nav */}
-          <nav className="hidden md:flex items-center gap-1">
-            {NAV.map((n) => (
-              <button
-                key={n.id}
-                onClick={() => scrollTo(n.id)}
-                className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                  scrolled
-                    ? "text-muted-foreground hover:text-foreground hover:bg-accent"
-                    : "text-white/75 hover:text-white hover:bg-white/10"
-                }`}
-              >
-                {n.label}
-              </button>
-            ))}
-          </nav>
-
-          {/* Compact mobile nav — auto-slides to active section, user can also swipe */}
-          <nav
-            ref={navContainerRef}
-            className="md:hidden flex-1 min-w-0 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-            style={{
-              maskImage:
-                "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
-              WebkitMaskImage:
-                "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
-            }}
-          >
-            <div
-              ref={navTrackRef}
-              className="relative flex items-center gap-1 w-max pr-20"
+      {/* Header — rendered twice: a static one over the hero (always visible there),
+          and a fixed one that slides in once the hero is out of view. */}
+      {([
+        {
+          key: "hero",
+          wrapperClass:
+            "absolute inset-x-0 top-0 z-50 bg-transparent border-b border-transparent",
+          onDark: true,
+        },
+        {
+          key: "fixed",
+          wrapperClass: `fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-background/50 border-b border-border/40 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
+            scrolled
+              ? "translate-y-0 opacity-100"
+              : "-translate-y-full opacity-0 pointer-events-none"
+          }`,
+          onDark: false,
+        },
+      ] as const).map(({ key, wrapperClass, onDark }) => (
+        <header key={key} className={wrapperClass} aria-hidden={key === "fixed" && !scrolled}>
+          <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between gap-3">
+            <button
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              className={`hidden md:block font-display font-semibold text-base tracking-tight transition-colors ${
+                onDark ? "text-white" : "text-foreground"
+              }`}
             >
+              Tristan Habémont
+            </button>
+
+            {/* Desktop nav */}
+            <nav className="hidden md:flex items-center gap-1">
               {NAV.map((n) => (
                 <button
                   key={n.id}
-                  ref={(el) => {
-                    itemRefs.current[n.id] = el;
-                  }}
                   onClick={() => scrollTo(n.id)}
-                  className={`shrink-0 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
-                    scrolled
-                      ? n.id === activeId
-                        ? "text-foreground"
-                        : "text-muted-foreground hover:text-foreground"
-                      : n.id === activeId
-                        ? "text-white"
-                        : "text-white/75 hover:text-white"
+                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                    onDark
+                      ? "text-white/75 hover:text-white hover:bg-white/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-accent"
                   }`}
                 >
                   {n.label}
                 </button>
               ))}
-            </div>
-          </nav>
+            </nav>
 
-          <button
-            onClick={toggle}
-            aria-label="Toggle theme"
-            className={`shrink-0 p-2 rounded-md transition-colors ${
-              scrolled ? "text-foreground hover:bg-accent" : "text-white hover:bg-white/10"
-            }`}
-          >
-            {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
-          </button>
-        </div>
-      </header>
+            {/* Compact mobile nav — auto-slides to active section, user can also swipe */}
+            <nav
+              ref={key === "fixed" ? navContainerRef : undefined}
+              className="md:hidden flex-1 min-w-0 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+              style={{
+                maskImage:
+                  "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+              }}
+            >
+              <div
+                ref={key === "fixed" ? navTrackRef : undefined}
+                className="relative flex items-center gap-1 w-max pr-20"
+              >
+                {NAV.map((n) => (
+                  <button
+                    key={n.id}
+                    ref={
+                      key === "fixed"
+                        ? (el) => {
+                            itemRefs.current[n.id] = el;
+                          }
+                        : undefined
+                    }
+                    onClick={() => scrollTo(n.id)}
+                    className={`shrink-0 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                      onDark
+                        ? n.id === activeId
+                          ? "text-white"
+                          : "text-white/75 hover:text-white"
+                        : n.id === activeId
+                          ? "text-foreground"
+                          : "text-muted-foreground hover:text-foreground"
+                    }`}
+                  >
+                    {n.label}
+                  </button>
+                ))}
+              </div>
+            </nav>
+
+            <button
+              onClick={toggle}
+              aria-label="Toggle theme"
+              className={`shrink-0 p-2 rounded-md transition-colors ${
+                onDark ? "text-white hover:bg-white/10" : "text-foreground hover:bg-accent"
+              }`}
+            >
+              {theme === "dark" ? <Sun className="size-4" /> : <Moon className="size-4" />}
+            </button>
+          </div>
+        </header>
+      ))}
 
       {/* Hero */}
       <section className="relative h-screen w-full overflow-hidden bg-[#0b1020]">
