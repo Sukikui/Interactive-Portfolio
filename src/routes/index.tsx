@@ -17,7 +17,8 @@ import {
   FlaskConical,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import profile from "@/assets/profile.jpg";
+import profileAsset from "@/assets/profile.png.asset.json";
+const profile = profileAsset.url;
 import { useTheme } from "@/lib/theme";
 
 export const Route = createFileRoute("/")({
