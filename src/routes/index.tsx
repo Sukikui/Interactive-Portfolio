@@ -880,27 +880,6 @@ function RepoCard({ repo }: { repo: RepoRef }) {
   );
 }
 
-function ContactLink({
-  href,
-  Icon,
-  label,
-}: {
-  href: string;
-  Icon: React.ComponentType<{ className?: string }>;
-  label: string;
-}) {
-  return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noreferrer"
-      className="group inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
-    >
-      <Icon className="size-4" />
-      <span>{label}</span>
-    </a>
-  );
-}
 
 const EDUCATION: {
   period: string;
