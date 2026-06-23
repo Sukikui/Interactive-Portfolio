@@ -292,14 +292,34 @@ function Portfolio() {
               </p>
 
               <div className="mt-8 flex items-center gap-5">
-                <a
-                  href="mailto:tristan.habemont@gmail.com"
-                  aria-label="Email"
-                  className="group inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
+                <button
+                  type="button"
+                  onClick={copyEmail}
+                  aria-label={emailCopied ? "Email copied" : "Copy email address"}
+                  className="group relative inline-flex items-center gap-2 text-white/70 hover:text-white transition-colors"
                 >
-                  <Mail className="size-5" />
-                  <span className="hidden sm:inline text-sm font-light">tristan.habemont@gmail.com</span>
-                </a>
+                  <span className="relative inline-flex size-5 items-center justify-center">
+                    <Mail
+                      className={`absolute size-5 transition-all duration-300 ${
+                        emailCopied ? "opacity-0 scale-75 -rotate-12" : "opacity-100 scale-100 rotate-0"
+                      }`}
+                    />
+                    <Check
+                      className={`absolute size-5 text-emerald-300 transition-all duration-300 ${
+                        emailCopied ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-75 rotate-12"
+                      }`}
+                    />
+                  </span>
+                  <span className="text-sm font-light">{EMAIL}</span>
+                  <span
+                    aria-hidden
+                    className={`pointer-events-none absolute left-full ml-3 whitespace-nowrap text-[11px] font-mono-tight uppercase tracking-[0.2em] text-emerald-300 transition-all duration-300 ${
+                      emailCopied ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-1"
+                    }`}
+                  >
+                    Copied
+                  </span>
+                </button>
                 <span className="h-4 w-px bg-white/20" />
                 <a
                   href="https://linkedin.com/in/tristan-habemont"
