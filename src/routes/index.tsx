@@ -288,12 +288,24 @@ function Portfolio() {
         </Section>
 
         <Section id="projects" index="05" Icon={FolderGit2} title="Projects">
-          <div className="grid md:grid-cols-2 gap-4">
-            {PROJECTS.map((p) => (
-              <RepoCard key={p.name} repo={p} />
+          <div className="space-y-10">
+            {PROJECT_GROUPS.map((group) => (
+              <div key={group.title}>
+                <div className="mb-4 flex items-center gap-3">
+                  <h3 className="font-mono-tight text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                    {group.title}
+                  </h3>
+                  <div className="h-px flex-1 bg-border" />
+                </div>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {group.repos.map((p) => (
+                    <RepoCard key={`${p.owner}/${p.name}`} repo={p} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
-          <div className="mt-6 text-center">
+          <div className="mt-8 text-center">
             <a
               href="https://github.com/alexmartin"
               target="_blank"
