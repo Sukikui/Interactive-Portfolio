@@ -75,12 +75,13 @@ function Portfolio() {
     <div className="min-h-screen bg-background text-foreground">
       {/* Header */}
       <header
-        className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
+        className={`inset-x-0 top-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "translate-y-0 opacity-100 backdrop-blur-md bg-background/50 border-b border-border/40"
-            : "-translate-y-full opacity-0 pointer-events-none bg-transparent border-b border-transparent"
+            ? "fixed translate-y-0 backdrop-blur-md bg-background/50 border-b border-border/40"
+            : "absolute bg-transparent border-b border-transparent"
         }`}
       >
+
 
         <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
           <button
