@@ -85,6 +85,10 @@ function Portfolio() {
           current = n.id;
         }
       }
+      // If we've reached the bottom of the page, force focus on the last section
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+        current = NAV[NAV.length - 1].id;
+      }
       setActiveId(current);
     };
     onScroll();
