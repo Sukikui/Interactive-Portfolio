@@ -208,7 +208,7 @@ function Portfolio() {
                 title={e.role}
                 subtitle={e.company}
                 location={e.location}
-                concurrent={e.kind}
+                kind={e.kind}
                 supervisor={e.supervisor}
                 highlights={e.highlights}
                 publications={e.publications}
@@ -327,6 +327,7 @@ function TimelineItem({
   subtitle,
   location,
   concurrent,
+  kind,
   supervisor,
   description,
   highlights,
@@ -341,6 +342,7 @@ function TimelineItem({
   subtitle: string;
   location?: string;
   concurrent?: string;
+  kind?: string;
   supervisor?: string;
   description?: string;
   highlights?: string[];
@@ -368,6 +370,11 @@ function TimelineItem({
             </span>
           )}
         </div>
+        {kind && (
+          <div className="mt-2 font-mono-tight text-[10px] uppercase tracking-[0.18em] text-brand/80">
+            {kind}
+          </div>
+        )}
         <h3 className="font-display text-xl font-semibold text-foreground mt-1">{title}</h3>
         {frTitle && <p className="text-sm text-muted-foreground mt-0.5 italic">{frTitle}</p>}
         {supervisor && <p className="text-xs text-muted-foreground/80 mt-1.5 italic">{supervisor}</p>}
