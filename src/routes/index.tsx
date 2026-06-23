@@ -183,7 +183,8 @@ function Portfolio() {
             </p>
             <p className="mt-4 text-lg md:text-xl text-muted-foreground leading-relaxed">
               In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects around
-              Minecraft including network communications, APIs and server tools. I invite you to consult my GitHub,
+              Minecraft including network communications, APIs and server tools. I also enjoy doing some web
+              development from time to time, as you can see with this very website. I invite you to consult my GitHub,
               which reflects my attachment to clean, documented projects integrating good CI/CD practices.
             </p>
           </div>
