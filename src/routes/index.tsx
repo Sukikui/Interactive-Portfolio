@@ -667,9 +667,9 @@ const EXPERIENCE: {
     location: "Lyon, France",
     supervisor: "Supervised by Dr. Odyssée Merveille, Dr. Nathan Painchaud and Prof. Olivier Bernard",
     highlights: [
-      "Trained and compared nnU-Net 3D segmentation models for cardiac ventricle analysis",
       "Researched and trained GNN architectures for pulmonary embolism risk stratification",
       "Built PyTorch Geometric vascular graph datasets from segmentation-derived 3D anatomy",
+      "Trained and compared nnU-Net 3D segmentation models for cardiac ventricle analysis",
       "Presented a poster and published a lab blog post on the project",
     ],
     publications: [
