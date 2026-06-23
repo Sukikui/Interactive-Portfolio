@@ -960,7 +960,6 @@ const PROJECT_GROUPS: { title: string; repos: RepoRef[] }[] = [
       { owner: "Sukikui", name: "MineVerify" },
       { owner: "Sukikui", name: "BiomeMap" },
       { owner: "Sukikui", name: "PlayerCoordsAPI" },
-      { owner: "Sukikui", name: "PMC-Plan" },
     ],
   },
   {
@@ -972,8 +971,9 @@ const PROJECT_GROUPS: { title: string; repos: RepoRef[] }[] = [
     ],
   },
   {
-    title: "Miscellaneous",
+    title: "Web & Others",
     repos: [
+      { owner: "Sukikui", name: "PMC-Plan" },
       { owner: "Sukikui", name: "GPA-Calculator" },
     ],
   },
