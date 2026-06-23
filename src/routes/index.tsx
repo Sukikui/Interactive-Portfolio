@@ -348,7 +348,7 @@ function Portfolio() {
               Open to <span className="text-foreground font-medium">PhD opportunities</span>, research collaborations
               and engineering positions. I usually reply within a couple of days.
             </p>
-            <div className="mt-8 flex flex-col divide-y divide-border border-y border-border">
+            <div className="mt-8 flex flex-wrap items-center gap-x-8 gap-y-3">
               <ContactLink href="mailto:alex.martin@example.com" Icon={Mail} label="alex.martin@example.com" />
               <ContactLink
                 href="https://linkedin.com/in/alexmartin"
