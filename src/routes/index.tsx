@@ -264,7 +264,7 @@ function Portfolio() {
 
             {/* Right — text */}
             <div className="text-white animate-fade-up [animation-delay:120ms]">
-              <p className="text-brand-soft text-xs font-medium tracking-[0.25em] uppercase mb-5">
+              <p className="text-brand-soft text-xs font-medium tracking-[0.25em] mb-5">
                 Machine Learning & Computer Vision Engineer
               </p>
               <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[1.02] tracking-tight">
