@@ -77,10 +77,11 @@ function Portfolio() {
       <header
         className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "backdrop-blur-md bg-background/50 border-b border-border/40"
-            : "bg-transparent border-b border-transparent"
+            ? "translate-y-0 opacity-100 backdrop-blur-md bg-background/50 border-b border-border/40"
+            : "-translate-y-full opacity-0 pointer-events-none bg-transparent border-b border-transparent"
         }`}
       >
+
         <div className="mx-auto max-w-6xl px-6 h-16 flex items-center justify-between">
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
