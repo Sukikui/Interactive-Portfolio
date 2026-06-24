@@ -30,6 +30,7 @@
   --color-ring: var(--ring);
   --color-brand: var(--brand);
   --color-brand-soft: var(--brand-soft);
+  --color-hero-accent: oklch(0.81 0.13 258);
   --color-cyan: var(--cyan);
   --font-display: "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;

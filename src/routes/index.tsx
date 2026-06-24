@@ -19,9 +19,8 @@ import {
   Check,
 } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa6";
-import profileAsset from "@/assets/profile.png.asset.json";
-import heroBgAsset from "@/assets/hero-bg.jpeg.asset.json";
-const profile = profileAsset.url;
+import profile from "@/assets/profile.png";
+import heroBg from "@/assets/hero-bg.jpeg";
 import { useTheme } from "@/lib/theme";
 
 export const Route = createFileRoute("/")({
@@ -33,13 +32,17 @@ export const Route = createFileRoute("/")({
         content:
           "Academic portfolio of Tristan Habémont, Machine Learning & Computer Vision Engineer. Research interests, education, experience, open-source projects and CV.",
       },
-      { property: "og:title", content: "Tristan Habémont — Machine Learning & Computer Vision Engineer" },
+      {
+        property: "og:title",
+        content: "Tristan Habémont — Machine Learning & Computer Vision Engineer",
+      },
       {
         property: "og:description",
         content:
           "Research interests, projects and CV of Tristan Habémont, Machine Learning & Computer Vision Engineer.",
       },
     ],
+    links: [{ rel: "preload", as: "image", href: profile }],
   }),
   component: Portfolio,
 });
@@ -57,6 +60,21 @@ function Portfolio() {
   const [scrolled, setScrolled] = useState(false);
   const [showCredit, setShowCredit] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
+  const [profileReady, setProfileReady] = useState(false);
+  const profileImageRef = useRef<HTMLImageElement>(null);
+
+  const revealProfile = (image: HTMLImageElement) => {
+    void image
+      .decode()
+      .catch(() => undefined)
+      .then(() => setProfileReady(true));
+  };
+
+  useEffect(() => {
+    const image = profileImageRef.current;
+    if (image?.complete) revealProfile(image);
+  }, []);
+
   const EMAIL = "tristan.habemont@gmail.com";
   const copyEmail = async () => {
     try {
@@ -128,7 +146,10 @@ function Portfolio() {
       if (!el || !container) return;
       const END_GUTTER = -64; // negative pushes the last item further left
       const maxNatural = Math.max(0, container.scrollWidth - container.clientWidth);
-      const target = Math.min(el.offsetLeft, container.scrollWidth - container.clientWidth - END_GUTTER);
+      const target = Math.min(
+        el.offsetLeft,
+        container.scrollWidth - container.clientWidth - END_GUTTER,
+      );
       const clamped = Math.max(0, Math.min(target, maxNatural));
       container.scrollTo({ left: clamped, behavior: "smooth" });
     };
@@ -149,13 +170,16 @@ function Portfolio() {
         [
           {
             key: "hero",
-            wrapperClass: "absolute inset-x-0 top-0 z-50 bg-transparent border-b border-transparent",
+            wrapperClass:
+              "absolute inset-x-0 top-0 z-50 bg-transparent border-b border-transparent",
             onDark: true,
           },
           {
             key: "fixed",
             wrapperClass: `fixed inset-x-0 top-0 z-50 backdrop-blur-md bg-background/50 border-b border-border/40 transition-all duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform ${
-              scrolled ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"
+              scrolled
+                ? "translate-y-0 opacity-100"
+                : "-translate-y-full opacity-0 pointer-events-none"
             }`,
             onDark: false,
           },
@@ -167,7 +191,9 @@ function Portfolio() {
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className={`hidden md:block font-display font-semibold text-base tracking-tight transition-colors ${
                 onDark ? "text-white" : "text-foreground"
-              }`}
+              } ${key === "hero" ? "invisible pointer-events-none" : ""}`}
+              tabIndex={key === "hero" ? -1 : undefined}
+              aria-hidden={key === "hero"}
             >
               Tristan Habémont
             </button>
@@ -194,8 +220,10 @@ function Portfolio() {
               ref={key === "fixed" ? navContainerRef : undefined}
               className="md:hidden flex-1 min-w-0 overflow-x-auto overscroll-x-contain [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
               style={{
-                maskImage: "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
-                WebkitMaskImage: "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+                maskImage:
+                  "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(to right, black 0, black calc(100% - 2.5rem), transparent 100%)",
               }}
             >
               <div
@@ -244,41 +272,57 @@ function Portfolio() {
 
       {/* Hero */}
       <section className="relative h-screen w-full overflow-hidden bg-[#0b1020]">
-        <img src={heroBgAsset.url} alt="" aria-hidden className="absolute inset-0 h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-black/60" />
+        <img
+          src={heroBg}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/[0.42]" />
 
         <div className="relative h-full mx-auto max-w-6xl px-6 flex items-center">
-          <div className="grid md:grid-cols-[auto_1fr] gap-10 md:gap-20 items-center w-full">
+          <div className="mx-auto grid w-full max-w-4xl items-center gap-10 md:grid-cols-[auto_1fr] md:gap-20">
             {/* Left — profile */}
-            <div className="flex justify-center md:justify-start animate-fade-up">
+            <div
+              className={`flex justify-center transition-all duration-700 ease-out md:justify-start ${
+                profileReady ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
+              }`}
+            >
               <div className="relative size-[10.5rem] md:size-[13.5rem] rounded-full overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40">
                 <img
+                  ref={profileImageRef}
                   src={profile}
                   alt="Tristan Habémont portrait"
                   width={320}
                   height={320}
+                  loading="eager"
+                  fetchPriority="high"
+                  onLoad={(event) => revealProfile(event.currentTarget)}
                   className="absolute inset-0 h-full w-full object-cover scale-[1.2] translate-y-[5%]"
                 />
               </div>
             </div>
 
             {/* Right — text */}
-            <div className="text-white animate-fade-up [animation-delay:120ms]">
-              <p className="text-brand text-sm md:text-base font-medium tracking-[0.08em] mb-5">
-                Machine Learning & Computer Vision Engineer
-              </p>
+            <div className="text-center text-white md:text-left animate-fade-up [animation-delay:120ms]">
               <h1 className="font-display text-5xl md:text-7xl font-semibold leading-[1.02] tracking-tight">
                 Tristan Habémont
               </h1>
-              <div className="mt-6 h-px w-16 bg-white/25" />
+              <p className="mt-3 flex items-center justify-center gap-2 text-hero-accent text-sm font-medium tracking-[0.08em] md:justify-start md:text-base">
+                <span aria-hidden className="font-mono-tight text-lg font-light opacity-70">
+                  &gt;
+                </span>
+                <span>Machine Learning & Computer Vision Engineer</span>
+              </p>
+              <div className="mx-auto mt-6 h-px w-16 bg-white/25 md:mx-0" />
 
-              <p className="mt-7 max-w-xl text-lg md:text-xl font-light leading-relaxed text-white/75">
-                Building <span className="font-medium text-white">intelligent systems</span> at the intersection of{" "}
-                <span className="font-medium text-white">deep learning</span> and{" "}
+              <p className="mx-auto mt-7 max-w-xl text-lg font-light leading-relaxed text-white/75 md:mx-0 md:text-xl">
+                Building <span className="font-medium text-white">intelligent systems</span> at the
+                intersection of <span className="font-medium text-white">deep learning</span> and{" "}
                 <span className="font-medium text-white">applied mathematics</span>.
               </p>
 
-              <div className="mt-8 flex flex-wrap items-center gap-x-5 gap-y-3">
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 md:justify-start">
                 <button
                   type="button"
                   onClick={copyEmail}
@@ -288,12 +332,16 @@ function Portfolio() {
                   <span className="relative inline-flex size-5 items-center justify-center">
                     <Mail
                       className={`absolute size-5 transition-all duration-300 ${
-                        emailCopied ? "opacity-0 scale-75 -rotate-12" : "opacity-100 scale-100 rotate-0"
+                        emailCopied
+                          ? "opacity-0 scale-75 -rotate-12"
+                          : "opacity-100 scale-100 rotate-0"
                       }`}
                     />
                     <Check
                       className={`absolute size-5 text-emerald-300 transition-all duration-300 ${
-                        emailCopied ? "opacity-100 scale-100 rotate-0" : "opacity-0 scale-75 rotate-12"
+                        emailCopied
+                          ? "opacity-100 scale-100 rotate-0"
+                          : "opacity-0 scale-75 rotate-12"
                       }`}
                     />
                   </span>
@@ -368,26 +416,30 @@ function Portfolio() {
                   <h2 className="section-heading text-foreground ml-2">Presentation</h2>
                 </div>
                 <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                  A recently graduated engineer passionate about ML and Computer Vision, I am looking to work on
-                  state-of-the-art AI models driving concrete applications in the real world.
+                  Engineer graduated recently, I am passionate about ML and Computer Vision, I am
+                  looking to work on state-of-the-art AI models driving concrete applications in the
+                  real world.
                 </p>
                 <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
-                  Having always wanted to understand intelligent systems, I began and pursued my studies for 5 years in
-                  the field of Electrical Engineering. I quickly became passionate about and self-taught in Computer
-                  Vision, which allowed me to start a drone project embedding a real-time AI model on my personal time,
-                  and which I then continued as part of my curriculum at INSA Lyon.
+                  Having always wanted to understand intelligent systems, I began and pursued my
+                  studies for 5 years in the field of Electrical Engineering. I quickly became
+                  passionate about and self-taught in Computer Vision, which allowed me to start a
+                  drone project embedding a real-time AI model on my personal time, and which I then
+                  continued as part of my curriculum at INSA Lyon.
                 </p>
                 <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
-                  Eager to discover varied architectures and applications of Machine Learning in demanding environments,
-                  with the opportunity to contribute to publications, I decided to multiply my experiences in
-                  laboratories, notably in the medical and biomedical fields. This allowed me to learn to understand,
-                  adapt and implement quickly and rigorously recent models from specialized AI conferences and journals.
+                  Eager to discover varied architectures and applications of Machine Learning in
+                  demanding environments, with the opportunity to contribute to publications, I
+                  decided to multiply my experiences in laboratories, notably in the medical and
+                  biomedical fields. This allowed me to learn to understand, adapt and implement
+                  quickly and rigorously recent models from specialized AI conferences and journals.
                 </p>
                 <p className="mt-4 text-xs md:text-sm text-muted-foreground leading-relaxed">
-                  In parallel, I code a lot in my free time: embedded software in C/C++, Python tools, Java projects
-                  around Minecraft including network communications, APIs and server tools. I also enjoy doing some web
-                  development from time to time, as you can see with this very website. I invite you to consult my
-                  GitHub, which reflects my attachment to clean, documented projects integrating good CI/CD practices.
+                  In parallel, I code a lot in my free time: embedded software in C/C++, Python
+                  tools, Java projects around Minecraft including network communications, APIs and
+                  server tools. I also enjoy doing some web development from time to time, as you
+                  can see with this very website. I invite you to consult my GitHub, which reflects
+                  my attachment to clean, documented projects integrating good CI/CD practices.
                 </p>
               </div>
               <div id="research" className="scroll-mt-20 lg:border-l lg:border-border lg:pl-16">
@@ -401,36 +453,43 @@ function Portfolio() {
                   <li className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
                     <span>
-                      <span className="text-foreground font-medium">Computer Vision</span> — detection, segmentation,
-                      tracking and 3D understanding.
+                      <span className="text-foreground font-medium">Computer Vision</span> —
+                      detection, segmentation, tracking and 3D understanding.
                     </span>
                   </li>
                   <li className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
                     <span>
-                      <span className="text-foreground font-medium">Medical &amp; biomedical imaging</span> — adapting
-                      state-of-the-art models to clinical data and constraints.
+                      <span className="text-foreground font-medium">
+                        Medical &amp; biomedical imaging
+                      </span>{" "}
+                      — adapting state-of-the-art models to clinical data and constraints.
                     </span>
                   </li>
                   <li className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
                     <span>
-                      <span className="text-foreground font-medium">Real-time &amp; embedded AI</span> — efficient
-                      inference on edge devices, drones and robotics.
+                      <span className="text-foreground font-medium">
+                        Real-time &amp; embedded AI
+                      </span>{" "}
+                      — efficient inference on edge devices, drones and robotics.
                     </span>
                   </li>
                   <li className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
                     <span>
-                      <span className="text-foreground font-medium">Foundation &amp; multimodal models</span> —
-                      leveraging large pretrained vision and vision-language models for downstream tasks.
+                      <span className="text-foreground font-medium">
+                        Foundation &amp; multimodal models
+                      </span>{" "}
+                      — leveraging large pretrained vision and vision-language models for downstream
+                      tasks.
                     </span>
                   </li>
                   <li className="flex gap-3">
                     <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
                     <span>
-                      <span className="text-foreground font-medium">Reliable ML engineering</span> — reproducible
-                      pipelines, rigorous evaluation and clean MLOps practices.
+                      <span className="text-foreground font-medium">Reliable ML engineering</span> —
+                      reproducible pipelines, rigorous evaluation and clean MLOps practices.
                     </span>
                   </li>
                 </ul>
@@ -514,9 +573,12 @@ function Portfolio() {
             <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
             <div className="relative flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
               <div>
-                <h3 className="font-display text-2xl font-semibold text-card-foreground">Full Curriculum Vitae</h3>
+                <h3 className="font-display text-2xl font-semibold text-card-foreground">
+                  Full Curriculum Vitae
+                </h3>
                 <p className="mt-2 text-muted-foreground max-w-lg">
-                  Complete academic record, publications, talks and technical proficiencies in a single PDF.
+                  Complete academic record, publications, talks and technical proficiencies in a
+                  single PDF.
                 </p>
                 <p className="mt-3 font-mono-tight text-xs text-muted-foreground">PDF · ~180 KB</p>
               </div>
@@ -607,14 +669,18 @@ function TimelineItem({
       <div className="pt-1.5">
         <div className="font-mono-tight text-xs text-muted-foreground tracking-wider">{period}</div>
         {duration && (
-          <div className="font-mono-tight text-[10px] text-muted-foreground/60 mt-0.5 tracking-wider">{duration}</div>
+          <div className="font-mono-tight text-[10px] text-muted-foreground/60 mt-0.5 tracking-wider">
+            {duration}
+          </div>
         )}
       </div>
       <div>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
           <p className="text-sm text-brand font-medium">{subtitle}</p>
           {location && (
-            <span className="font-mono-tight text-[11px] tracking-wide text-muted-foreground">{location}</span>
+            <span className="font-mono-tight text-[11px] tracking-wide text-muted-foreground">
+              {location}
+            </span>
           )}
           {concurrent && (
             <span className="text-[10px] font-mono-tight uppercase tracking-wider px-1.5 py-0.5 rounded border border-brand/40 text-brand/90">
@@ -623,11 +689,15 @@ function TimelineItem({
           )}
         </div>
         {kind && (
-          <div className="mt-2 font-mono-tight text-[10px] uppercase tracking-[0.18em] text-brand/80">{kind}</div>
+          <div className="mt-2 font-mono-tight text-[10px] uppercase tracking-[0.18em] text-brand/80">
+            {kind}
+          </div>
         )}
         <h3 className="font-display text-xl font-semibold text-foreground mt-1">{title}</h3>
         {frTitle && <p className="text-sm text-muted-foreground mt-0.5 italic">{frTitle}</p>}
-        {supervisor && <p className="text-xs text-muted-foreground/80 mt-1.5 italic">{supervisor}</p>}
+        {supervisor && (
+          <p className="text-xs text-muted-foreground/80 mt-1.5 italic">{supervisor}</p>
+        )}
         {description && <p className="mt-2 text-muted-foreground leading-relaxed">{description}</p>}
         {highlights && highlights.length > 0 && (
           <ul className="mt-3 space-y-1.5">
@@ -662,7 +732,9 @@ function TimelineItem({
                       {p.venue}
                       {p.year && <span className="ml-1">{p.year}</span>}
                     </span>
-                    {p.status && <span className="opacity-60 italic normal-case">· {p.status}</span>}
+                    {p.status && (
+                      <span className="opacity-60 italic normal-case">· {p.status}</span>
+                    )}
                     {p.url && (
                       <ArrowUpRight className="size-3 ml-0.5 opacity-60 group-hover:opacity-100 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all" />
                     )}
@@ -699,7 +771,10 @@ function TimelineItem({
             </summary>
             <ul className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-1.5">
               {courses.map((c) => (
-                <li key={c} className="flex items-baseline gap-2 text-sm text-muted-foreground/90 leading-snug">
+                <li
+                  key={c}
+                  className="flex items-baseline gap-2 text-sm text-muted-foreground/90 leading-snug"
+                >
                   <span className="font-mono-tight text-brand/70 text-xs">›</span>
                   <span>{c}</span>
                 </li>
@@ -799,7 +874,9 @@ function RepoCard({ repo }: { repo: RepoRef }) {
     const base = `https://api.github.com/repos/${repo.owner}/${repo.name}`;
     Promise.all([
       fetch(base).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
-      fetch(`${base}/languages`).then((r) => (r.ok ? r.json() : Promise.reject(new Error(String(r.status))))),
+      fetch(`${base}/languages`).then((r) =>
+        r.ok ? r.json() : Promise.reject(new Error(String(r.status))),
+      ),
       fetch(`${base}/releases?per_page=1`).then((r) =>
         r.ok
           ? r.json().then((arr: unknown[]) => {
@@ -823,8 +900,14 @@ function RepoCard({ repo }: { repo: RepoRef }) {
             .slice(0, 4)
             .map(([name, bytes]) => ({ name, pct: (bytes / total) * 100 }));
           const lic = info.license;
-          const license = lic && lic.spdx_id && lic.spdx_id !== "NOASSERTION" ? lic.spdx_id : (lic?.name ?? null);
-          const next: RepoData = { description: info.description, languages: sorted, license, releases };
+          const license =
+            lic && lic.spdx_id && lic.spdx_id !== "NOASSERTION" ? lic.spdx_id : (lic?.name ?? null);
+          const next: RepoData = {
+            description: info.description,
+            languages: sorted,
+            license,
+            releases,
+          };
           setData(next);
           try {
             localStorage.setItem(cacheKey, JSON.stringify({ data: next, ts: Date.now() }));
@@ -876,7 +959,10 @@ function RepoCard({ repo }: { repo: RepoRef }) {
         <div className="mt-4 pt-4 border-t border-border/70 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground">
           {data!.languages.map((l) => (
             <span key={l.name} className="flex items-center gap-1.5">
-              <span className="size-2.5 rounded-full" style={{ backgroundColor: LANGUAGE_COLORS[l.name] ?? "#888" }} />
+              <span
+                className="size-2.5 rounded-full"
+                style={{ backgroundColor: LANGUAGE_COLORS[l.name] ?? "#888" }}
+              />
               {l.name}
             </span>
           ))}
@@ -912,9 +998,12 @@ const EDUCATION: {
     period: "Feb 2025 — Mar 2026",
     school: "Centrale Lyon · Université Lyon 1",
     location: "Lyon, France",
-    degree: "MSc in Machine Learning & Medical Imaging",
+    degree: "MSc in Machine Learning and Medical Imaging",
     frDegree: "Master 2",
-    highlights: ["Ranked 2nd in cohort — GPA 3.90 / 4.00", "Completed alongside my final year at INSA Lyon"],
+    highlights: [
+      "Ranked 2nd in cohort — GPA 3.90 / 4.00",
+      "Completed alongside my final year at INSA Lyon",
+    ],
     courses: [
       "Machine Learning",
       "Inverse Problems",
@@ -1005,7 +1094,8 @@ const EXPERIENCE: {
     role: "Graph ML & 3D Medical Image Analysis",
     company: "CREATIS",
     location: "Lyon, France",
-    supervisor: "Supervised by Dr. Odyssée Merveille, Dr. Nathan Painchaud and Prof. Olivier Bernard",
+    supervisor:
+      "Supervised by Dr. Odyssée Merveille, Dr. Nathan Painchaud and Prof. Olivier Bernard",
     highlights: [
       "Researched and trained GNN architectures for pulmonary embolism risk stratification",
       "Built PyTorch Geometric vascular graph datasets from segmentation-derived 3D anatomy",
