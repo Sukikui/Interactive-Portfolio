@@ -17,3 +17,22 @@ Current local URLs:
 - `/for/demo-fr`
 
 Keep private or real company-specific presentations out of the repository.
+
+## Remote presentations
+
+Remote presentations are loaded from Vercel Edge Config when no local presentation matches the
+requested slug.
+
+Use one Edge Config item per presentation:
+
+```txt
+presentation_<slug>
+```
+
+Example:
+
+```txt
+presentation_company-x
+```
+
+The value must follow the same plain object shape as the local demos.

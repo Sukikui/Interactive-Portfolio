@@ -2,12 +2,8 @@ import type { SnapshotItem } from "./types";
 
 export const snapshotItems = [
   {
-    label: "Dual degree",
-    text: "Diplôme d’Ingénieur focused on Computer Vision + MSc focused on Machine Learning and Medical Imaging.",
-  },
-  {
-    label: "5 years",
-    text: "Electrical Engineering background: signals, sensors, embedded systems and real-time constraints.",
+    label: "Dual Master's degree",
+    text: "Diplôme d’Ingénieur + Master 2 focused on Machine Learning, Computer Vision and Medical Imaging.",
   },
   {
     label: "+6 years",
@@ -18,7 +14,11 @@ export const snapshotItems = [
     text: "ML research experience with latent diffusion, VAEs, GNNs, U-Net, LSTM, supervised and self-supervised learning.",
   },
   {
+    label: "5 years",
+    text: "Electrical Engineering background: electronics, control, signals, sensors and embedded systems.",
+  },
+  {
     label: "Embedded projects",
-    text: "Side projects involving real-time systems, network communication, sensor interfaces and embedded AI implementation.",
+    text: "Academic & side projects involving real-time systems, network communication and embedded AI implementation.",
   },
 ] satisfies readonly SnapshotItem[];

@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { PortfolioPage } from "@/components/portfolio/portfolio-page";
-import { getLocalPresentation, siteContent } from "@/content";
+import { siteContent } from "@/content";
+import { loadPresentation } from "@/content/presentations/load-presentation.functions";
 
 export const Route = createFileRoute("/for/$slug")({
+  loader: ({ params }) => loadPresentation({ data: { slug: params.slug } }),
   head: () => ({
     meta: [
       { title: siteContent.seo.title },
@@ -17,8 +19,7 @@ export const Route = createFileRoute("/for/$slug")({
 });
 
 function PresentationRoute() {
-  const { slug } = Route.useParams();
-  const presentation = getLocalPresentation(slug);
+  const presentation = Route.useLoaderData();
 
   return <PortfolioPage presentation={presentation} />;
 }

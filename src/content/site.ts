@@ -13,9 +13,9 @@ export const siteContent = {
   seo: {
     title: "Tristan Habémont's Website",
     description:
-      "Academic portfolio of Tristan Habémont, Machine Learning & Computer Vision Engineer. Research interests, education, experience, open-source projects and CV.",
+      "Portfolio of Tristan Habémont, Machine Learning & Computer Vision Engineer focused on research-driven vision models and real-world applications.",
     openGraphDescription:
-      "Research interests, projects and CV of Tristan Habémont, Machine Learning & Computer Vision Engineer.",
+      "Machine Learning, Computer Vision, research experience and engineering projects by Tristan Habémont.",
     author: "Tristan Habémont",
   },
   hero: {
