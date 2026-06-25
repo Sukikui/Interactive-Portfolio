@@ -11,14 +11,14 @@ export const snapshotItems = [
   },
   {
     label: "1.5 years",
-    text: "ML research experience with latent diffusion, VAEs, GNNs, U-Net, LSTM, supervised and self-supervised learning.",
+    text: "ML research experience with latent diffusion, VAE, GNN, U-Net, CNN, LSTM, SL and SSL.",
   },
   {
     label: "5 years",
-    text: "Electrical Engineering background: electronics, control, signals, sensors and embedded systems.",
+    text: "Strong Electrical Engineering background: electronics, control, signals, sensors and embedded systems.",
   },
   {
     label: "Embedded projects",
-    text: "Academic & side projects involving real-time systems, network communication and embedded AI implementation.",
+    text: "Academic & side projects involving real-time systems, network communication and embedded AI.",
   },
 ] satisfies readonly SnapshotItem[];
