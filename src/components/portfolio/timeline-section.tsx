@@ -131,7 +131,7 @@ function TimelineLinks({ item }: { item: TimelineItemContent }) {
               <FileText className="size-3" />
               {publication.type ?? "Publication"}
             </span>
-            <span className="group flex items-center gap-1.5 px-2 py-1 text-foreground/90">
+            <span className="group flex min-w-0 items-center gap-1.5 px-2 py-1 text-foreground/90">
               {!publication.hideVenue && (
                 <span className="font-semibold text-brand">
                   <PublicationTitle title={publication.venue} />
@@ -179,7 +179,7 @@ function PublicationTitle({ title }: { title: string }) {
     <span
       aria-label={truncated ? title : undefined}
       title={truncated ? title : undefined}
-      className="inline-block align-bottom whitespace-nowrap"
+      className="inline-block max-w-[12rem] align-bottom whitespace-nowrap sm:max-w-none"
       style={
         truncated
           ? {

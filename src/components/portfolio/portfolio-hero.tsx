@@ -95,10 +95,10 @@ export function PortfolioHero({
           </div>
 
           <div className="animate-fade-up text-center text-white [animation-delay:120ms] md:text-left">
-            <h1 className="text-[clamp(2rem,9.5vw,3rem)] leading-[1.02] font-semibold tracking-tight whitespace-nowrap md:text-7xl">
+            <h1 className="max-w-full text-[clamp(1.85rem,9vw,3rem)] leading-[1.02] font-semibold tracking-tight whitespace-nowrap md:text-7xl">
               {identity.fullName}
             </h1>
-            <p className="mt-2 flex items-center justify-center gap-1.5 text-[clamp(0.8rem,3vw,0.95rem)] font-medium tracking-[0.035em] whitespace-nowrap text-hero-accent md:mt-3 md:justify-start md:gap-2 md:text-base md:tracking-[0.08em]">
+            <p className="mt-2 flex max-w-full items-center justify-center gap-1.5 text-[clamp(0.72rem,3vw,0.95rem)] font-medium tracking-[0.01em] whitespace-nowrap text-hero-accent md:mt-3 md:justify-start md:gap-2 md:text-base md:tracking-[0.08em]">
               <span
                 aria-hidden
                 className="font-mono-tight text-base font-light opacity-70 md:text-lg"
