@@ -19,8 +19,8 @@ projects, documents and custom interactive presentations for targeted visitors.
 
 - Responsive portfolio with a hero section, profile snapshot, research interests, experience,
   education, GitHub projects, technical skills and CV card.
-- Content-first architecture: most personal information is edited from `src/content/` instead of
-  being hard-coded inside components.
+- Content-first architecture: most personal information is edited from
+  [`src/content/`](src/content/) instead of being hard-coded inside components.
 - Interactive presentation route at `/for/:slug`, with local demos and optional Vercel Edge Config
   remote data.
 - GitHub repository cards enriched from the public GitHub API and cached in `localStorage`.
@@ -92,32 +92,32 @@ public/
 
 Important files:
 
-- `src/content/site.ts`: identity, SEO, hero, contact links, footer and stack.
-- `src/content/snapshot.ts`: short “at a glance” profile highlights.
-- `src/content/overview.ts`: profile overview and research interests.
-- `src/content/experience.ts`: experience timeline.
-- `src/content/education.ts`: education timeline.
-- `src/content/projects.ts`: GitHub repository groups.
-- `src/content/skills.ts`: technical skills.
-- `src/content/sections.ts`: section order, navigation labels and CV card.
-- `src/content/documents.ts`: public document URLs.
+- [`src/content/site.ts`](src/content/site.ts): identity, SEO, hero, contact links, footer and stack.
+- [`src/content/snapshot.ts`](src/content/snapshot.ts): short “at a glance” profile highlights.
+- [`src/content/overview.ts`](src/content/overview.ts): profile overview and research interests.
+- [`src/content/experience.ts`](src/content/experience.ts): experience timeline.
+- [`src/content/education.ts`](src/content/education.ts): education timeline.
+- [`src/content/projects.ts`](src/content/projects.ts): GitHub repository groups.
+- [`src/content/skills.ts`](src/content/skills.ts): technical skills.
+- [`src/content/sections.ts`](src/content/sections.ts): section order, navigation labels and CV card.
+- [`src/content/documents.ts`](src/content/documents.ts): public document URLs.
 
 See [`src/content/README.md`](src/content/README.md) for content editing details.
 
 ## 📝 Editing content
 
-Most updates should be made in `src/content/`.
+Most updates should be made in [`src/content/`](src/content/).
 
 The intent is to keep the codebase simple and avoid scattering portfolio data across UI components.
 Components should describe presentation and behavior; content files should describe what is displayed.
 
 Examples:
 
-- Change the job title or hero text in `src/content/site.ts`.
-- Add an experience entry in `src/content/experience.ts`.
-- Add a GitHub project in `src/content/projects.ts`.
-- Reorder sections in `src/content/sections.ts`.
-- Replace the CV PDF in `public/documents/`.
+- Change the job title or hero text in [`src/content/site.ts`](src/content/site.ts).
+- Add an experience entry in [`src/content/experience.ts`](src/content/experience.ts).
+- Add a GitHub project in [`src/content/projects.ts`](src/content/projects.ts).
+- Reorder sections in [`src/content/sections.ts`](src/content/sections.ts).
+- Replace the CV PDF in [`public/documents/`](public/documents/).
 
 ## 📄 Documents and assets
 
@@ -151,7 +151,8 @@ Custom presentations are available under:
 /for/:slug
 ```
 
-The route first tries to load a local presentation from `src/content/presentations/local.ts`.
+The route first tries to load a local presentation from
+[`src/content/presentations/local.ts`](src/content/presentations/local.ts).
 If no local presentation matches, it tries Vercel Edge Config.
 
 Local demo routes:
@@ -202,7 +203,7 @@ Remote presentations require Vercel Edge Config. The app checks for the `EDGE_CO
 variable automatically; if it is missing or no presentation exists for a slug, the route simply
 renders the normal portfolio.
 
-Current `vercel.json` disables Git-triggered deployments:
+Current [`vercel.json`](vercel.json) disables Git-triggered deployments:
 
 ```json
 {
@@ -216,7 +217,7 @@ Change this only if automatic Vercel deployments should be re-enabled.
 
 ## 🐙 GitHub repository cards
 
-Project cards are defined in `src/content/projects.ts`.
+Project cards are defined in [`src/content/projects.ts`](src/content/projects.ts).
 
 At runtime, the site fetches public GitHub repository metadata:
 
@@ -230,10 +231,11 @@ The result is cached in `localStorage` for six hours to avoid repeated API calls
 ## 🛠️ Development notes
 
 - Prefer reusing the existing stack and patterns before adding new dependencies.
-- Keep portfolio content in `src/content/` whenever possible.
-- Keep public documents in `public/documents/`.
-- Keep route files in `src/routes/`; this project uses TanStack Start file-based routing.
-- `routeTree.gen.ts` is generated and should not be edited manually.
+- Keep portfolio content in [`src/content/`](src/content/) whenever possible.
+- Keep public documents in [`public/documents/`](public/documents/).
+- Keep route files in [`src/routes/`](src/routes/); this project uses TanStack Start file-based
+  routing.
+- [`src/routeTree.gen.ts`](src/routeTree.gen.ts) is generated and should not be edited manually.
 
 ## ⚖️ License
 
