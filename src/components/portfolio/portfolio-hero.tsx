@@ -62,7 +62,7 @@ export function PortfolioHero({
   return (
     <section
       id="hero"
-      className="relative min-h-[100svh] w-full overflow-hidden bg-[#0b1020] md:h-screen"
+      className="relative min-h-[120svh] w-full overflow-hidden bg-[#0b1020] md:h-screen"
     >
       <img
         src={content.backgroundImage}
@@ -72,7 +72,7 @@ export function PortfolioHero({
       />
       <div className="absolute inset-0 bg-black/[0.42]" />
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl items-center px-6 pt-24 pb-24 md:h-full md:min-h-0 md:pt-0 md:pb-0">
+      <div className="relative mx-auto flex min-h-[120svh] max-w-6xl items-center px-6 pt-24 pb-24 md:h-full md:min-h-0 md:pt-0 md:pb-0">
         <div className="mx-auto grid w-full max-w-4xl items-center gap-6 md:grid-cols-[auto_1fr] md:gap-20">
           <div
             className={`flex justify-center transition-all duration-700 ease-out md:justify-start ${
@@ -98,7 +98,7 @@ export function PortfolioHero({
             <h1 className="text-[clamp(2rem,9.5vw,3rem)] leading-[1.02] font-semibold tracking-tight whitespace-nowrap md:text-7xl">
               {identity.fullName}
             </h1>
-            <p className="mt-2 flex items-center justify-center gap-1.5 text-[clamp(0.68rem,2.7vw,0.875rem)] font-medium tracking-[0.035em] whitespace-nowrap text-hero-accent md:mt-3 md:justify-start md:gap-2 md:text-base md:tracking-[0.08em]">
+            <p className="mt-2 flex items-center justify-center gap-1.5 text-[clamp(0.8rem,3vw,0.95rem)] font-medium tracking-[0.035em] whitespace-nowrap text-hero-accent md:mt-3 md:justify-start md:gap-2 md:text-base md:tracking-[0.08em]">
               <span
                 aria-hidden
                 className="font-mono-tight text-base font-light opacity-70 md:text-lg"
