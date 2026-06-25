@@ -2,15 +2,26 @@ import { educationItems } from "./education";
 import { experienceItems } from "./experience";
 import { overviewSection } from "./overview";
 import { projectGroups } from "./projects";
+import { skillGroups } from "./skills";
+import { snapshotItems } from "./snapshot";
 import type { NavigationItem, PortfolioSection } from "./types";
 
 export const portfolioSections = [
+  {
+    type: "snapshot",
+    id: "snapshot",
+    navLabel: "At a Glance",
+    index: "01",
+    title: "At a Glance",
+    icon: "overview",
+    items: snapshotItems,
+  },
   overviewSection,
   {
     type: "timeline",
     id: "experience",
     navLabel: "Experience",
-    index: "03",
+    index: "04",
     title: "Experience",
     icon: "experience",
     items: experienceItems,
@@ -19,7 +30,7 @@ export const portfolioSections = [
     type: "timeline",
     id: "education",
     navLabel: "Education",
-    index: "04",
+    index: "05",
     title: "Education",
     icon: "education",
     items: educationItems,
@@ -27,9 +38,9 @@ export const portfolioSections = [
   {
     type: "repositories",
     id: "projects",
-    navLabel: "Side Projects",
-    index: "05",
-    title: "Side Projects",
+    navLabel: "Projects",
+    index: "06",
+    title: "Academic & Side Projects",
     icon: "repositories",
     groups: projectGroups,
     footerLink: {
@@ -38,15 +49,24 @@ export const portfolioSections = [
     },
   },
   {
+    type: "skills",
+    id: "skills",
+    navLabel: "Skills",
+    index: "07",
+    title: "Technical Skills",
+    icon: "skills",
+    groups: skillGroups,
+  },
+  {
     type: "download",
     id: "cv",
     navLabel: "CV",
-    index: "06",
+    index: "08",
     title: "Curriculum Vitae",
     icon: "document",
-    cardTitle: "Full Curriculum Vitae",
+    cardTitle: "Résumé PDF",
     description:
-      "Complete academic record, publications, talks and technical proficiencies in a single PDF.",
+      "A concise PDF version of my profile, so you can keep the essentials at hand after browsing this website.",
     meta: "PDF · ~180 KB",
     href: "/cv.pdf",
     buttonLabel: "Download CV",

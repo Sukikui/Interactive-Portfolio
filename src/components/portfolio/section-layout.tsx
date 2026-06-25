@@ -4,16 +4,38 @@ import type { DownloadSection, PortfolioSection, SplitSection } from "@/content/
 
 import { RepositoriesSectionView } from "./repositories-section";
 import { SectionHeading, SectionShell } from "./section-shell";
+import { SkillsSectionView } from "./skills-section";
+import { SnapshotSectionView } from "./snapshot-section";
 import { TimelineSectionView } from "./timeline-section";
 
-export function PortfolioSectionView({ section }: { section: PortfolioSection }) {
+type PortfolioSectionViewProps = {
+  section: PortfolioSection;
+  highlightedRepositoryId: string | null;
+  onRepositoryHighlightClear: () => void;
+};
+
+export function PortfolioSectionView({
+  section,
+  highlightedRepositoryId,
+  onRepositoryHighlightClear,
+}: PortfolioSectionViewProps) {
   switch (section.type) {
     case "split":
       return <SplitSectionView section={section} />;
     case "timeline":
       return <TimelineSectionView section={section} />;
     case "repositories":
-      return <RepositoriesSectionView section={section} />;
+      return (
+        <RepositoriesSectionView
+          section={section}
+          highlightedRepositoryId={highlightedRepositoryId}
+          onHighlightClear={onRepositoryHighlightClear}
+        />
+      );
+    case "skills":
+      return <SkillsSectionView section={section} />;
+    case "snapshot":
+      return <SnapshotSectionView section={section} />;
     case "download":
       return <DownloadSectionView section={section} />;
   }
@@ -45,9 +67,9 @@ function SplitSectionView({ section }: { section: SplitSection }) {
                   {column.items.map((item) => (
                     <li key={item.title} className="flex gap-3">
                       <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
-                      <span>
-                        <span className="font-medium text-foreground">{item.title}</span> —{" "}
-                        {item.description}
+                      <span className="space-y-1">
+                        <span className="block font-medium text-foreground">{item.title}</span>
+                        <span className="block">{item.description}</span>
                       </span>
                     </li>
                   ))}

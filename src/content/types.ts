@@ -11,6 +11,20 @@ export type HeroTextSegment = {
   emphasis?: boolean;
 };
 
+export type HeroTextParagraph = {
+  segments: readonly HeroTextSegment[];
+  spacing?: "compact" | "normal";
+};
+
+export type FooterTechnology =
+  | "bun"
+  | "react"
+  | "tailwind"
+  | "tanstack"
+  | "typescript"
+  | "vercel"
+  | "vite";
+
 export type SiteContent = {
   language: string;
   identity: {
@@ -27,15 +41,26 @@ export type SiteContent = {
     backgroundImage: string;
     profileImage: string;
     profileAlt: string;
-    summary: readonly HeroTextSegment[];
+    summary: readonly HeroTextParagraph[];
     email: string;
     socials: readonly SocialLink[];
-    scrollLabel: string;
     photoCredit: string;
   };
   footer: {
-    copyright: string;
-    tagline: string;
+    contentLabel: string;
+    contentRights: string;
+    codeLabel: string;
+    codeLicense: string;
+    sourceLink: {
+      label: string;
+      repository: RepositoryReference;
+    };
+    stackLabel: string;
+    technologies: readonly {
+      id: FooterTechnology;
+      label: string;
+      href: string;
+    }[];
   };
 };
 
@@ -43,8 +68,10 @@ export type SectionIcon =
   | "document"
   | "education"
   | "experience"
+  | "overview"
   | "repositories"
   | "research"
+  | "skills"
   | "user";
 
 export type SectionHeadingContent = {
@@ -79,6 +106,7 @@ export type Publication = {
   type?: string;
   status?: string;
   url?: string;
+  hideVenue?: boolean;
 };
 
 export type RepositoryLink = {
@@ -136,9 +164,31 @@ export type DownloadSection = SectionHeadingContent & {
   buttonLabel: string;
 };
 
+export type SkillGroup = {
+  title: string;
+  skills: readonly string[];
+};
+
+export type SkillsSection = SectionHeadingContent & {
+  type: "skills";
+  groups: readonly SkillGroup[];
+};
+
+export type SnapshotItem = {
+  label: string;
+  text: string;
+};
+
+export type SnapshotSection = SectionHeadingContent & {
+  type: "snapshot";
+  items: readonly SnapshotItem[];
+};
+
 export type PortfolioSection =
   | DownloadSection
   | RepositoriesSection
+  | SkillsSection
+  | SnapshotSection
   | SplitSection
   | TimelineSection;
 

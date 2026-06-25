@@ -2,6 +2,7 @@ import heroBackground from "@/assets/hero-bg.jpeg";
 import profileImage from "@/assets/profile.png";
 
 import type { SiteContent } from "./types";
+import { projectRepositories } from "./projects";
 
 export const siteContent = {
   language: "en",
@@ -10,7 +11,7 @@ export const siteContent = {
     jobTitle: "Machine Learning & Computer Vision Engineer",
   },
   seo: {
-    title: "Tristan Habémont — Machine Learning & Computer Vision Engineer",
+    title: "Tristan Habémont's Website",
     description:
       "Academic portfolio of Tristan Habémont, Machine Learning & Computer Vision Engineer. Research interests, education, experience, open-source projects and CV.",
     openGraphDescription:
@@ -22,13 +23,29 @@ export const siteContent = {
     profileImage,
     profileAlt: "Tristan Habémont portrait",
     summary: [
-      { text: "Building " },
-      { text: "intelligent systems", emphasis: true },
-      { text: " at the intersection of " },
-      { text: "deep learning", emphasis: true },
-      { text: " and " },
-      { text: "applied mathematics", emphasis: true },
-      { text: "." },
+      {
+        segments: [
+          { text: "Passionate about " },
+          { text: "Machine Learning", emphasis: true },
+          { text: ", with a background in " },
+          { text: "Electrical Engineering", emphasis: true },
+          { text: " and a strong focus on " },
+          { text: "Computer Vision", emphasis: true },
+          { text: "." },
+        ],
+      },
+      {
+        spacing: "compact",
+        segments: [
+          { text: "I am looking for opportunities to build on my " },
+          { text: "research experience", emphasis: true },
+          { text: " and develop models for real-world applications, from " },
+          { text: "medical and satellite imaging", emphasis: true },
+          { text: " to " },
+          { text: "embedded and autonomous systems", emphasis: true },
+          { text: "." },
+        ],
+      },
     ],
     email: "tristan.habemont@gmail.com",
     socials: [
@@ -43,11 +60,27 @@ export const siteContent = {
         href: "https://github.com/sukikui",
       },
     ],
-    scrollLabel: "Scroll",
-    photoCredit: "I took this photo at Entsū-in Temple (円通院) in Matsushima :)",
+    photoCredit:
+      "I took this photo at Entsū-in Temple (円通院) in Matsushima during the momiji season :)",
   },
   footer: {
-    copyright: "All rights reserved",
-    tagline: "Built with TanStack Start · Designed in the open",
+    contentLabel: "Content & assets",
+    contentRights: "All rights reserved",
+    codeLabel: "Source code",
+    codeLicense: "MIT licensed",
+    sourceLink: {
+      label: "Like it? Fork it.",
+      repository: projectRepositories.interactivePortfolio,
+    },
+    stackLabel: "Built with",
+    technologies: [
+      { id: "tanstack", label: "TanStack Start", href: "https://tanstack.com/start/latest" },
+      { id: "react", label: "React", href: "https://react.dev" },
+      { id: "typescript", label: "TypeScript", href: "https://www.typescriptlang.org" },
+      { id: "vite", label: "Vite", href: "https://vite.dev" },
+      { id: "tailwind", label: "Tailwind CSS", href: "https://tailwindcss.com" },
+      { id: "bun", label: "Bun", href: "https://bun.sh" },
+      { id: "vercel", label: "Vercel", href: "https://vercel.com" },
+    ],
   },
 } satisfies SiteContent;

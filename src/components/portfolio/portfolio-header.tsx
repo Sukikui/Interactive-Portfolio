@@ -10,9 +10,15 @@ type PortfolioHeaderProps = {
   fullName: string;
   items: readonly NavigationItem[];
   navigation: NavigationState;
+  navigationLocked?: boolean;
 };
 
-export function PortfolioHeader({ fullName, items, navigation }: PortfolioHeaderProps) {
+export function PortfolioHeader({
+  fullName,
+  items,
+  navigation,
+  navigationLocked = false,
+}: PortfolioHeaderProps) {
   const { theme, toggle } = useTheme();
   const { activeId, itemRefs, mobileNavRef, scrolled, scrollTo } = navigation;
 
@@ -40,7 +46,10 @@ export function PortfolioHeader({ fullName, items, navigation }: PortfolioHeader
         <header key={key} className={wrapperClass} aria-hidden={key === "fixed" && !scrolled}>
           <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-6">
             <button
-              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+              disabled={navigationLocked}
+              onClick={() => {
+                if (!navigationLocked) window.scrollTo({ top: 0, behavior: "smooth" });
+              }}
               className={`hidden text-base font-semibold tracking-tight transition-colors md:block ${
                 onDark ? "text-white" : "text-foreground"
               } ${key === "hero" ? "pointer-events-none invisible" : ""}`}
@@ -56,7 +65,10 @@ export function PortfolioHeader({ fullName, items, navigation }: PortfolioHeader
                   key={item.id}
                   item={item}
                   onDark={onDark}
-                  onClick={() => scrollTo(item.id)}
+                  disabled={navigationLocked}
+                  onClick={() => {
+                    if (!navigationLocked) scrollTo(item.id);
+                  }}
                 />
               ))}
             </nav>
@@ -85,7 +97,10 @@ export function PortfolioHeader({ fullName, items, navigation }: PortfolioHeader
                           }
                         : undefined
                     }
-                    onClick={() => scrollTo(item.id)}
+                    disabled={navigationLocked}
+                    onClick={() => {
+                      if (!navigationLocked) scrollTo(item.id);
+                    }}
                   />
                 ))}
               </div>
@@ -111,11 +126,19 @@ type NavigationButtonProps = {
   item: NavigationItem;
   onDark: boolean;
   active?: boolean;
+  disabled?: boolean;
   refCallback?: (element: HTMLButtonElement | null) => void;
   onClick: () => void;
 };
 
-function NavigationButton({ item, onDark, active, refCallback, onClick }: NavigationButtonProps) {
+function NavigationButton({
+  item,
+  onDark,
+  active,
+  disabled,
+  refCallback,
+  onClick,
+}: NavigationButtonProps) {
   const color = onDark
     ? active
       ? "text-white"
@@ -127,8 +150,9 @@ function NavigationButton({ item, onDark, active, refCallback, onClick }: Naviga
   return (
     <button
       ref={refCallback}
+      disabled={disabled}
       onClick={onClick}
-      className={`shrink-0 rounded-md px-3 py-2 text-sm font-medium transition-colors ${color}`}
+      className={`shrink-0 rounded-md px-3 py-2 text-sm font-medium transition-colors disabled:pointer-events-none disabled:opacity-40 ${color}`}
     >
       {item.label}
     </button>

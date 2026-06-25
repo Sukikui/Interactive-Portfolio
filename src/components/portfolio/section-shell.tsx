@@ -5,6 +5,8 @@ import {
   FlaskConical,
   FolderGit2,
   GraduationCap,
+  Sparkles,
+  Wrench,
   User,
   type LucideIcon,
 } from "lucide-react";
@@ -15,8 +17,10 @@ const SECTION_ICONS: Record<SectionIcon, LucideIcon> = {
   document: FileText,
   education: GraduationCap,
   experience: Briefcase,
+  overview: Sparkles,
   repositories: FolderGit2,
   research: FlaskConical,
+  skills: Wrench,
   user: User,
 };
 

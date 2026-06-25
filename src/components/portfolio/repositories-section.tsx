@@ -1,8 +1,12 @@
+import { useEffect, useRef } from "react";
+
 import { ArrowUpRight, Scale, Tag } from "lucide-react";
 import { FaGithub } from "react-icons/fa6";
 
 import type { RepositoriesSection, RepositoryReference } from "@/content";
 import { useRepositoryData } from "@/hooks/use-repository-data";
+import { getGitHubRepositoryUrl, getRepositoryAnchorId } from "@/lib/github";
+import { cn } from "@/lib/utils";
 
 import { SectionShell } from "./section-shell";
 
@@ -28,7 +32,17 @@ const LANGUAGE_COLORS: Record<string, string> = {
   Java: "#b07219",
 };
 
-export function RepositoriesSectionView({ section }: { section: RepositoriesSection }) {
+type RepositoriesSectionViewProps = {
+  section: RepositoriesSection;
+  highlightedRepositoryId: string | null;
+  onHighlightClear: () => void;
+};
+
+export function RepositoriesSectionView({
+  section,
+  highlightedRepositoryId,
+  onHighlightClear,
+}: RepositoriesSectionViewProps) {
   return (
     <SectionShell heading={section}>
       <div className="space-y-10">
@@ -45,6 +59,8 @@ export function RepositoriesSectionView({ section }: { section: RepositoriesSect
                 <RepositoryCard
                   key={`${repository.owner}/${repository.name}`}
                   repository={repository}
+                  highlightedRepositoryId={highlightedRepositoryId}
+                  onHighlightClear={onHighlightClear}
                 />
               ))}
             </div>
@@ -69,20 +85,59 @@ export function RepositoriesSectionView({ section }: { section: RepositoriesSect
   );
 }
 
-function RepositoryCard({ repository }: { repository: RepositoryReference }) {
+type RepositoryCardProps = {
+  repository: RepositoryReference;
+  highlightedRepositoryId: string | null;
+  onHighlightClear: () => void;
+};
+
+function RepositoryCard({
+  repository,
+  highlightedRepositoryId,
+  onHighlightClear,
+}: RepositoryCardProps) {
   const { data, error } = useRepositoryData(repository);
   const hasFooter = !!(data && (data.languages.length > 0 || data.license || data.releases > 0));
   const description = repository.description ?? data?.description;
+  const anchorId = getRepositoryAnchorId(repository);
+  const isHighlighted = highlightedRepositoryId === anchorId;
+  const hasInteractedWithHighlight = useRef(false);
+
+  useEffect(() => {
+    if (isHighlighted) hasInteractedWithHighlight.current = false;
+  }, [isHighlighted]);
 
   return (
     <a
-      href={`https://github.com/${repository.owner}/${repository.name}`}
+      id={anchorId}
+      href={getGitHubRepositoryUrl(repository)}
       target="_blank"
       rel="noreferrer"
-      className="group relative flex flex-col rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5"
+      onMouseMove={() => {
+        if (!highlightedRepositoryId) return;
+
+        if (isHighlighted) {
+          hasInteractedWithHighlight.current = true;
+        } else {
+          onHighlightClear();
+        }
+      }}
+      onMouseLeave={() => {
+        if (isHighlighted && hasInteractedWithHighlight.current) onHighlightClear();
+      }}
+      className={cn(
+        "group relative flex scroll-mt-24 flex-col rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5",
+        isHighlighted &&
+          "-translate-y-0.5 border-brand/60 shadow-[inset_0_0_48px_-24px_var(--color-brand)]",
+      )}
     >
       <div className="flex items-start gap-3">
-        <FaGithub className="mt-0.5 size-5 text-muted-foreground transition-colors group-hover:text-brand" />
+        <FaGithub
+          className={cn(
+            "mt-0.5 size-5 text-muted-foreground transition-colors group-hover:text-brand",
+            isHighlighted && "text-brand",
+          )}
+        />
         <div className="min-w-0 flex-1">
           <div className="flex items-center gap-1.5 font-medium">
             <span className="truncate text-muted-foreground">{repository.owner}</span>
@@ -90,7 +145,12 @@ function RepositoryCard({ repository }: { repository: RepositoryReference }) {
             <span className="truncate text-brand">{repository.name}</span>
           </div>
         </div>
-        <ArrowUpRight className="size-4 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand" />
+        <ArrowUpRight
+          className={cn(
+            "size-4 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand",
+            isHighlighted && "translate-x-0.5 -translate-y-0.5 text-brand",
+          )}
+        />
       </div>
 
       <p className="mt-3 min-h-[2.5rem] line-clamp-3 text-sm leading-relaxed text-muted-foreground">

@@ -102,10 +102,12 @@ function TimelineLinks({ item }: { item: TimelineItemContent }) {
               {publication.type ?? "Publication"}
             </span>
             <span className="group flex items-center gap-1.5 px-2 py-1 text-foreground/90">
-              <span className="font-semibold text-brand">
-                <PublicationTitle title={publication.venue} />
-                {publication.year && <span className="ml-1">{publication.year}</span>}
-              </span>
+              {!publication.hideVenue && (
+                <span className="font-semibold text-brand">
+                  <PublicationTitle title={publication.venue} />
+                  {publication.year && <span className="ml-1">{publication.year}</span>}
+                </span>
+              )}
               {publication.status && (
                 <span className="opacity-60 italic">· {publication.status}</span>
               )}

@@ -55,7 +55,7 @@ export const educationItems = [
   },
   {
     period: "Sep 2020 — Jul 2022",
-    subtitle: "Université de Lorraine",
+    subtitle: "IUT Nancy-Brabois, Université de Lorraine",
     location: "Nancy, France",
     title: "University Diploma of Technology in Electrical Engineering",
     alternateTitle: "Diplôme Universitaire de Technologie",

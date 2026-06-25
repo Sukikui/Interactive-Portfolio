@@ -12,10 +12,16 @@ const SOCIAL_ICONS: Record<SocialPlatform, typeof FaGithub> = {
 type PortfolioHeroProps = {
   identity: SiteContent["identity"];
   content: SiteContent["hero"];
+  scrollDisabled?: boolean;
   onScroll: () => void;
 };
 
-export function PortfolioHero({ identity, content, onScroll }: PortfolioHeroProps) {
+export function PortfolioHero({
+  identity,
+  content,
+  scrollDisabled = false,
+  onScroll,
+}: PortfolioHeroProps) {
   const [showCredit, setShowCredit] = useState(false);
   const [emailCopied, setEmailCopied] = useState(false);
   const [profileReady, setProfileReady] = useState(false);
@@ -54,7 +60,7 @@ export function PortfolioHero({ identity, content, onScroll }: PortfolioHeroProp
   };
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-[#0b1020]">
+    <section id="hero" className="relative h-screen w-full overflow-hidden bg-[#0b1020]">
       <img
         src={content.backgroundImage}
         alt=""
@@ -97,17 +103,26 @@ export function PortfolioHero({ identity, content, onScroll }: PortfolioHeroProp
             </p>
             <div className="mx-auto mt-6 h-px w-16 bg-white/25 md:mx-0" />
 
-            <p className="mx-auto mt-7 max-w-xl text-lg leading-relaxed font-light text-white/75 md:mx-0 md:text-xl">
-              {content.summary.map((segment, index) =>
-                segment.emphasis ? (
-                  <span key={index} className="font-medium text-white">
-                    {segment.text}
-                  </span>
-                ) : (
-                  segment.text
-                ),
-              )}
-            </p>
+            <div className="mx-auto mt-7 max-w-2xl text-base leading-relaxed font-light text-white/75 md:mx-0 md:text-lg">
+              {content.summary.map((paragraph, paragraphIndex) => (
+                <p
+                  key={paragraphIndex}
+                  className={
+                    paragraphIndex === 0 ? "" : paragraph.spacing === "compact" ? "mt-2" : "mt-4"
+                  }
+                >
+                  {paragraph.segments.map((segment, segmentIndex) =>
+                    segment.emphasis ? (
+                      <span key={segmentIndex} className="font-medium text-white">
+                        {segment.text}
+                      </span>
+                    ) : (
+                      segment.text
+                    ),
+                  )}
+                </p>
+              ))}
+            </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 md:justify-start">
               <EmailButton email={content.email} copied={emailCopied} onCopy={copyEmail} />
@@ -132,13 +147,15 @@ export function PortfolioHero({ identity, content, onScroll }: PortfolioHeroProp
         </div>
       </div>
 
-      <button
-        onClick={onScroll}
-        className="font-mono-tight absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] tracking-[0.3em] text-white/65 uppercase hover:text-white"
-      >
-        <span>{content.scrollLabel}</span>
-        <ChevronDown className="animate-scroll-hint size-5" />
-      </button>
+      {!scrollDisabled && (
+        <button
+          onClick={onScroll}
+          className="font-mono-tight absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] tracking-[0.3em] text-white/65 uppercase hover:text-white"
+        >
+          <span>Scroll</span>
+          <ChevronDown className="animate-scroll-hint size-5" />
+        </button>
+      )}
 
       <div
         className={`group absolute bottom-6 left-6 flex items-center gap-2 transition-opacity duration-700 ${
@@ -146,7 +163,7 @@ export function PortfolioHero({ identity, content, onScroll }: PortfolioHeroProp
         }`}
       >
         <Info className="size-3.5 text-white/40 transition-colors group-hover:text-white/80" />
-        <span className="pointer-events-none translate-x-[-4px] text-[11px] font-light whitespace-nowrap text-white/70 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
+        <span className="pointer-events-none -translate-x-1 text-[11px] font-normal whitespace-nowrap text-white/95 opacity-0 transition-all duration-300 group-hover:translate-x-0 group-hover:opacity-100">
           {content.photoCredit}
         </span>
       </div>

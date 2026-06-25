@@ -24,6 +24,7 @@ export const experienceItems = [
           "Edentulous Image Prediction using Latent Diffusion Model and Variational Autoencoder",
         type: "Academic Report",
         url: bovoPredictReport,
+        hideVenue: true,
       },
     ],
     repositories: [{ url: "https://github.com/Sukikui/PTI-LDM-VAE" }],
