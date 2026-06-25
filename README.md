@@ -1,3 +1,5 @@
+<div align="center">
+
 # Interactive Portfolio
 
 Personal academic portfolio built as a content-driven web application.
@@ -5,7 +7,15 @@ Personal academic portfolio built as a content-driven web application.
 It presents my profile, research interests, experience, education, technical skills, GitHub
 projects, documents and custom interactive presentations for targeted visitors.
 
-## Features
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=111111)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
+![TanStack](https://img.shields.io/badge/TanStack-Start-FF4154?logo=reactrouter&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?logo=tailwindcss&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white)
+
+</div>
+
+## ✨ Features
 
 - Responsive portfolio with a hero section, profile snapshot, research interests, experience,
   education, GitHub projects, technical skills and CV card.
@@ -18,22 +28,27 @@ projects, documents and custom interactive presentations for targeted visitors.
 - Vercel Analytics integration.
 - Clear license split between reusable source code and non-reusable personal content/assets.
 
-## Tech stack
+## 🧱 Tech stack
 
-- React 19
-- TypeScript
-- TanStack Start
-- TanStack Router
-- TanStack Query
-- Vite
-- Nitro
-- Tailwind CSS v4
-- Bun
-- Vercel
-- Vercel Edge Config
-- Vercel Analytics
+| Area            | Tools                                |
+| --------------- | ------------------------------------ |
+| App             | React 19, TypeScript, TanStack Start |
+| Routing/data    | TanStack Router, TanStack Query      |
+| Styling         | Tailwind CSS v4, Lightning CSS       |
+| Build/runtime   | Vite, Nitro, Bun                     |
+| Deployment      | Vercel                               |
+| Dynamic content | Vercel Edge Config                   |
+| Analytics       | Vercel Analytics                     |
 
-## Getting started
+## 🚀 Getting started
+
+| Command             | Purpose                    |
+| ------------------- | -------------------------- |
+| `bun install`       | Install dependencies       |
+| `bun run dev`       | Start the local dev server |
+| `bun run build`     | Build for production       |
+| `bun run lint`      | Run ESLint                 |
+| `bunx tsc --noEmit` | Run TypeScript checks      |
 
 Install dependencies:
 
@@ -53,20 +68,15 @@ The site runs locally at:
 http://localhost:8080
 ```
 
-Build for production:
+Before shipping changes, run:
 
 ```bash
 bun run build
-```
-
-Run static checks:
-
-```bash
 bun run lint
 bunx tsc --noEmit
 ```
 
-## Project structure
+## 📁 Project structure
 
 ```txt
 src/
@@ -94,7 +104,7 @@ Important files:
 
 See [`src/content/README.md`](src/content/README.md) for content editing details.
 
-## Editing content
+## 📝 Editing content
 
 Most updates should be made in `src/content/`.
 
@@ -109,7 +119,7 @@ Examples:
 - Reorder sections in `src/content/sections.ts`.
 - Replace the CV PDF in `public/documents/`.
 
-## Documents and assets
+## 📄 Documents and assets
 
 There is intentionally one source of truth for public PDFs:
 
@@ -133,7 +143,7 @@ src/assets/
 
 Do not duplicate the same document in both places.
 
-## Interactive presentations
+## 🎬 Interactive presentations
 
 Custom presentations are available under:
 
@@ -178,7 +188,7 @@ presentation_company-x
 The remote value must follow the same shape as the local demos. See
 [`src/content/presentations/README.md`](src/content/presentations/README.md) for details.
 
-## Deployment
+## ▲ Deployment
 
 The project is designed to deploy on Vercel.
 
@@ -204,7 +214,7 @@ Current `vercel.json` disables Git-triggered deployments:
 
 Change this only if automatic Vercel deployments should be re-enabled.
 
-## GitHub repository cards
+## 🐙 GitHub repository cards
 
 Project cards are defined in `src/content/projects.ts`.
 
@@ -217,7 +227,7 @@ At runtime, the site fetches public GitHub repository metadata:
 
 The result is cached in `localStorage` for six hours to avoid repeated API calls.
 
-## Development notes
+## 🛠️ Development notes
 
 - Prefer reusing the existing stack and patterns before adding new dependencies.
 - Keep portfolio content in `src/content/` whenever possible.
@@ -225,7 +235,7 @@ The result is cached in `localStorage` for six hours to avoid repeated API calls
 - Keep route files in `src/routes/`; this project uses TanStack Start file-based routing.
 - `routeTree.gen.ts` is generated and should not be edited manually.
 
-## License
+## ⚖️ License
 
 The original software source code in this repository is licensed under the
 [MIT License](LICENSE).
