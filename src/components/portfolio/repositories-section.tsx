@@ -54,7 +54,7 @@ export function RepositoriesSectionView({
               </h3>
               <div className="h-px flex-1 bg-border" />
             </div>
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid min-w-0 gap-4 md:grid-cols-2">
               {group.repositories.map((repository) => (
                 <RepositoryCard
                   key={`${repository.owner}/${repository.name}`}
@@ -126,28 +126,28 @@ function RepositoryCard({
         if (isHighlighted && hasInteractedWithHighlight.current) onHighlightClear();
       }}
       className={cn(
-        "group relative flex scroll-mt-24 flex-col rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5",
+        "group relative flex min-w-0 max-w-full scroll-mt-24 flex-col overflow-hidden rounded-xl border border-border bg-card p-4 transition-all hover:-translate-y-0.5 hover:border-brand/60 hover:shadow-xl hover:shadow-brand/5",
         isHighlighted &&
           "-translate-y-0.5 border-brand/60 shadow-[inset_0_0_48px_-24px_var(--color-brand)]",
       )}
     >
-      <div className="flex items-start gap-3">
+      <div className="flex min-w-0 items-start gap-3">
         <FaGithub
           className={cn(
-            "mt-0.5 size-5 text-muted-foreground transition-colors group-hover:text-brand",
+            "mt-0.5 size-5 shrink-0 text-muted-foreground transition-colors group-hover:text-brand",
             isHighlighted && "text-brand",
           )}
         />
         <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1.5 font-medium">
-            <span className="truncate text-muted-foreground">{repository.owner}</span>
-            <span className="text-muted-foreground">/</span>
-            <span className="truncate text-brand">{repository.name}</span>
+          <div className="flex min-w-0 items-center gap-1.5 font-medium">
+            <span className="min-w-0 truncate text-muted-foreground">{repository.owner}</span>
+            <span className="shrink-0 text-muted-foreground">/</span>
+            <span className="min-w-0 truncate text-brand">{repository.name}</span>
           </div>
         </div>
         <ArrowUpRight
           className={cn(
-            "size-4 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand",
+            "size-4 shrink-0 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brand",
             isHighlighted && "translate-x-0.5 -translate-y-0.5 text-brand",
           )}
         />
@@ -158,26 +158,28 @@ function RepositoryCard({
       </p>
 
       {hasFooter && data && (
-        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 border-t border-border/70 pt-4 text-xs text-muted-foreground">
+        <div className="mt-4 flex max-w-full flex-wrap items-center gap-x-4 gap-y-1.5 border-t border-border/70 pt-4 text-xs text-muted-foreground">
           {data.languages.map((language) => (
-            <span key={language.name} className="flex items-center gap-1.5">
+            <span key={language.name} className="flex min-w-0 max-w-full items-center gap-1.5">
               <span
-                className="size-2.5 rounded-full"
+                className="size-2.5 shrink-0 rounded-full"
                 style={{ backgroundColor: LANGUAGE_COLORS[language.name] ?? "#888" }}
               />
-              {language.name}
+              <span className="truncate">{language.name}</span>
             </span>
           ))}
           {data.license && (
-            <span className="flex items-center gap-1.5">
-              <Scale className="size-3.5" />
-              {data.license}
+            <span className="flex min-w-0 max-w-full items-center gap-1.5">
+              <Scale className="size-3.5 shrink-0" />
+              <span className="truncate">{data.license}</span>
             </span>
           )}
           {data.releases > 0 && (
-            <span className="font-mono-tight flex items-center gap-1.5">
-              <Tag className="size-3.5" />
-              {data.releases} {data.releases === 1 ? "release" : "releases"}
+            <span className="font-mono-tight flex min-w-0 max-w-full items-center gap-1.5">
+              <Tag className="size-3.5 shrink-0" />
+              <span className="truncate">
+                {data.releases} {data.releases === 1 ? "release" : "releases"}
+              </span>
             </span>
           )}
         </div>
