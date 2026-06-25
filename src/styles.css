@@ -152,3 +152,9 @@
   color: transparent;
   animation: shimmer 6s linear infinite;
 }
+
+@media (max-width: 767px) and (hover: none) and (pointer: coarse) {
+  .hero-mobile-extended {
+    min-height: 120svh;
+  }
+}
