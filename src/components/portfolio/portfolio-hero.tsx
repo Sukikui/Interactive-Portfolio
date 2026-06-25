@@ -72,7 +72,7 @@ export function PortfolioHero({
       />
       <div className="absolute inset-0 bg-black/[0.50]" />
 
-      <div className="hero-mobile-extended relative mx-auto flex min-h-[100svh] max-w-6xl items-start px-6 pt-[7.8rem] pb-24 md:h-full md:min-h-0 md:items-center md:pt-0 md:pb-0">
+      <div className="hero-mobile-extended relative mx-auto flex min-h-[100svh] max-w-6xl items-start px-6 pt-[6.8rem] pb-24 md:h-full md:min-h-0 md:items-center md:pt-0 md:pb-0">
         <div className="mx-auto grid w-full max-w-4xl items-center gap-6 md:grid-cols-[auto_1fr] md:gap-20">
           <div
             className={`flex justify-center transition-all duration-700 ease-out md:justify-start ${
@@ -156,7 +156,7 @@ export function PortfolioHero({
       {!scrollDisabled && (
         <button
           onClick={onScroll}
-          className="font-mono-tight absolute bottom-[7.8rem] left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] tracking-[0.3em] text-white/65 uppercase hover:text-white md:bottom-8"
+          className="font-mono-tight absolute bottom-[8.4rem] left-1/2 flex -translate-x-1/2 flex-col items-center gap-2 text-[10px] tracking-[0.3em] text-white/65 uppercase hover:text-white md:bottom-8"
         >
           <span>Scroll</span>
           <ChevronDown className="animate-scroll-hint size-5" />
