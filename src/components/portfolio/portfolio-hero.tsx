@@ -72,7 +72,7 @@ export function PortfolioHero({
       />
       <div className="absolute inset-0 bg-black/[0.42]" />
 
-      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl items-center px-6 pt-24 pb-16 md:h-full md:min-h-0 md:pt-0 md:pb-0">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl items-center px-6 pt-24 pb-24 md:h-full md:min-h-0 md:pt-0 md:pb-0">
         <div className="mx-auto grid w-full max-w-4xl items-center gap-6 md:grid-cols-[auto_1fr] md:gap-20">
           <div
             className={`flex justify-center transition-all duration-700 ease-out md:justify-start ${
@@ -114,11 +114,7 @@ export function PortfolioHero({
                 <p
                   key={paragraphIndex}
                   className={
-                    paragraphIndex === 0
-                      ? ""
-                      : paragraph.spacing === "compact"
-                        ? "mt-2 hidden md:block"
-                        : "mt-4 hidden md:block"
+                    paragraphIndex === 0 ? "" : paragraph.spacing === "compact" ? "mt-2" : "mt-4"
                   }
                 >
                   {paragraph.segments.map((segment, segmentIndex) =>
