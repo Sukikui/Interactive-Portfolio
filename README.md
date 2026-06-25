@@ -1,10 +1,235 @@
 # Interactive Portfolio
 
+Personal academic portfolio built as a content-driven web application.
+
+It presents my profile, research interests, experience, education, technical skills, GitHub
+projects, documents and custom interactive presentations for targeted visitors.
+
+## Features
+
+- Responsive portfolio with a hero section, profile snapshot, research interests, experience,
+  education, GitHub projects, technical skills and CV card.
+- Content-first architecture: most personal information is edited from `src/content/` instead of
+  being hard-coded inside components.
+- Interactive presentation route at `/for/:slug`, with local demos and optional Vercel Edge Config
+  remote data.
+- GitHub repository cards enriched from the public GitHub API and cached in `localStorage`.
+- Public documents served from stable URLs under `/documents/...`.
+- Vercel Analytics integration.
+- Clear license split between reusable source code and non-reusable personal content/assets.
+
+## Tech stack
+
+- React 19
+- TypeScript
+- TanStack Start
+- TanStack Router
+- TanStack Query
+- Vite
+- Nitro
+- Tailwind CSS v4
+- Bun
+- Vercel
+- Vercel Edge Config
+- Vercel Analytics
+
+## Getting started
+
+Install dependencies:
+
+```bash
+bun install
+```
+
+Start the development server:
+
+```bash
+bun run dev
+```
+
+The site runs locally at:
+
+```txt
+http://localhost:8080
+```
+
+Build for production:
+
+```bash
+bun run build
+```
+
+Run static checks:
+
+```bash
+bun run lint
+bunx tsc --noEmit
+```
+
+## Project structure
+
+```txt
+src/
+  assets/                 Imported images used by the app
+  components/portfolio/   Portfolio UI components
+  content/                Editable portfolio content
+  hooks/                  Client-side hooks
+  lib/                    Shared utilities
+  routes/                 TanStack Start file-based routes
+public/
+  documents/              Public PDFs opened directly by URL
+```
+
+Important files:
+
+- `src/content/site.ts`: identity, SEO, hero, contact links, footer and stack.
+- `src/content/snapshot.ts`: short “at a glance” profile highlights.
+- `src/content/overview.ts`: profile overview and research interests.
+- `src/content/experience.ts`: experience timeline.
+- `src/content/education.ts`: education timeline.
+- `src/content/projects.ts`: GitHub repository groups.
+- `src/content/skills.ts`: technical skills.
+- `src/content/sections.ts`: section order, navigation labels and CV card.
+- `src/content/documents.ts`: public document URLs.
+
+See [`src/content/README.md`](src/content/README.md) for content editing details.
+
+## Editing content
+
+Most updates should be made in `src/content/`.
+
+The intent is to keep the codebase simple and avoid scattering portfolio data across UI components.
+Components should describe presentation and behavior; content files should describe what is displayed.
+
+Examples:
+
+- Change the job title or hero text in `src/content/site.ts`.
+- Add an experience entry in `src/content/experience.ts`.
+- Add a GitHub project in `src/content/projects.ts`.
+- Reorder sections in `src/content/sections.ts`.
+- Replace the CV PDF in `public/documents/`.
+
+## Documents and assets
+
+There is intentionally one source of truth for public PDFs:
+
+```txt
+public/documents/
+```
+
+Files in this directory are available directly from the browser:
+
+```txt
+/documents/cv_generic_en_tristan_habemont.pdf
+/documents/creatis-poster.pdf
+/documents/report_bovopredict.pdf
+```
+
+Imported visual assets, such as the hero background and profile picture, live in:
+
+```txt
+src/assets/
+```
+
+Do not duplicate the same document in both places.
+
+## Interactive presentations
+
+Custom presentations are available under:
+
+```txt
+/for/:slug
+```
+
+The route first tries to load a local presentation from `src/content/presentations/local.ts`.
+If no local presentation matches, it tries Vercel Edge Config.
+
+Local demo routes:
+
+```txt
+/for/demo
+/for/demo-fr
+```
+
+Each presentation defines:
+
+- `slug`
+- `language`
+- `companyName`
+- custom hero content
+- presentation controls
+- ordered steps with target section IDs
+
+Local presentations are only for tests and examples. Keep real company-specific presentations out of
+the repository.
+
+Remote presentation keys in Vercel Edge Config use this format:
+
+```txt
+presentation_<slug>
+```
+
+Example:
+
+```txt
+presentation_company-x
+```
+
+The remote value must follow the same shape as the local demos. See
+[`src/content/presentations/README.md`](src/content/presentations/README.md) for details.
+
+## Deployment
+
+The project is designed to deploy on Vercel.
+
+Build command:
+
+```bash
+bun run build
+```
+
+Remote presentations require Vercel Edge Config. The app checks for the `EDGE_CONFIG` environment
+variable automatically; if it is missing or no presentation exists for a slug, the route simply
+renders the normal portfolio.
+
+Current `vercel.json` disables Git-triggered deployments:
+
+```json
+{
+  "git": {
+    "deploymentEnabled": false
+  }
+}
+```
+
+Change this only if automatic Vercel deployments should be re-enabled.
+
+## GitHub repository cards
+
+Project cards are defined in `src/content/projects.ts`.
+
+At runtime, the site fetches public GitHub repository metadata:
+
+- description;
+- top languages;
+- license;
+- release count.
+
+The result is cached in `localStorage` for six hours to avoid repeated API calls.
+
+## Development notes
+
+- Prefer reusing the existing stack and patterns before adding new dependencies.
+- Keep portfolio content in `src/content/` whenever possible.
+- Keep public documents in `public/documents/`.
+- Keep route files in `src/routes/`; this project uses TanStack Start file-based routing.
+- `routeTree.gen.ts` is generated and should not be edited manually.
+
 ## License
 
 The original software source code in this repository is licensed under the
 [MIT License](LICENSE).
 
-Portfolio content, personal information, images, and academic or professional documents are
-excluded from the MIT License. See [CONTENT_LICENSE.md](CONTENT_LICENSE.md) for the complete scope
-and terms applying to content and assets.
+Portfolio content, personal information, images, documents, posters, reports and other assets are
+not covered by the MIT License. See [CONTENT_LICENSE.md](CONTENT_LICENSE.md) for the full content
+and asset licensing terms.
