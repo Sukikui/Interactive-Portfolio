@@ -4,6 +4,7 @@ type PresentationLabels = {
   ariaLabel: string;
   eyebrow: string;
   introBeforeCompany: string;
+  introAfterCompany: string;
   start: string;
   previous: string;
   next: string;
@@ -15,6 +16,7 @@ export const presentationLabels = {
     ariaLabel: "Interactive presentation for",
     eyebrow: "Interactive path",
     introBeforeCompany: "A short guided tour tailored for",
+    introAfterCompany: ".",
     start: "Start interactive presentation",
     previous: "Previous",
     next: "Next",
@@ -23,7 +25,8 @@ export const presentationLabels = {
   fr: {
     ariaLabel: "Présentation interactive pour",
     eyebrow: "Parcours interactif",
-    introBeforeCompany: "Une courte visite guidée pensée pour",
+    introBeforeCompany: "J'aimerais vous montrer très rapidement l'adéquation entre mon profil et",
+    introAfterCompany: " :)",
     start: "Démarrer la présentation",
     previous: "Précédent",
     next: "Suivant",

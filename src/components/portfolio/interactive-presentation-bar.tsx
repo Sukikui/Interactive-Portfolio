@@ -62,6 +62,7 @@ export function InteractivePresentationBar({
           companyName={presentation.companyName}
           eyebrow={labels.eyebrow}
           introBeforeCompany={labels.introBeforeCompany}
+          introAfterCompany={labels.introAfterCompany}
           startLabel={controls.start}
           onStart={start}
         />
@@ -94,12 +95,14 @@ function StartPresentationPrompt({
   companyName,
   eyebrow,
   introBeforeCompany,
+  introAfterCompany,
   startLabel,
   onStart,
 }: {
   companyName: string;
   eyebrow: string;
   introBeforeCompany: string;
+  introAfterCompany: string;
   startLabel: string;
   onStart: () => void;
 }) {
@@ -111,7 +114,8 @@ function StartPresentationPrompt({
           {eyebrow}
         </p>
         <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-          {introBeforeCompany} <span className="font-medium text-foreground">{companyName}</span>.
+          {introBeforeCompany} <span className="font-medium text-foreground">{companyName}</span>
+          {introAfterCompany}
         </p>
       </div>
       <button
