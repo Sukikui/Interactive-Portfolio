@@ -22,18 +22,38 @@ export function TimelineSectionView({ section }: { section: TimelineSection }) {
 function TimelineItem({ item }: { item: TimelineItemContent }) {
   return (
     <div className="grid gap-2 border-b border-border/60 pb-6 last:border-0 last:pb-0 md:grid-cols-[180px_1fr] md:gap-8">
-      <div className="pt-1.5">
+      <div className="hidden pt-1.5 md:block">
         <div className="font-mono-tight text-xs tracking-wider text-muted-foreground">
           {item.period}
         </div>
         {item.duration && (
-          <div className="font-mono-tight mt-0.5 text-[10px] tracking-wider text-muted-foreground/60">
+          <div className="font-mono-tight text-[10px] tracking-wider text-muted-foreground/60 md:mt-0.5">
             {item.duration}
           </div>
         )}
       </div>
       <div>
-        <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+        <div className="mb-2 grid grid-cols-[1fr_auto] gap-x-4 gap-y-1 md:hidden">
+          <div className="min-w-0">
+            <p className="truncate text-sm font-medium text-brand">{item.subtitle}</p>
+            {item.location && (
+              <p className="font-mono-tight mt-0.5 truncate text-[11px] tracking-wide text-muted-foreground">
+                {item.location}
+              </p>
+            )}
+          </div>
+          <div className="text-right">
+            <p className="font-mono-tight text-xs tracking-wider whitespace-nowrap text-muted-foreground">
+              {item.period}
+            </p>
+            {item.duration && (
+              <p className="font-mono-tight mt-0.5 text-[10px] tracking-wider whitespace-nowrap text-muted-foreground/60">
+                {item.duration}
+              </p>
+            )}
+          </div>
+        </div>
+        <div className="hidden flex-wrap items-center gap-x-3 gap-y-1 md:flex">
           <p className="text-sm font-medium text-brand">{item.subtitle}</p>
           {item.location && (
             <span className="font-mono-tight text-[11px] tracking-wide text-muted-foreground">
@@ -46,12 +66,22 @@ function TimelineItem({ item }: { item: TimelineItemContent }) {
             </span>
           )}
         </div>
-        {item.kind && (
-          <div className="font-mono-tight mt-2 text-[10px] tracking-[0.18em] text-brand/80 uppercase">
-            {item.kind}
+        {item.concurrent && (
+          <div className="mt-2 md:hidden">
+            <span className="font-mono-tight rounded border border-brand/40 px-1.5 py-0.5 text-[10px] tracking-wider text-brand/90 uppercase">
+              {item.concurrent}
+            </span>
           </div>
         )}
-        <h3 className="mt-1 text-xl font-semibold text-foreground">{item.title}</h3>
+        <h3 className="mt-1 text-lg font-semibold text-foreground md:mt-2 md:flex md:flex-wrap md:items-baseline md:gap-x-2 md:text-xl">
+          {item.kind && (
+            <span className="font-normal text-foreground">
+              {item.kind}
+              <span className="ml-2 text-foreground">—</span>
+            </span>
+          )}
+          <span className={item.kind ? "ml-2 md:ml-0" : ""}>{item.title}</span>
+        </h3>
         {item.alternateTitle && (
           <p className="mt-0.5 text-sm text-muted-foreground italic">{item.alternateTitle}</p>
         )}
