@@ -12,18 +12,28 @@ type PortfolioSectionViewProps = {
   section: PortfolioSection;
   highlightedRepositoryId: string | null;
   onRepositoryHighlightClear: () => void;
+  openTimelineItemKey: string | null;
+  onOpenTimelineItemKeyChange: (itemKey: string | null) => void;
 };
 
 export function PortfolioSectionView({
   section,
   highlightedRepositoryId,
   onRepositoryHighlightClear,
+  openTimelineItemKey,
+  onOpenTimelineItemKeyChange,
 }: PortfolioSectionViewProps) {
   switch (section.type) {
     case "split":
       return <SplitSectionView section={section} />;
     case "timeline":
-      return <TimelineSectionView section={section} />;
+      return (
+        <TimelineSectionView
+          section={section}
+          openItemKey={openTimelineItemKey}
+          onOpenItemKeyChange={onOpenTimelineItemKeyChange}
+        />
+      );
     case "repositories":
       return (
         <RepositoriesSectionView
@@ -96,7 +106,8 @@ function DownloadSectionView({ section }: { section: DownloadSection }) {
           </div>
           <a
             href={section.href}
-            download
+            target="_blank"
+            rel="noreferrer"
             className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 font-medium text-white shadow-lg shadow-brand/25 transition-opacity hover:opacity-90"
           >
             <Download className="size-4" />

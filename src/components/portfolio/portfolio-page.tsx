@@ -26,6 +26,7 @@ export function PortfolioPage({ presentation }: PortfolioPageProps) {
   const firstSectionId = navigationItems[0]?.id;
   const sourceRepositoryId = getRepositoryAnchorId(siteContent.footer.sourceLink.repository);
   const [highlightedRepositoryId, setHighlightedRepositoryId] = useState<string | null>(null);
+  const [openTimelineItemKey, setOpenTimelineItemKey] = useState<string | null>(null);
   const [isAutomaticScroll, setIsAutomaticScroll] = useState(false);
   const [completedPresentationSlug, setCompletedPresentationSlug] = useState<string | null>(null);
   const activePresentation =
@@ -142,6 +143,8 @@ export function PortfolioPage({ presentation }: PortfolioPageProps) {
             section={section}
             highlightedRepositoryId={highlightedRepositoryId}
             onRepositoryHighlightClear={() => setHighlightedRepositoryId(null)}
+            openTimelineItemKey={openTimelineItemKey}
+            onOpenTimelineItemKeyChange={setOpenTimelineItemKey}
           />
         ))}
         <PortfolioFooter

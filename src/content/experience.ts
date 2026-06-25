@@ -1,6 +1,4 @@
-import bovoPredictReport from "@/assets/documents/report_bovopredict.pdf";
-import creatisPoster from "@/assets/documents/creatis-poster.pdf";
-
+import { documents } from "./documents";
 import type { TimelineItemContent } from "./types";
 
 export const experienceItems = [
@@ -23,7 +21,7 @@ export const experienceItems = [
         venue:
           "Edentulous Image Prediction using Latent Diffusion Model and Variational Autoencoder",
         type: "Academic Report",
-        url: bovoPredictReport,
+        url: documents.bovoPredictReport,
         hideVenue: true,
       },
     ],
@@ -50,7 +48,7 @@ export const experienceItems = [
         venue: "LABEX PRIMES",
         year: "2025",
         type: "Poster",
-        url: creatisPoster,
+        url: documents.creatisPoster,
       },
       {
         venue: "Introduction to Graph Neural Networks",

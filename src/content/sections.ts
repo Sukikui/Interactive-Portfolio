@@ -1,3 +1,4 @@
+import { documents } from "./documents";
 import { educationItems } from "./education";
 import { experienceItems } from "./experience";
 import { overviewSection } from "./overview";
@@ -67,9 +68,9 @@ export const portfolioSections = [
     cardTitle: "Résumé PDF",
     description:
       "A concise PDF version of my profile, so you can keep the essentials at hand after browsing this website.",
-    meta: "PDF · ~180 KB",
-    href: "/cv.pdf",
-    buttonLabel: "Download CV",
+    meta: "PDF · ~2 MB",
+    href: documents.cv,
+    buttonLabel: "Open CV",
   },
 ] satisfies readonly PortfolioSection[];
 
