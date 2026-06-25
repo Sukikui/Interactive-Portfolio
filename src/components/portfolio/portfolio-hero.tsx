@@ -60,7 +60,10 @@ export function PortfolioHero({
   };
 
   return (
-    <section id="hero" className="relative h-screen w-full overflow-hidden bg-[#0b1020]">
+    <section
+      id="hero"
+      className="relative min-h-[100svh] w-full overflow-hidden bg-[#0b1020] md:h-screen"
+    >
       <img
         src={content.backgroundImage}
         alt=""
@@ -69,14 +72,14 @@ export function PortfolioHero({
       />
       <div className="absolute inset-0 bg-black/[0.42]" />
 
-      <div className="relative mx-auto flex h-full max-w-6xl items-center px-6">
-        <div className="mx-auto grid w-full max-w-4xl items-center gap-10 md:grid-cols-[auto_1fr] md:gap-20">
+      <div className="relative mx-auto flex min-h-[100svh] max-w-6xl items-center px-6 pt-24 pb-16 md:h-full md:min-h-0 md:pt-0 md:pb-0">
+        <div className="mx-auto grid w-full max-w-4xl items-center gap-6 md:grid-cols-[auto_1fr] md:gap-20">
           <div
             className={`flex justify-center transition-all duration-700 ease-out md:justify-start ${
               profileReady ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"
             }`}
           >
-            <div className="relative size-[10.5rem] overflow-hidden rounded-full shadow-2xl shadow-black/40 ring-1 ring-white/15 md:size-[13.5rem]">
+            <div className="relative size-[8.75rem] overflow-hidden rounded-full shadow-2xl shadow-black/40 ring-1 ring-white/15 sm:size-[10.5rem] md:size-[13.5rem]">
               <img
                 ref={profileImageRef}
                 src={content.profileImage}
@@ -92,23 +95,30 @@ export function PortfolioHero({
           </div>
 
           <div className="animate-fade-up text-center text-white [animation-delay:120ms] md:text-left">
-            <h1 className="text-5xl leading-[1.02] font-semibold tracking-tight md:text-7xl">
+            <h1 className="text-[clamp(2rem,9.5vw,3rem)] leading-[1.02] font-semibold tracking-tight whitespace-nowrap md:text-7xl">
               {identity.fullName}
             </h1>
-            <p className="mt-3 flex items-center justify-center gap-2 text-sm font-medium tracking-[0.08em] text-hero-accent md:justify-start md:text-base">
-              <span aria-hidden className="font-mono-tight text-lg font-light opacity-70">
+            <p className="mt-2 flex items-center justify-center gap-1.5 text-[clamp(0.68rem,2.7vw,0.875rem)] font-medium tracking-[0.035em] whitespace-nowrap text-hero-accent md:mt-3 md:justify-start md:gap-2 md:text-base md:tracking-[0.08em]">
+              <span
+                aria-hidden
+                className="font-mono-tight text-base font-light opacity-70 md:text-lg"
+              >
                 &gt;
               </span>
               <span>{identity.jobTitle}</span>
             </p>
-            <div className="mx-auto mt-6 h-px w-16 bg-white/25 md:mx-0" />
+            <div className="mx-auto mt-5 h-px w-16 bg-white/25 md:mx-0 md:mt-6" />
 
-            <div className="mx-auto mt-7 max-w-2xl text-base leading-relaxed font-light text-white/75 md:mx-0 md:text-lg">
+            <div className="mx-auto mt-5 max-w-2xl text-sm leading-relaxed font-light text-white/75 sm:text-base md:mx-0 md:mt-7 md:text-lg">
               {content.summary.map((paragraph, paragraphIndex) => (
                 <p
                   key={paragraphIndex}
                   className={
-                    paragraphIndex === 0 ? "" : paragraph.spacing === "compact" ? "mt-2" : "mt-4"
+                    paragraphIndex === 0
+                      ? ""
+                      : paragraph.spacing === "compact"
+                        ? "mt-2 hidden md:block"
+                        : "mt-4 hidden md:block"
                   }
                 >
                   {paragraph.segments.map((segment, segmentIndex) =>
@@ -124,7 +134,7 @@ export function PortfolioHero({
               ))}
             </div>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 md:justify-start">
+            <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-3 md:mt-8 md:justify-start">
               <EmailButton email={content.email} copied={emailCopied} onCopy={copyEmail} />
               <span className="h-4 w-px bg-white/20" />
               {content.socials.map((social) => {
@@ -158,7 +168,7 @@ export function PortfolioHero({
       )}
 
       <div
-        className={`group absolute bottom-6 left-6 flex items-center gap-2 transition-opacity duration-700 ${
+        className={`group absolute bottom-6 left-6 hidden items-center gap-2 transition-opacity duration-700 md:flex ${
           showCredit ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >

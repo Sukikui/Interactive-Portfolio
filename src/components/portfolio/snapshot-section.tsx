@@ -24,7 +24,10 @@ export function SnapshotSectionView({ section }: { section: SnapshotSection }) {
         />
         <ul className="space-y-4">
           {section.items.map((item, index) => (
-            <li key={item.label} className="grid grid-cols-[minmax(13rem,15rem)_1fr] gap-4">
+            <li
+              key={item.label}
+              className="grid gap-1.5 md:grid-cols-[minmax(13rem,15rem)_1fr] md:gap-4"
+            >
               <p
                 className="font-mono-tight whitespace-nowrap text-sm font-semibold tracking-[0.1em] uppercase"
                 style={{
