@@ -46,7 +46,7 @@ export const educationItems = [
   {
     period: "Sep 2024 — Dec 2024",
     subtitle: "Tōhoku University",
-    location: "Sendai, Japon",
+    location: "Sendai, Japan",
     title: "Exchange Semester",
     highlights: [
       "Completed the Intensive Japanese Language Program",
