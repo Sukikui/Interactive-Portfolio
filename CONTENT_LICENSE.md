@@ -6,8 +6,10 @@ It does not grant rights to reuse, reproduce, distribute, or create derivative w
 portfolio content, including:
 
 - personal information and portfolio copy stored in `src/content/`;
-- photographs, images, and other media stored in `src/assets/` or `public/`;
-- curricula vitae, posters, reports, papers, and other academic or professional documents;
+- photographs, images, and other media stored in `src/assets/`, `public/`, or linked from external
+  storage such as Vercel Blob;
+- curricula vitae, posters, reports, papers, and other academic or professional documents, whether
+  stored in this repository or linked from external storage;
 - third-party names, logos, trademarks, or materials.
 
 The source-code structure and application logic surrounding this content remain licensed under the

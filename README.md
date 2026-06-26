@@ -24,7 +24,8 @@ projects, documents and custom interactive presentations for targeted visitors.
 - Interactive presentation route at `/for/:slug`, with local demos and optional Vercel Edge Config
   remote data.
 - GitHub repository cards enriched from the public GitHub API and cached in `localStorage`.
-- Public documents served from stable URLs under `/documents/...`.
+- Public documents hosted outside the repository and configured through Vercel environment
+  variables.
 - Vercel Analytics integration.
 - Clear license split between reusable source code and non-reusable personal content/assets.
 
@@ -38,6 +39,7 @@ projects, documents and custom interactive presentations for targeted visitors.
 | Build/runtime   | Vite, Nitro, Bun                     |
 | Deployment      | Vercel                               |
 | Dynamic content | Vercel Edge Config                   |
+| Documents       | Vercel Blob URLs                     |
 | Analytics       | Vercel Analytics                     |
 
 ## 🚀 Getting started
@@ -86,8 +88,7 @@ src/
   hooks/                  Client-side hooks
   lib/                    Shared utilities
   routes/                 TanStack Start file-based routes
-public/
-  documents/              Public PDFs opened directly by URL
+local-documents/          Local private PDFs, ignored by Git
 ```
 
 Important files:
@@ -117,23 +118,39 @@ Examples:
 - Add an experience entry in [`src/content/experience.ts`](src/content/experience.ts).
 - Add a GitHub project in [`src/content/projects.ts`](src/content/projects.ts).
 - Reorder sections in [`src/content/sections.ts`](src/content/sections.ts).
-- Replace the CV PDF in [`public/documents/`](public/documents/).
+- Upload updated PDFs to Vercel Blob and update the matching document URL environment variables.
 
 ## 📄 Documents and assets
 
-There is intentionally one source of truth for public PDFs:
+Public PDFs are intentionally not stored in the repository.
 
 ```txt
-public/documents/
+local-documents/
 ```
 
-Imported visual assets, such as the hero background and profile picture, live in:
+This local folder is ignored by Git and is only meant to keep private working copies before upload.
+
+The site reads document URLs from environment variables:
+
+```txt
+VITE_CV_URL
+VITE_CREATIS_POSTER_URL
+VITE_BOVO_REPORT_URL
+```
+
+In production, these should point to the corresponding Vercel Blob public URLs.
+Because they are `VITE_*` variables, they are embedded at build time: update them in Vercel, then
+redeploy the site.
+These Blob URLs are public so the browser can open the PDFs directly; this does not grant reuse
+rights over the documents.
+
+Imported visual assets, such as the hero background and profile picture, still live in:
 
 ```txt
 src/assets/
 ```
 
-Do not duplicate the same document in both places.
+Do not add PDFs back to `public/` or `src/assets/`.
 
 ## 🎬 Interactive presentations
 
@@ -195,6 +212,14 @@ Remote presentations require Vercel Edge Config. The app checks for the `EDGE_CO
 variable automatically; if it is missing or no presentation exists for a slug, the route simply
 renders the normal portfolio.
 
+Public documents require these Vercel environment variables:
+
+```txt
+VITE_CV_URL
+VITE_CREATIS_POSTER_URL
+VITE_BOVO_REPORT_URL
+```
+
 Current [`vercel.json`](vercel.json) disables Git-triggered deployments:
 
 ```json
@@ -224,7 +249,7 @@ The result is cached in `localStorage` for six hours to avoid repeated API calls
 
 - Prefer reusing the existing stack and patterns before adding new dependencies.
 - Keep portfolio content in [`src/content/`](src/content/) whenever possible.
-- Keep public documents in [`public/documents/`](public/documents/).
+- Keep private document copies in `local-documents/`, which is ignored by Git.
 - Keep route files in [`src/routes/`](src/routes/); this project uses TanStack Start file-based
   routing.
 - [`src/routeTree.gen.ts`](src/routeTree.gen.ts) is generated and should not be edited manually.
