@@ -12,6 +12,7 @@ dist
 dist-ssr
 .output
 local-documents/
+local-edge-configs/
 .vinxi
 .tanstack/**
 .nitro
