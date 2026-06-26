@@ -127,14 +127,6 @@ There is intentionally one source of truth for public PDFs:
 public/documents/
 ```
 
-Files in this directory are available directly from the browser:
-
-```txt
-/documents/cv_generic_en_tristan_habemont.pdf
-/documents/creatis-poster.pdf
-/documents/report_bovopredict.pdf
-```
-
 Imported visual assets, such as the hero background and profile picture, live in:
 
 ```txt
