@@ -43,7 +43,12 @@ export const experienceItems = [
       "Collaborated with clinicians on model validation and outlier case analysis",
     ],
     publications: [
-      { venue: "MICCAI", year: "2026", type: "Conference", status: "submission" },
+      {
+        venue: "MICCAI",
+        year: "2026",
+        type: "Conference",
+        url: "https://arxiv.org/abs/2606.25956",
+      },
       {
         venue: "LABEX PRIMES",
         year: "2025",
