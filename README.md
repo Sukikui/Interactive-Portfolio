@@ -130,7 +130,7 @@ local-documents/
 
 This local folder is ignored by Git and is only meant to keep private working copies before upload.
 
-The site reads document URLs from environment variables:
+The site reads document URLs from environment variables, for example on this website:
 
 ```txt
 VITE_CV_URL
