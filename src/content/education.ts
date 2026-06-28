@@ -8,8 +8,8 @@ export const educationItems = [
     title: "MSc in Machine Learning and Medical Imaging",
     alternateTitle: "Master 2",
     highlights: [
-      "Ranked 2nd in cohort — GPA 3.90 / 4.00",
       "Completed alongside my final year at INSA Lyon",
+      "Ranked 2nd in cohort — GPA 3.90 / 4.00",
     ],
     courses: [
       "Machine Learning",

@@ -6,16 +6,16 @@ export const snapshotItems = [
     text: "Diplôme d’Ingénieur + Master 2 focused on Machine Learning, Computer Vision and Medical Imaging.",
   },
   {
-    label: "+6 years",
-    text: "Programming experience, mainly in Python, C/C++ and Java.",
+    label: "+6 years of programming experience",
+    text: "Mainly in Python, C/C++ and Java, with versioning and CI/CD practices.",
   },
   {
-    label: "1.5 years",
-    text: "ML research experience with latent diffusion, VAE, GNN, U-Net, CNN, LSTM, SL and SSL.",
+    label: "1.5 years of ML research experience",
+    text: "With latent diffusion, VAE, GNN, U-Net, CNN, LSTM, SL and SSL.",
   },
   {
-    label: "5 years",
-    text: "Strong Electrical Engineering background: electronics, control, signals, sensors and embedded systems.",
+    label: "5 years in Electrical Engineering",
+    text: "Strong background in electronics, control, signals, sensors and embedded systems.",
   },
   {
     label: "Embedded projects",

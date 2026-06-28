@@ -30,7 +30,7 @@
   --color-ring: var(--ring);
   --color-brand: var(--brand);
   --color-brand-soft: var(--brand-soft);
-  --color-hero-accent: oklch(0.81 0.13 258);
+  --color-hero-accent: var(--hero-accent);
   --color-cyan: var(--cyan);
   --font-display: "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
@@ -38,6 +38,10 @@
 }
 
 :root {
+  --brand-hue: 258;
+  --brand-dark-hue: 255;
+  --brand-soft-hue: 245;
+  --cyan-hue: 210;
   --radius: 0.5rem;
   --background: oklch(0.985 0.005 240);
   --foreground: oklch(0.18 0.04 260);
@@ -45,7 +49,7 @@
   --card-foreground: oklch(0.18 0.04 260);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.18 0.04 260);
-  --primary: oklch(0.45 0.18 258);
+  --primary: oklch(0.45 0.18 var(--brand-hue));
   --primary-foreground: oklch(0.99 0.005 240);
   --secondary: oklch(0.96 0.012 240);
   --secondary-foreground: oklch(0.22 0.04 260);
@@ -57,10 +61,11 @@
   --destructive-foreground: oklch(0.99 0.005 240);
   --border: oklch(0.9 0.015 240);
   --input: oklch(0.9 0.015 240);
-  --ring: oklch(0.55 0.15 258);
-  --brand: oklch(0.55 0.2 258);
-  --brand-soft: oklch(0.75 0.13 245);
-  --cyan: oklch(0.78 0.13 210);
+  --ring: oklch(0.55 0.15 var(--brand-hue));
+  --brand: oklch(0.55 0.2 var(--brand-hue));
+  --brand-soft: oklch(0.75 0.13 var(--brand-soft-hue));
+  --hero-accent: oklch(0.81 0.13 var(--brand-hue));
+  --cyan: oklch(0.78 0.13 var(--cyan-hue));
 }
 
 .dark {
@@ -70,7 +75,7 @@
   --card-foreground: oklch(0.96 0.01 240);
   --popover: oklch(0.17 0.025 260);
   --popover-foreground: oklch(0.96 0.01 240);
-  --primary: oklch(0.72 0.15 255);
+  --primary: oklch(0.72 0.15 var(--brand-dark-hue));
   --primary-foreground: oklch(0.13 0.02 260);
   --secondary: oklch(0.22 0.03 260);
   --secondary-foreground: oklch(0.96 0.01 240);
@@ -82,10 +87,11 @@
   --destructive-foreground: oklch(0.99 0.005 240);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.7 0.15 255);
-  --brand: oklch(0.72 0.16 255);
-  --brand-soft: oklch(0.82 0.12 245);
-  --cyan: oklch(0.82 0.14 210);
+  --ring: oklch(0.7 0.15 var(--brand-dark-hue));
+  --brand: oklch(0.72 0.16 var(--brand-dark-hue));
+  --brand-soft: oklch(0.82 0.12 var(--brand-soft-hue));
+  --hero-accent: oklch(0.81 0.13 var(--brand-hue));
+  --cyan: oklch(0.82 0.14 var(--cyan-hue));
 }
 
 @layer base {
