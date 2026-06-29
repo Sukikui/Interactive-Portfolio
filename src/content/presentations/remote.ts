@@ -1,9 +1,10 @@
-import { get } from "@vercel/edge-config";
+import { get } from "@vercel/blob";
 
 import { parseInteractivePresentation } from "./schema";
 import type { InteractivePresentationContent } from "./types";
 
-const REMOTE_PRESENTATION_KEY_PREFIX = "presentation_";
+const PRESENTATION_CONFIGS_STORE_ID_ENV = "PRES_CONFIGS_BLOB_STORE_ID";
+const PRESENTATION_BLOB_FOLDER = "presentations";
 
 function shouldLogRemoteWarning() {
   return process.env.NODE_ENV !== "production";
@@ -14,24 +15,30 @@ function logRemoteWarning(message: string, error?: unknown) {
   console.warn(`[presentations] ${message}`, error ?? "");
 }
 
-export function getRemotePresentationKey(slug: string) {
-  return `${REMOTE_PRESENTATION_KEY_PREFIX}${slug}`;
+function getRemotePresentationPath(slug: string) {
+  return `${PRESENTATION_BLOB_FOLDER}/${slug}.json`;
+}
+
+async function readPresentationBlob(stream: ReadableStream<Uint8Array>) {
+  return JSON.parse(await new Response(stream).text()) as unknown;
 }
 
 export async function getRemotePresentation(
   slug: string,
 ): Promise<InteractivePresentationContent | null> {
-  if (!process.env.EDGE_CONFIG) {
-    return null;
-  }
+  const storeId = process.env[PRESENTATION_CONFIGS_STORE_ID_ENV];
+
+  if (!storeId) return null;
 
   try {
-    const presentation = await get(getRemotePresentationKey(slug));
+    const result = await get(getRemotePresentationPath(slug), {
+      access: "private",
+      storeId,
+    });
 
-    if (presentation == null) {
-      return null;
-    }
+    if (result === null || result.stream === null) return null;
 
+    const presentation = await readPresentationBlob(result.stream);
     const parsedPresentation = parseInteractivePresentation(presentation);
 
     if (parsedPresentation.slug !== slug) {

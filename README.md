@@ -21,8 +21,8 @@ projects, documents and custom interactive presentations for targeted visitors.
   education, GitHub projects, technical skills and CV card.
 - Content-first architecture: most personal information is edited from
   [`src/content/`](src/content/) instead of being hard-coded inside components.
-- Interactive presentation route at `/for/:slug`, with local demos and optional Vercel Edge Config
-  remote data.
+- Interactive presentation route at `/for/:slug`, backed by ignored local JSON files and private
+  remote JSON files hosted in a private Vercel Blob store.
 - GitHub repository cards enriched from the public GitHub API and cached in `localStorage`.
 - Public documents hosted outside the repository and configured through Vercel environment
   variables.
@@ -38,7 +38,7 @@ projects, documents and custom interactive presentations for targeted visitors.
 | Styling         | Tailwind CSS v4, Lightning CSS       |
 | Build/runtime   | Vite, Nitro, Bun                     |
 | Deployment      | Vercel                               |
-| Dynamic content | Vercel Edge Config                   |
+| Dynamic content | Private Vercel Blob store            |
 | Documents       | Vercel Blob URLs                     |
 | Analytics       | Vercel Analytics                     |
 
@@ -89,6 +89,7 @@ src/
   lib/                    Shared utilities
   routes/                 TanStack Start file-based routes
 local-documents/          Local private PDFs, ignored by Git
+local-presentation-configs/ Local private presentation JSON, ignored by Git
 ```
 
 Important files:
@@ -160,16 +161,10 @@ Custom presentations are available under:
 /for/:slug
 ```
 
-The route first tries to load a local presentation from
-[`src/content/presentations/local.ts`](src/content/presentations/local.ts).
-If no local presentation matches, it tries Vercel Edge Config.
+The route resolves presentations in this order:
 
-Local demo routes:
-
-```txt
-/for/demo
-/for/demo-fr
-```
+1. ignored local JSON from `local-presentation-configs/presentations/<slug>.json`;
+2. private Vercel Blob object at `presentations/<slug>.json`.
 
 Each presentation defines:
 
@@ -180,22 +175,28 @@ Each presentation defines:
 - presentation controls
 - ordered steps with target section IDs
 
-Local presentations are only for tests and examples. Keep real company-specific presentations out of
-the repository.
-
-Remote presentation keys in Vercel Edge Config use this format:
+Private local presentation files use the same path shape as Vercel Blob:
 
 ```txt
-presentation_<slug>
+local-presentation-configs/presentations/<slug>.json
 ```
 
 Example:
 
 ```txt
-presentation_company-x
+local-presentation-configs/presentations/company-x.json
 ```
 
-The remote value must follow the same shape as the local demos. See
+The JSON value must be the presentation object itself.
+
+Upload ignored local presentation JSON files to Vercel Blob with:
+
+```bash
+bun run presentations:validate
+bun run presentations:upload
+```
+
+The upload uses `PRES_CONFIGS_BLOB_STORE_ID` and `BLOB_READ_WRITE_TOKEN` locally. See
 [`src/content/presentations/README.md`](src/content/presentations/README.md) for details.
 
 ## ▲ Deployment
@@ -208,10 +209,6 @@ Build command:
 bun run build
 ```
 
-Remote presentations require Vercel Edge Config. The app checks for the `EDGE_CONFIG` environment
-variable automatically; if it is missing or no presentation exists for a slug, the route simply
-renders the normal portfolio.
-
 Public documents require these Vercel environment variables:
 
 ```txt
@@ -219,6 +216,17 @@ VITE_CV_URL
 VITE_CREATIS_POSTER_URL
 VITE_BOVO_REPORT_URL
 ```
+
+Remote interactive presentations require the presentation Blob store id plus server-side Blob
+credentials:
+
+```txt
+PRES_CONFIGS_BLOB_STORE_ID
+BLOB_READ_WRITE_TOKEN
+```
+
+If no local JSON or private Blob object exists for a slug, the route simply renders the normal
+portfolio.
 
 Current [`vercel.json`](vercel.json) disables Git-triggered deployments:
 
@@ -250,6 +258,7 @@ The result is cached in `localStorage` for six hours to avoid repeated API calls
 - Prefer reusing the existing stack and patterns before adding new dependencies.
 - Keep portfolio content in [`src/content/`](src/content/) whenever possible.
 - Keep private document copies in `local-documents/`, which is ignored by Git.
+- Keep private presentation JSON in `local-presentation-configs/`, which is ignored by Git.
 - Keep route files in [`src/routes/`](src/routes/); this project uses TanStack Start file-based
   routing.
 - [`src/routeTree.gen.ts`](src/routeTree.gen.ts) is generated and should not be edited manually.

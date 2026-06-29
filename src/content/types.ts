@@ -114,6 +114,7 @@ export type RepositoryLink = {
 };
 
 export type TimelineItemContent = {
+  anchorId?: string;
   period: string;
   duration?: string;
   title: string;

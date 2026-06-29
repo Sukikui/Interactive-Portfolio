@@ -51,7 +51,11 @@ function TimelineItem({
   const detailsId = `timeline-details-${toDomId(itemKey)}`;
 
   return (
-    <div className="grid gap-2 border-b border-border/60 pb-6 last:border-0 last:pb-0 md:grid-cols-[180px_1fr] md:gap-8">
+    <div
+      id={item.anchorId}
+      data-timeline-item-key={itemKey}
+      className="grid scroll-mt-24 gap-2 border-b border-border/60 pb-6 last:border-0 last:pb-0 md:grid-cols-[180px_1fr] md:gap-8"
+    >
       <div className="hidden pt-1.5 md:block">
         <div className="font-mono-tight text-xs tracking-wider text-muted-foreground">
           {item.period}

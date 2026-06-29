@@ -21,6 +21,53 @@ type PortfolioPageProps = {
   presentation?: InteractivePresentationContent | null;
 };
 
+const PRESENTATION_TOP_OFFSET_RATIO = 0.14;
+const PRESENTATION_MIN_TOP_OFFSET = 88;
+const PRESENTATION_MAX_TOP_OFFSET = 140;
+const PRESENTATION_BOTTOM_SAFE_GAP = 28;
+const PRESENTATION_CENTER_THRESHOLD = 0.82;
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function getPresentationBarBottomOffset() {
+  const bar = document.querySelector<HTMLElement>("[data-interactive-presentation-bar]");
+  if (!bar) return 0;
+
+  const rect = bar.getBoundingClientRect();
+  return Math.max(window.innerHeight - rect.top + PRESENTATION_BOTTOM_SAFE_GAP, 0);
+}
+
+function scrollToPresentationTarget(target: HTMLElement) {
+  const targetRect = target.getBoundingClientRect();
+  const targetTop = targetRect.top + window.scrollY;
+  const topOffset = clamp(
+    window.innerHeight * PRESENTATION_TOP_OFFSET_RATIO,
+    PRESENTATION_MIN_TOP_OFFSET,
+    PRESENTATION_MAX_TOP_OFFSET,
+  );
+  const bottomOffset = getPresentationBarBottomOffset();
+  const availableHeight = Math.max(window.innerHeight - topOffset - bottomOffset, 1);
+  const shouldCenterTarget = targetRect.height <= availableHeight * PRESENTATION_CENTER_THRESHOLD;
+  const scrollTop = shouldCenterTarget
+    ? targetTop - topOffset - (availableHeight - targetRect.height) / 2
+    : targetTop - topOffset;
+
+  window.scrollTo({
+    top: Math.max(scrollTop, 0),
+    behavior: "smooth",
+  });
+}
+
+function schedulePresentationTargetScroll(target: HTMLElement) {
+  window.requestAnimationFrame(() => {
+    window.requestAnimationFrame(() => {
+      if (target.isConnected) scrollToPresentationTarget(target);
+    });
+  });
+}
+
 export function PortfolioPage({ presentation }: PortfolioPageProps) {
   const navigation = usePortfolioNavigation(navigationItems);
   const firstSectionId = navigationItems[0]?.id;
@@ -100,11 +147,12 @@ export function PortfolioPage({ presentation }: PortfolioPageProps) {
     const target = document.getElementById(step.targetId);
     if (!target) return;
 
+    const timelineItem = target.closest<HTMLElement>("[data-timeline-item-key]");
+    const timelineItemKey = timelineItem?.dataset.timelineItemKey;
+    if (timelineItemKey) setOpenTimelineItemKey(timelineItemKey);
+
     setIsAutomaticScroll(true);
-    target.scrollIntoView({
-      behavior: "smooth",
-      block: step.block ?? "center",
-    });
+    schedulePresentationTargetScroll(target);
   }, []);
 
   const completePresentation = useCallback(() => {

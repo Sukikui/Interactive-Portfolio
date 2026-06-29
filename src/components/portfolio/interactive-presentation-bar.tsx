@@ -14,6 +14,11 @@ type InteractivePresentationBarProps = {
   onComplete: () => void;
 };
 
+const PRESENTATION_BAR_BLUR_MASK = [
+  "linear-gradient(to right, transparent 0, rgba(0,0,0,0.06) 1.5rem, rgba(0,0,0,0.28) 2.8rem, rgba(0,0,0,0.62) 4rem, black 5rem, black calc(100% - 5rem), rgba(0,0,0,0.62) calc(100% - 4rem), rgba(0,0,0,0.28) calc(100% - 2.8rem), rgba(0,0,0,0.06) calc(100% - 1.5rem), transparent 100%)",
+  "linear-gradient(to bottom, transparent 0, rgba(0,0,0,0.06) 1.15rem, rgba(0,0,0,0.3) 2rem, rgba(0,0,0,0.68) 2.8rem, black 3.5rem, black calc(100% - 3.5rem), rgba(0,0,0,0.68) calc(100% - 2.8rem), rgba(0,0,0,0.3) calc(100% - 2rem), rgba(0,0,0,0.06) calc(100% - 1.15rem), transparent 100%)",
+].join(", ");
+
 export function InteractivePresentationBar({
   presentation,
   onFocusStep,
@@ -52,42 +57,57 @@ export function InteractivePresentationBar({
   };
 
   return (
-    <aside
-      aria-label={`${labels.ariaLabel} ${presentation.companyName}`}
-      className="fixed inset-x-4 bottom-5 z-[70] mx-auto max-w-3xl overflow-hidden rounded-[2rem] border border-brand/25 bg-card/95 p-4 text-foreground shadow-[0_24px_80px_-28px_rgba(15,23,42,0.55)] ring-1 ring-background/80 backdrop-blur-xl dark:border-white/15 dark:bg-background/92 dark:shadow-black/35 dark:ring-white/10 md:bottom-6 md:p-5"
+    <div
+      data-interactive-presentation-bar
+      className="fixed inset-x-4 bottom-5 z-[70] mx-auto max-w-3xl md:bottom-6"
     >
-      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/70 to-transparent" />
-      {!started ? (
-        <StartPresentationPrompt
-          companyName={presentation.companyName}
-          eyebrow={labels.eyebrow}
-          introBeforeCompany={labels.introBeforeCompany}
-          introAfterCompany={labels.introAfterCompany}
-          startLabel={controls.start}
-          onStart={start}
-        />
-      ) : (
-        <div className="space-y-4">
-          <p className="px-1 text-sm leading-relaxed text-foreground/80 md:px-4 md:text-center">
-            {currentStep?.text}
-          </p>
-          <div className="flex items-center justify-between gap-3">
-            <PresentationButton
-              label={controls.previous}
-              icon="previous"
-              disabled={stepIndex === 0}
-              onClick={previous}
-            />
-            <StepPebbles currentIndex={stepIndex} steps={presentation.steps} />
-            <PresentationButton
-              label={isLastStep ? controls.finish : controls.next}
-              icon="next"
-              onClick={next}
-            />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute -inset-x-16 -inset-y-12 rounded-[4rem] bg-background/[0.01] backdrop-blur-[1096px]"
+        style={{
+          maskComposite: "intersect",
+          maskImage: PRESENTATION_BAR_BLUR_MASK,
+          WebkitMaskComposite: "source-in",
+          WebkitMaskImage: PRESENTATION_BAR_BLUR_MASK,
+        }}
+      />
+      <aside
+        aria-label={`${labels.ariaLabel} ${presentation.companyName}`}
+        className="relative overflow-hidden rounded-[2rem] border border-brand/25 bg-card/95 p-4 text-foreground shadow-[0_24px_80px_-28px_rgba(15,23,42,0.55)] ring-1 ring-background/80 backdrop-blur-xl dark:border-white/15 dark:bg-background/92 dark:shadow-black/35 dark:ring-white/10 md:p-5"
+      >
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/70 to-transparent" />
+        {!started ? (
+          <StartPresentationPrompt
+            companyName={presentation.companyName}
+            eyebrow={labels.eyebrow}
+            introBeforeCompany={labels.introBeforeCompany}
+            introAfterCompany={labels.introAfterCompany}
+            startLabel={controls.start}
+            onStart={start}
+          />
+        ) : (
+          <div className="space-y-4">
+            <p className="px-1 text-sm leading-relaxed text-foreground/80 md:px-4 md:text-center">
+              {currentStep?.text}
+            </p>
+            <div className="flex items-center justify-between gap-3">
+              <PresentationButton
+                label={controls.previous}
+                icon="previous"
+                disabled={stepIndex === 0}
+                onClick={previous}
+              />
+              <StepPebbles currentIndex={stepIndex} steps={presentation.steps} />
+              <PresentationButton
+                label={isLastStep ? controls.finish : controls.next}
+                icon="next"
+                onClick={next}
+              />
+            </div>
           </div>
-        </div>
-      )}
-    </aside>
+        )}
+      </aside>
+    </div>
   );
 }
 

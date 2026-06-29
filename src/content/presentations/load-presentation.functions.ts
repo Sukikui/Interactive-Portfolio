@@ -1,8 +1,8 @@
 import { createServerFn } from "@tanstack/react-start";
 
-import { getLocalPresentation } from "./local";
+import { getLocalPresentationConfig } from "./local-presentation-config";
 import { getRemotePresentation } from "./remote";
-import { parseInteractivePresentation, presentationSlugSchema } from "./schema";
+import { presentationSlugSchema } from "./schema";
 
 type LoadPresentationInput = {
   slug: string;
@@ -20,10 +20,10 @@ function validateLoadPresentationInput(data: unknown): LoadPresentationInput {
 export const loadPresentation = createServerFn({ method: "GET" })
   .inputValidator(validateLoadPresentationInput)
   .handler(async ({ data }) => {
-    const localPresentation = getLocalPresentation(data.slug);
+    const localConfigPresentation = await getLocalPresentationConfig(data.slug);
 
-    if (localPresentation) {
-      return parseInteractivePresentation(localPresentation);
+    if (localConfigPresentation) {
+      return localConfigPresentation;
     }
 
     return getRemotePresentation(data.slug);

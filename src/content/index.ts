@@ -1,10 +1,5 @@
 export { navigationItems, portfolioSections } from "./sections";
-export {
-  getLocalPresentation,
-  getPresentationLabels,
-  localPresentations,
-  presentationLabels,
-} from "./presentations";
+export { getPresentationLabels, presentationLabels } from "./presentations";
 export { siteContent } from "./site";
 export type {
   DownloadSection,

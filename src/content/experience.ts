@@ -3,6 +3,7 @@ import type { TimelineItemContent } from "./types";
 
 export const experienceItems = [
   {
+    anchorId: "experience-bovo-predict",
     period: "Oct 2025 — Jan 2026",
     duration: "4 months",
     kind: "Research Project",
@@ -28,6 +29,7 @@ export const experienceItems = [
     repositories: [{ url: "https://github.com/Sukikui/PTI-LDM-VAE" }],
   },
   {
+    anchorId: "experience-creatis",
     period: "Feb 2025 — Jul 2025",
     duration: "6 months",
     kind: "Research Intern",
@@ -65,6 +67,7 @@ export const experienceItems = [
     repositories: [{ url: "https://github.com/creatis-myriad/GENESIS" }],
   },
   {
+    anchorId: "experience-inl",
     period: "Feb 2024 — Jul 2024",
     duration: "6 months",
     kind: "Research Intern",
@@ -91,6 +94,7 @@ export const experienceItems = [
     ],
   },
   {
+    anchorId: "experience-drone-control",
     period: "Oct 2023 — Jan 2024",
     duration: "4 months",
     kind: "Technical Project",
@@ -106,6 +110,7 @@ export const experienceItems = [
     ],
   },
   {
+    anchorId: "experience-institut-jean-lamour",
     period: "Apr 2022 — Jul 2022",
     duration: "4 months",
     kind: "R&D Intern",
@@ -119,6 +124,7 @@ export const experienceItems = [
     ],
   },
   {
+    anchorId: "experience-academic-tutor",
     period: "Sep 2021 — Apr 2022",
     duration: "8 months",
     kind: "Academic Tutor",

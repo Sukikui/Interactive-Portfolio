@@ -2,6 +2,7 @@ import type { TimelineItemContent } from "./types";
 
 export const educationItems = [
   {
+    anchorId: "education-msc-ml-medical-imaging",
     period: "Feb 2025 — Mar 2026",
     subtitle: "Centrale Lyon · Université Lyon 1",
     location: "Lyon, France",
@@ -21,6 +22,7 @@ export const educationItems = [
     ],
   },
   {
+    anchorId: "education-insa-lyon",
     period: "Sep 2022 — Mar 2026",
     subtitle: "INSA Lyon",
     location: "Lyon, France",
@@ -44,6 +46,7 @@ export const educationItems = [
     ],
   },
   {
+    anchorId: "education-tohoku-university",
     period: "Sep 2024 — Dec 2024",
     subtitle: "Tōhoku University",
     location: "Sendai, Japan",
@@ -54,6 +57,7 @@ export const educationItems = [
     ],
   },
   {
+    anchorId: "education-iut-nancy-brabois",
     period: "Sep 2020 — Jul 2022",
     subtitle: "IUT Nancy-Brabois, Université de Lorraine",
     location: "Nancy, France",
