@@ -44,17 +44,17 @@ export function RepositoriesSectionView({
   onHighlightClear,
 }: RepositoriesSectionViewProps) {
   return (
-    <SectionShell heading={section}>
-      <div className="space-y-10">
+    <SectionShell heading={section} compact>
+      <div className="space-y-6 md:space-y-7">
         {section.groups.map((group) => (
           <div key={group.title}>
-            <div className="mb-4 flex items-center gap-3">
+            <div className="mb-3 flex items-center gap-3">
               <h3 className="font-mono-tight text-xs tracking-[0.2em] text-muted-foreground uppercase">
                 {group.title}
               </h3>
               <div className="h-px flex-1 bg-border" />
             </div>
-            <div className="grid min-w-0 gap-4 md:grid-cols-2">
+            <div className="grid min-w-0 gap-3 md:grid-cols-2">
               {group.repositories.map((repository) => (
                 <RepositoryCard
                   key={`${repository.owner}/${repository.name}`}
@@ -68,7 +68,7 @@ export function RepositoriesSectionView({
         ))}
       </div>
       {section.footerLink && (
-        <div className="mt-8 text-center">
+        <div className="mt-6 text-center">
           <a
             href={section.footerLink.href}
             target="_blank"
@@ -153,12 +153,12 @@ function RepositoryCard({
         />
       </div>
 
-      <p className="mt-3 min-h-[2.5rem] line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+      <p className="mt-2 min-h-[2.5rem] line-clamp-3 text-sm leading-snug text-muted-foreground">
         {error ? "Repository information unavailable." : (description ?? "Loading…")}
       </p>
 
       {hasFooter && data && (
-        <div className="mt-4 flex max-w-full flex-wrap items-center gap-x-4 gap-y-1.5 border-t border-border/70 pt-4 text-xs text-muted-foreground">
+        <div className="mt-3 flex max-w-full flex-wrap items-center gap-x-4 gap-y-1 border-t border-border/70 pt-3 text-xs text-muted-foreground">
           {data.languages.map((language) => (
             <span key={language.name} className="flex min-w-0 max-w-full items-center gap-1.5">
               <span

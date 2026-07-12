@@ -53,27 +53,27 @@ export function PortfolioSectionView({
 
 function SplitSectionView({ section }: { section: SplitSection }) {
   return (
-    <section className="scroll-mt-20 border-b border-border py-16 md:py-20">
+    <section className="scroll-mt-20 border-b border-border py-10 md:py-12">
       <div className="mx-auto max-w-6xl px-6">
-        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
           {section.columns.map((column, index) => (
             <div
               key={column.id}
               id={column.id}
               className={`scroll-mt-20 ${index > 0 ? "lg:border-l lg:border-border lg:pl-16" : ""}`}
             >
-              <SectionHeading heading={column} />
+              <SectionHeading heading={column} compact />
               {column.contentType === "prose" ? (
                 column.paragraphs.map((paragraph, paragraphIndex) => (
                   <p
                     key={paragraph}
-                    className={`${paragraphIndex > 0 ? "mt-4" : ""} text-xs leading-relaxed text-muted-foreground md:text-sm`}
+                    className={`${paragraphIndex > 0 ? "mt-3" : ""} text-xs leading-relaxed text-muted-foreground md:text-sm`}
                   >
                     {paragraph}
                   </p>
                 ))
               ) : (
-                <ul className="space-y-3 text-xs leading-relaxed text-muted-foreground md:text-sm">
+                <ul className="space-y-2.5 text-xs leading-relaxed text-muted-foreground md:text-sm">
                   {column.items.map((item) => (
                     <li key={item.title} className="flex gap-3">
                       <span className="mt-2 size-1.5 shrink-0 rounded-full bg-brand" />
@@ -95,14 +95,14 @@ function SplitSectionView({ section }: { section: SplitSection }) {
 
 function DownloadSectionView({ section }: { section: DownloadSection }) {
   return (
-    <SectionShell heading={section}>
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-8 md:p-10">
+    <SectionShell heading={section} compact>
+      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 md:p-8">
         <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
-        <div className="relative flex flex-col items-start justify-between gap-6 md:flex-row md:items-center">
+        <div className="relative flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
           <div>
             <h3 className="text-2xl font-semibold text-card-foreground">{section.cardTitle}</h3>
-            <p className="mt-2 max-w-lg text-muted-foreground">{section.description}</p>
-            <p className="font-mono-tight mt-3 text-xs text-muted-foreground">{section.meta}</p>
+            <p className="mt-1.5 max-w-lg text-muted-foreground">{section.description}</p>
+            <p className="font-mono-tight mt-2.5 text-xs text-muted-foreground">{section.meta}</p>
           </div>
           <a
             href={section.href}

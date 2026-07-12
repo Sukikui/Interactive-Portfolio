@@ -66,10 +66,10 @@ export const siteContent = {
   footer: {
     contentLabel: "Content & assets",
     contentRights: "All rights reserved",
-    codeLabel: "Source code",
-    codeLicense: "MIT licensed",
+    reusePrompt: "Like it?",
+    licenseLabel: "MIT License",
     sourceLink: {
-      label: "Like it? Fork it.",
+      label: "Fork the source and make it yours",
       repository: projectRepositories.interactivePortfolio,
     },
     stackLabel: "Built with",

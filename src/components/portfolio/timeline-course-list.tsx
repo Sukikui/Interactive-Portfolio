@@ -26,13 +26,13 @@ export function CourseList({ courses, variant }: CourseListProps) {
   }
 
   return (
-    <details className="group mt-3 hidden md:block">
+    <details className="group mt-2 hidden md:block">
       <summary className="font-mono-tight inline-flex cursor-pointer list-none items-center gap-1.5 text-[11px] tracking-wider text-muted-foreground transition-colors hover:text-brand">
         <ChevronDown className="size-3 transition-transform group-open:rotate-180" />
         Relevant coursework
         <span className="opacity-60">({courses.length})</span>
       </summary>
-      <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
+      <ul className="mt-2 grid grid-cols-1 gap-x-6 gap-y-1 sm:grid-cols-2">
         {courses.map((course) => (
           <li
             key={course}

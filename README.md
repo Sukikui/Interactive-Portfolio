@@ -1,9 +1,8 @@
 <div align="center">
 
-# Interactive Portfolio
+# [Interactive Portfolio](https://tristan-habemont.vercel.app)
 
 Personal academic portfolio built as a content-driven web application.
-
 It presents my profile, research interests, experience, education, technical skills, GitHub
 projects, documents and custom interactive presentations for targeted visitors.
 
@@ -11,7 +10,8 @@ projects, documents and custom interactive presentations for targeted visitors.
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 ![TanStack](https://img.shields.io/badge/TanStack-Start-FF4154?logo=reactrouter&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-v4-38BDF8?logo=tailwindcss&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-ready-000000?logo=vercel&logoColor=white)
+![Bun](https://img.shields.io/badge/Bun-run-FBF0DF?logo=bun&logoColor=000000)
+![Vercel](https://img.shields.io/badge/Vercel-deployed-000000?logo=vercel&logoColor=white)
 
 </div>
 

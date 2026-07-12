@@ -49,8 +49,8 @@ export type SiteContent = {
   footer: {
     contentLabel: string;
     contentRights: string;
-    codeLabel: string;
-    codeLicense: string;
+    reusePrompt: string;
+    licenseLabel: string;
     sourceLink: {
       label: string;
       repository: RepositoryReference;

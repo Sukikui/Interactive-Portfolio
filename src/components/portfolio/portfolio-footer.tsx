@@ -2,6 +2,7 @@ import type { IconType } from "react-icons";
 import { SiBun, SiReact, SiTailwindcss, SiTypescript, SiVercel } from "react-icons/si";
 
 import type { FooterTechnology, SiteContent } from "@/content/types";
+import { getGitHubRepositoryUrl } from "@/lib/github";
 
 const TECHNOLOGY_ICONS = {
   bun: SiBun,
@@ -26,6 +27,8 @@ type PortfolioFooterProps = {
 };
 
 export function PortfolioFooter({ content, fullName, onSourceClick }: PortfolioFooterProps) {
+  const sourceRepositoryUrl = getGitHubRepositoryUrl(content.sourceLink.repository);
+
   return (
     <footer className="border-t border-border py-10">
       <div className="font-mono-tight mx-auto grid max-w-6xl gap-8 px-6 text-xs leading-4 text-muted-foreground md:grid-cols-2">
@@ -38,11 +41,8 @@ export function PortfolioFooter({ content, fullName, onSourceClick }: PortfolioF
             <span aria-hidden="true">•</span>
             <span>{content.contentRights}</span>
           </p>
-          <p className="flex flex-wrap justify-center gap-x-2 gap-y-1 md:justify-start">
-            <span>{content.codeLabel}</span>
-            <span aria-hidden="true">•</span>
-            <span>{content.codeLicense}</span>
-            <span aria-hidden="true">•</span>
+          <p className="flex flex-wrap justify-center gap-x-1.5 gap-y-1 md:justify-start">
+            <span>{content.reusePrompt}</span>
             <button
               type="button"
               onClick={onSourceClick}
@@ -50,6 +50,15 @@ export function PortfolioFooter({ content, fullName, onSourceClick }: PortfolioF
             >
               {content.sourceLink.label}
             </button>
+            <span aria-hidden="true">·</span>
+            <a
+              href={`${sourceRepositoryUrl}/blob/main/LICENSE`}
+              target="_blank"
+              rel="noreferrer"
+              className="transition-colors hover:text-foreground"
+            >
+              {content.licenseLabel}
+            </a>
           </p>
         </div>
 
