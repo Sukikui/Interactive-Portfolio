@@ -1,4 +1,4 @@
-import { Download } from "lucide-react";
+import { ArrowUpRight } from "lucide-react";
 
 import type { DownloadSection, PortfolioSection, SplitSection } from "@/content/types";
 
@@ -96,22 +96,29 @@ function SplitSectionView({ section }: { section: SplitSection }) {
 function DownloadSectionView({ section }: { section: DownloadSection }) {
   return (
     <SectionShell heading={section} compact>
-      <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-6 md:p-8">
-        <div className="absolute -top-20 -right-20 size-64 rounded-full bg-brand/15 blur-3xl" />
-        <div className="relative flex flex-col items-start justify-between gap-4 md:flex-row md:items-center">
-          <div>
-            <h3 className="text-2xl font-semibold text-card-foreground">{section.cardTitle}</h3>
-            <p className="mt-1.5 max-w-lg text-muted-foreground">{section.description}</p>
-            <p className="font-mono-tight mt-2.5 text-xs text-muted-foreground">{section.meta}</p>
+      <div
+        className="rounded-2xl border border-border bg-card p-5 md:p-6"
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 100% 50%, color-mix(in oklab, var(--brand) 15%, transparent), transparent 45%)",
+        }}
+      >
+        <div className="flex items-center justify-between gap-4">
+          <div className="min-w-0">
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <h3 className="text-xl font-semibold text-card-foreground">{section.cardTitle}</h3>
+              <p className="font-mono-tight text-xs text-muted-foreground">{section.meta}</p>
+            </div>
+            <p className="mt-1 text-sm text-muted-foreground">{section.description}</p>
           </div>
           <a
             href={section.href}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 rounded-md bg-brand px-5 py-3 font-medium text-white shadow-lg shadow-brand/25 transition-opacity hover:opacity-90"
+            className="group inline-flex shrink-0 items-center gap-1.5 rounded-md bg-brand px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-brand/25 transition-opacity hover:opacity-90"
           >
-            <Download className="size-4" />
             {section.buttonLabel}
+            <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </a>
         </div>
       </div>

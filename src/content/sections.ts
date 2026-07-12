@@ -20,21 +20,21 @@ export const portfolioSections = [
   overviewSection,
   {
     type: "timeline",
-    id: "experience",
-    navLabel: "Experience",
-    index: "04",
-    title: "Experience",
-    icon: "experience",
-    items: experienceItems,
-  },
-  {
-    type: "timeline",
     id: "education",
     navLabel: "Education",
-    index: "05",
+    index: "04",
     title: "Education",
     icon: "education",
     items: educationItems,
+  },
+  {
+    type: "timeline",
+    id: "experience",
+    navLabel: "Experience",
+    index: "05",
+    title: "Experience",
+    icon: "experience",
+    items: experienceItems,
   },
   {
     type: "repositories",
@@ -65,12 +65,11 @@ export const portfolioSections = [
     index: "08",
     title: "Curriculum Vitae",
     icon: "document",
-    cardTitle: "Résumé PDF",
-    description:
-      "A concise PDF version of my profile, so you can keep the essentials at hand after browsing this website.",
-    meta: "PDF · ~2 MB",
+    cardTitle: "Résumé",
+    description: "Keep the essentials at hand.",
+    meta: "PDF · ~200 KB",
     href: documents.cv,
-    buttonLabel: "Open CV",
+    buttonLabel: "Open",
   },
 ] satisfies readonly PortfolioSection[];
 

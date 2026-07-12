@@ -14,14 +14,18 @@ export function SkillsSectionView({ section }: { section: SkillsSection }) {
             <h3 className="font-mono-tight pt-1 text-xs tracking-[0.2em] text-brand uppercase">
               {group.title}
             </h3>
-            <ul className="flex flex-wrap gap-x-3 gap-y-1">
-              {group.skills.map((skill) => (
+            <ul className="flex flex-wrap items-center gap-x-2 gap-y-1">
+              {group.skills.map((skill, index) => (
                 <li
                   key={skill}
                   className="inline-flex items-center gap-2 text-sm text-muted-foreground"
                 >
-                  <span className="size-1.5 rounded-full bg-brand/70" />
-                  {skill}
+                  <span>{skill}</span>
+                  {index < group.skills.length - 1 && (
+                    <span aria-hidden="true" className="text-[10px] text-brand/40">
+                      •
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
