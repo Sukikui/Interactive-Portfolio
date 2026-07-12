@@ -64,7 +64,7 @@ export function PortfolioFooter({ content, fullName, onSourceClick }: PortfolioF
 
         <div className="grid gap-y-2 text-center md:text-right">
           <p className="tracking-[0.16em] uppercase">{content.stackLabel}</p>
-          <ul className="grid grid-cols-2 justify-center gap-x-4 gap-y-2 text-left sm:grid-cols-[repeat(4,max-content)] md:justify-end">
+          <ul className="flex flex-wrap justify-center gap-x-4 gap-y-2 sm:grid sm:grid-cols-[repeat(4,max-content)] sm:text-left md:justify-end">
             {content.technologies.map((technology) => (
               <li key={technology.id}>
                 <a
